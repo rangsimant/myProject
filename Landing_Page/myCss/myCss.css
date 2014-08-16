@@ -36,4 +36,29 @@
   #navBar{
     box-shadow: 0 0 15px rgba(0,0,0,0.8);
   }
+  .fontParagraph{
+    font-family: 'Open Sans Condensed', sans-serif;
+  }
+  .topPad{
+    padding-top: 10%;
+  }
+  .logopad{
+    padding-top: 3%;
+  }
+  .Margintop{
+    margin-top: -4%;
+  }
+  p{
+    font-family: 'Poiret One', cursive;
+  }
+  .Warroom{
+    font-family: 'Didact Gothic', sans-serif;
+  }
+  .Demo{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  #btnLogin:hover{
+    background-color:rgba(0,0,0,.2);
+    background-position:0 -15px;
+  }
   </style>
