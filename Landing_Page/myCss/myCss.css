@@ -1,8 +1,39 @@
 <style type="text/css">
-.sectionHeigth{
-	height: 1080px;
-}
-.login{
-	text-align: right;
-}
-</style>
+  body{
+   
+  }
+  .orange{
+    background-color: #F9914B;
+  }
+
+  .paddingleft{
+    padding-left: 60px;
+  }
+
+  .center{
+    color: white;
+    font-size: 16px;
+    padding-top: 4%;
+  }
+  .textWhite{
+    color: white;
+  }
+  .sec2PaddingBottom{
+    padding-bottom: 60px;
+  }
+  #sec1,#sec3,#sec5,#sec7{
+    background-color: #B6B6B6;
+  }
+  #sec2,#sec4,#sec6{
+    background-color: #7FA0B3;
+  }
+  #sec2{
+    padding-bottom: 10%;
+  }
+  #sec3{
+    padding-bottom: 5%;
+  }
+  #navBar{
+    box-shadow: 0 0 15px rgba(0,0,0,0.8);
+  }
+  </style>
