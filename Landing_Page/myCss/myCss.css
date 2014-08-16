@@ -45,9 +45,6 @@
   .logopad{
     padding-top: 3%;
   }
-  .Margintop{
-    margin-top: -4%;
-  }
   p{
     font-family: 'Poiret One', cursive;
   }
@@ -62,6 +59,13 @@
     background-position:0 -15px;
   }
   .botPad{
-    padding-bottom: 6%;
+    padding-bottom: 3%;
+  }
+  .P16{
+    font-size: small;
+    color: white;
+  }
+  .art{
+    font-size: 20px;
   }
   </style>
