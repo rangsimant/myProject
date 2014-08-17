@@ -12,7 +12,7 @@
 
   .center{
     color: white;
-    font-size: 16px;
+    font-size: 26px;
     padding-top: 4%;
   }
   .textWhite{
@@ -66,6 +66,7 @@
     color: white;
   }
   .art{
+    padding-top: 4%;
     font-size: 20px;
   }
   </style>
