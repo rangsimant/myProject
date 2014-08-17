@@ -51,9 +51,6 @@
   .Warroom{
     font-family: 'Didact Gothic', sans-serif;
   }
-  .Demo{
-    font-family: 'Josefin Sans', sans-serif;
-  }
   #btnLogin:hover{
     background-color:rgba(0,0,0,.2);
     background-position:0 -15px;
@@ -68,5 +65,50 @@
   .art{
     padding-top: 4%;
     font-size: 20px;
+  }
+  .margin{
+    margin-top: -10px;
+  }
+  .btn-Get-Free:hover{
+    background-color:rgba(0,0,0,.05);
+    background-position:0 -15px;
+  }
+  .btn-Get-Free{
+    background-color:rgba(0,0,0,.3);
+    color: white;
+    font-size: 20px;
+    display:inline-block;padding:6px 12px;
+    margin-bottom:0;
+    font-weight:400;
+    line-height:1.42857143;
+    text-align:center;
+    white-space:nowrap;
+    vertical-align:middle;
+    cursor:pointer;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    background-image:none;
+    border:1px solid transparent;
+    border-radius:4px;
+    -webkit-transition: all 0.3s ease-in-out;
+  }
+  .paddingGetfree{
+    padding-bottom: 2%;
+  }
+  .partnerpadding{
+    padding-top: 60px;
+  }
+  .padlogo2{
+    margin-top: -27px;
+    padding-left: 12%;
+  }
+  .contact{
+    padding-top: 5%;
+    padding-left: 0px;
+  }
+  .footpad{
+    padding-bottom: 60px;
   }
   </style>
