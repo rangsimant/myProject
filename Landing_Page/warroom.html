@@ -1,4 +1,20 @@
- <HEAD>
+<!DOCTYPE html>
+  <HEAD>
+  <title>Warroom</title>
+ <style>
+   @font-face {
+    font-family: 'PoiretOne-Regular';
+    src: url(myFonts/PoiretOne-Regular.ttf);
+  }
+  @font-face {
+    font-family: 'DidactGothicr';
+    src: url(myFonts/DidactGothic.ttf);
+  }
+   @font-face {
+    font-family: 'OpenSans-CondLight';
+    src: url(myFonts/OpenSans-CondLight.ttf);
+  }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <!--Response to SmartPhone&Tablet-->
   <meta http-equiv="Content-Type" content="test/html;charset=UTF-8">
   <link rel="shortcut icon" type="image/x-icon" href="image/logo.ico" /> <!-- icon title bar -->
@@ -9,20 +25,18 @@
 	<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
 
   <link rel="stylesheet" href="myCss/myCss.css">
-  <link href='http://fonts.googleapis.com/css?family=Poiret+One|Didact+Gothic|Francois+One|Josefin+Sans:700|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+
   <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet"> <!-- import font icon -->
 
 	<!-- Latest compiled and minified JavaScript -->
   </HEAD>
-  <title>Warroom Landing</title>
-<html>
-<div>
 	<body id="body" class="fontParagraph">
+    <div>
 	<div id="navBar" class="navbar navbar-inverse navbar-fixed-top img-responsive" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <i class="fa fa-sign-in" style="font-size:23px;color:white"></i>
+           <a href="#sign in"><i class="fa fa-sign-in" style="font-size:23px;color:white"></i></a>
           </button>
           <a class="navbar-brand" href="#"><img src="image/logo.png"></a>
         </div>
@@ -37,20 +51,18 @@
     </div>
 		<section id="sec1">
       <div class="container">
-			<div class="jumbotron text-center">
-       		 <h1><span class="textWhite">Maximize Social Customer Care</strong></span></h1>
+        <div class="jumbotron text-center">
+       		 <h1><span class="textWhite">Maximize Social Customer Care</span></h1>
        		 <div class="P16"><p>A social conversation platform with integrated management system and team collaboration support</p></div>
        		 <p><a class="btn btn-lg btn-warning Warroom" role="button" href="#StartFree">START FREE DEMO NOW! <i class="fa fa-play"></i></a></p>
-           <p class="lead fontParagraph"><small><em>No credit card required.</em></small</p>
-    		</div>
-        <div class="text-center">
+           <p class="lead fontParagraph textWhite"><small><em>No credit card required.</em></small></p></div>
+          <div class="text-center">
            <img src="http://placehold.it/1125x549" class="featurette-image img-responsive" alt="Sprout Social Dashboard" >
         </div>
-  </div>
-</div>
+      </div>
 		</section>
             <div width=100% class="orange">
-          <div class="container">
+          <div class="container textWhite">
         <div class="col-md-7">
           <p class="text-left center art lead">“We use  to take care of over a million customers on social media, 24x7, with limited staff. It helps us achieve our goals.”</p>
         </div>
@@ -61,10 +73,10 @@
       </div>
     </div>
 	<section id="sec2" >
-    <div class="container">
-          <div class="jumbotron text-center">
+    <div class="container textWhite">
+          <div class="jumbotron text-center ">
            <h2><span class="textWhite"><strong>Manage, Synergy & Security</strong></span></h2>
-           <p class="lead sec2PaddingBottom">Create a brand that customer love and trust. <span class="Warroom">WARROOM</span> ensures faster, smarter and effective social care of your team.</p>
+           <p class="lead sec2PaddingBottom ">Create a brand that customer love and trust. <span class="Warroom">WARROOM</span> ensures faster, smarter and effective social care of your team.</p>
         </div>
     <div class="row featurette">
         <div class="col-md-5">
@@ -103,7 +115,7 @@
     </div>
 </section>
 <section id="sec4">
-  <div class="container">
+  <div class="container textWhite">
           <div class="jumbotron text-center">
            <h2><span class="textWhite"><strong>ALL LEVELS REPORTING</strong></span></h2>
            <p class="lead sec2PaddingBottom">From daily to customer period. From operation staff to top executive. From a single conversation to overall brand communication. <span class="Warroom">WARROOM</span> provides full sets of every reporting dimensions.</p>
@@ -117,9 +129,11 @@
         </p>
         <p class="col-md-3 lead">Sentimental Analysis
         </p>
-        <div>
+      </div>
+        <div class="jumbotron">
         <img src="http://placehold.it/1125x400" class="featurette-image img-responsive" alt="Sprout Social Dashboard">
   </div>
+</div>
 </section>
 <section id="sec5">
   <div class="jumbotron container">
@@ -146,23 +160,23 @@
         </div>
         <div class="col-md-7 logopad">
           <h3 class="featurette-heading text-left textWhite">"<span class="Warroom">WARROOM</span> helps us supporting much more users faster with less staff. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam”</h3>
-          <div class="text-left textWhite art"><strong>Someone Who</strong><br/><span class="lead">Baidu Thailand</span></div>
+          <div class="text-left textWhite art footpad"><strong>Someone Who</strong><br/><span class="lead">Baidu Thailand</span></div>
         </div>
       </div>
   </div>
 </section>
 <section id="sec6">
   <div width=100% class="orange paddingGetfree">
-    <div class="jumbotron container text-center">
-          <div class="col-md-7 margin">
+    <div class="container text-center jumbotron">
+          <div class="col-md-9 margin">
           <div class="center Warroom margin">Try WARROOM and TALK TO AUDIENCE NOW!!</div>
         </div>
-        <div class="col-md-4">
-          <p><a class="btn-Get-Free Warroom" role="button" href="#getFree"><strong>Get Free Demo </strong><i class="fa fa-play"></i></a></p>
+        <div class="col-md-1">
+          <p><a class="btn-Get-Free Warroom" role="button" href="#getFree">Get Free Demo <i class="fa fa-play"></i></a></p>
         </div>
     </div>
-  </div>
-    <div class="container text-center">
+    </div>
+    <div class="container text-center textWhite">
   <h3><strong><img src="http://placehold.it/300x2"> Reliable and Trusted <img src="http://placehold.it/300x2"></strong></h3>
     <div class="col-6 col-sm-6 col-lg-4 Warroom partnerpadding">
       <img src="http://placehold.it/60x60">
@@ -183,21 +197,18 @@
           <div align="center">
              <img class="featurette-image img-responsive partnerpadding botPad" src="http://placehold.it/900x2">
       </div>
-      <div class="container featurette">
-        <div class="col-md-5 padlogo2">
+      <div class="container featurette"> 
+        <div class="col-md-5 padlogo2"> 
           <p><img class="featurette-image img-responsive topPad" src="http://placehold.it/250x100"></P>
-        </div>
-        <div class="col-md-7">
-          <div class="lead text-left contact">WARROOM
+          </div> 
+        <div class="col-md-6"> 
+          <div class="lead text-left contact textWhite">WARROOM
 a software by Thoth Media Co.,Ltd. 35/133 Soi Ladprao 23, Chankasem, Chatujak, Bangkok 10900 Thailand | 02-930-0747 | warroom@thothmedia.com</div>
-        </div>
-      </div>
-<div class="text-center footpad">
+        </div> 
+    </div> 
+<div class="text-center footpad textWhite">
   © Copyright 2014
 </div>
-  </div>
 </section>
-<section id="sec7"></section>
 </body>
-</div>
 </html>
