@@ -1,5 +1,14 @@
+::selection{
+	background-color: #397A92;
+}
+.whyChoose{
+	padding-top: 4%;
+}
 .orange{
 background-color: #F9914B;
+}
+.txtWhite{
+	color:white;
 }
 .paddingleft{
 padding-left: 60px;
@@ -9,20 +18,16 @@ color: white;
 font-size: 26px;
 padding-top: 4%;
 }
-.textWhite{
-color: white;
-}
 .sec2PaddingBottom{
 padding-bottom: 60px;
 }
 #sec1,#sec3,#sec5{
-background-color: #B6B6B6;
+background-color: #C3C3C3;
+color:#342C25;
 }
-#sec2,#sec4{
-background-color: #7FA0B3;
-}
-#sec6{
-background-color: #2A2A2A;
+#sec2,#sec4,#sec6{
+background-color: #342C25;
+color:white;
 }
 #sec2{
 padding-bottom: 10%;
@@ -33,20 +38,24 @@ padding-bottom: 5%;
 #navBar{
 box-shadow: 0 0 15px rgba(0,0,0,0.8);
 }
-.fontParagraph{
-font-family: 'OpenSans-CondLight';
-}
 .topPad{
 padding-top: 10%;
 }
 .logopad{
 padding-top: 3%;
 }
-p{
-font-family: 'PoiretOne-Regular';
+.name{
+	font-family:'Roboto-Bold-400';
 }
-.Warroom{
-font-family: 'DidactGothicr';
+p{
+	font-family: 'Roboto-Thin-100';
+	font-size: 18px;
+}
+h1,h2,h3{
+	font-family: 'Raleway-SemiBold-600';
+}
+.btnFont{
+	font-family: 'RobotoCondensed-Bold-700';
 }
 #btnLogin:hover{
 background-color:rgba(0,0,0,.2);
@@ -55,16 +64,12 @@ background-position:0 -15px;
 .botPad{
 padding-bottom: 3%;
 }
-.P16{
-font-size: small;
-color: white;
-}
 .art{
 padding-top: 4%;
 font-size: 20px;
 }
 .margin{
-margin-top: -18px;
+margin-top: -9px;
 }
 .btn-Get-Free:hover{
 background-color:rgba(0,0,0,.05);
@@ -102,9 +107,19 @@ margin-top: -27px;
 padding-left: 12%;
 }
 .contact{
-padding-top: 5%;
+padding-top: 3%;
 padding-left: 0px;
 }
 .footpad{
 padding-bottom: 60px;
+}
+.footmargin{
+	margin-top: 6%;
+}
+.footlogo{
+	margin-left: 11%;
+	margin-top: 6%;
+}
+a{
+	color:#1E16F9;
 }
