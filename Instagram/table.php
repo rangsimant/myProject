@@ -11,6 +11,10 @@
     $num=1;
     $lastPage=false;
     $tag = $instagram->getTagMedia($_POST['hashtag']);
+    $dateStart = date('2014-08-30 00:00:00');
+    $dateTo = date('2014-08-30 00:00:00');
+    // echo "<pre>";
+    // print_r($tag);
 echo '<table class="table table-hover ">
 		<thead>
 	          <tr>
@@ -20,24 +24,26 @@ echo '<table class="table table-hover ">
 	          </tr>
 	        </thead>
 	        	<tbody>';
-	        function get_media(& $tag,& $num,& $instagram,&$lastPage){
+	        function get_media(& $tag,& $num,& $instagram,&$lastPage,&$dateStart,&$dateTo){
 				foreach ($tag->data as $key => $value) {
-					echo '<tr>
-				            <td>'.$num.'</td>
-				            <td><img src='.$value->images->thumbnail->url.'></td>
-				            <td><a href="'.$value->link.'" target="_blank">CLICK</a></td>
-				          </tr>';
+					if (($value->created_time >= strtotime($dateStart)) && ($value->created_time <= strtotime($dateTo)) ) {
+						echo '<tr>
+					            <td>'.$num.'</td>
+					            <td><img src='.$value->images->thumbnail->url.'></td>
+					            <td><a href="'.$value->link.'" target="_blank">CLICK</a></td>
+					          </tr>';
 				        $num++;
+				    }
 				}
 				$tag = $instagram->pagination($tag);
 	    		 if (isset($tag->pagination->next_url)) {
-	    		 	get_media($tag,$num,$instagram,$lastPage);
+	    		 	get_media($tag,$num,$instagram,$lastPage,$dateStart,$dateTo);
 	    		 }
 	    		 else{
 	    		 	$lastPage = true;
 	    		 }
 			}
-	get_media($tag,$num,$instagram,$lastPage);
+	get_media($tag,$num,$instagram,$lastPage,$dateStart,$dateTo);
 echo "</tbody>
 	</table>";
 ?>
