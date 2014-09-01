@@ -6,16 +6,17 @@
       'apiSecret'   => '1d19abf1a59e4efdbf58735833303996',
       'apiCallback' => 'http://instagram.com/'
     )); // New Class API Instagram
-    echo "<pre>";
+    echo "<pre>"; // format code
 	$user='samsung';
-	$dataUser = $instagram->searchUser($user);
+	$dataUser = $instagram->searchUser($user); //(use Instagram Class)
 	$num=1;
 	$idArr = array();
-	$idArr = get_IDUser($dataUser,$idArr); // All ID user samsung
-	$countUser = count(get_IDUser($dataUser,$idArr)); // count ID user
+	$idArr = get_IDUser($dataUser,$idArr); // All ID user samsung (use Instagram Class)
+	$countUser = count($idArr); // count ID user (use Instagram Class)
+
 	echo "count :".$countUser."<br>";
 	for ($i=0; $i < $countUser; $i++) { 
-		$userMedia = $instagram->getUserMedia($idArr[$i]);
+		$userMedia = $instagram->getUserMedia($idArr[$i]); // (use Instagram Class)
 		if (isset($userMedia->data)) {
 			get_Media($instagram,$userMedia,$idArr,$num,$i);
 		}
@@ -33,7 +34,7 @@
 			echo "<img src=".$value->images->thumbnail->url."><br>";
 			$num++;
 		}
-		$userMedia = $instagram->pagination($userMedia);
+		$userMedia = $instagram->pagination($userMedia); //(use Instagram Class)
 		if (isset($userMedia->pagination->next_url)) {
 			get_Media($instagram,$userMedia,$idArr,$num,$i); // loop next page
 		}
