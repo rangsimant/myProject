@@ -1,6 +1,7 @@
 <? require_once 'API-master/instagram.class.php'; ?>
 <html>
 <head>
+	
 	<meta http-equiv="Content-Type" content="test/html;charset=UTF-8">
 	<?php include 'header.php' ?>
 	<script type="text/javascript" src="Bootswatch/js/jquery-1.8.3.min.js"></script>
