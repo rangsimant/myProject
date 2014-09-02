@@ -161,4 +161,10 @@ a{
 #sec6 > div.orange.paddingGetfree{
 	padding-bottom: 36px;
 }
+#sec4 > div > div:nth-child(2) > p:nth-child(6){
+	margin-bottom: 30px;
+}
+#sec6 > div.container.text-center > h3{
+	margin-top: 90px;
+}
 >>>>>>> d2e659b2b1e883610bb3fbf952d2ffe304a281a2
