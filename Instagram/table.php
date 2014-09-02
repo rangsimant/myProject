@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="test/html;charset=UTF-8">
+<meta http-equiv="Content-Type" content="test/html;charset=UTF-8" />
 <?php
     ini_set('max_execution_time', $_POST['limit']);
     include('header.php');

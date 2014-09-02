@@ -126,4 +126,39 @@ padding-bottom: 60px;
 a{
 	color:#1E16F9;
 }
+#sec1 > div > div.jumbotron.text-center{
+	padding-top: 90px;
+}
+#sec1 > div > div.jumbotron.text-center > div > p{
+	padding-bottom: 10px;
+}
+#sec1 > div > div.jumbotron.text-center > p{
+	padding-bottom: 10px;
+}
+#body > div > div.orange > div > div.col-md-7 > p{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+#sec5 > div > div:nth-child(4) > h2{
+	padding-bottom: 30px
+}
+#sec6 > div:nth-child(3) > img{
+	padding-bottom: 40px;
+	padding-top: 40px;
+}
+#sec6 > div.container.text-center > div:nth-child(1n+0) > h4{
+	padding-top: 20px;
+}
+#sec6 > div.container.featurette > div.col-md-10 > p{
+	padding-bottom: 90px
+}
+#sec3 > div.container > div > h2{
+	padding-top:60px;
+}
+#sec3 > div.container > div > p{
+	padding-bottom: 10px;
+}
+#sec6 > div.orange.paddingGetfree{
+	padding-bottom: 36px;
+}
 >>>>>>> d2e659b2b1e883610bb3fbf952d2ffe304a281a2
