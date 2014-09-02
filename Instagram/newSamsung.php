@@ -19,13 +19,14 @@
 	$countUser = count($idArr["Account"]); // count ID user (use Instagram Class)
 
 	echo "count :".$countUser."<br>";
-	for ($i=0; $i < 3; $i++) { 
+	for ($i=0; $i < 4; $i++) { 
 		$userMedia = $instagram->getUserMedia($idArr["Account"][$i]["id"]); // (use Instagram Class)
 		if (isset($userMedia->data)) {
 			get_Media($instagram,$userMedia,$idArr,$num,$i,$filecount,$imagArr);
 		}
 	}
 	SaveAsFile($date1,$date2,$filecount,$imagArr,$idArr);
+	echo "<br>Download Success !";
 	function get_IDUser ($dataUser,$idArr){
 		foreach ($dataUser->data as $key => $value) {
 			$idArr["Account"][$key] = ["id"=>$value->id,"username"=>$value->username,"profile_picture"=>$value->profile_picture];
@@ -70,7 +71,10 @@
 						mkdir("images/".$folder."/".$imagArr[$i]["username"],0777);
 					}
 					else{
-						mkdir("images/".$folder."/".$imagArr[$i]["username"],0777);
+						if (!file_exists("images/".$folder."/".$imagArr[$i]["username"])) {
+							mkdir("images/".$folder."/".$imagArr[$i]["username"],0777);
+						}
+						
 					}
 				}
 				file_put_contents("images/".$folder."/".$imagArr[$i]["username"]."/".$filecount.".jpeg", $content); // Save Image
