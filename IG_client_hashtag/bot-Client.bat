@@ -1,5 +1,5 @@
 @ECHO OFF
 cd %~dp0
-title test bot
+title CLIENT BOT
 php SpiderClient.php
 PAUSE

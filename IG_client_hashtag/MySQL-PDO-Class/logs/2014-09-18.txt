@@ -1,0 +1,47 @@
+Time : 06:47:07
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=username
+
+Time : 06:46:56
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=username
+
+Time : 06:46:30
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=username
+
+Time : 06:25:56
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'username' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=username
+
+Time : 06:24:22
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hashtag' in 'where clause'
+Raw SQL : SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type=hashtag
+
+Time : 06:21:08
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE user_ig_name=? AND user_ig_type='hashtag'' at line 1
+Raw SQL : SELECT user_ig_feed_date WHERE user_ig_name=:username AND user_ig_type='hashtag'
+
+Time : 06:20:26
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE user_ig_name=? AND user_ig_type='hashtag'' at line 1
+Raw SQL : SELECT user_ig_feed_date WHERE user_ig_name=:username AND user_ig_type='hashtag'
+
+Time : 06:10:47
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hashtag' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=hashtag
+
+Time : 06:10:08
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hashtag' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=hashtag
+
+Time : 06:09:54
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'hashtag' in 'where clause'
+Raw SQL : UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type=hashtag
+
+Time : 05:59:54
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(user_ig_feed_date=?) WHERE user_ig_name =? AND user_ig_type=username' at line 1
+Raw SQL : UPDATE user_ig SET (user_ig_feed_date=:feed_date) WHERE user_ig_name =:username AND user_ig_type=username
+
+Time : 05:58:18
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(user_ig_feed_date) VALUES(?) WHERE user_ig_name =?' at line 1
+Raw SQL : UPDATE user_ig(user_ig_feed_date) VALUES(:feed_date) WHERE user_ig_name =:username

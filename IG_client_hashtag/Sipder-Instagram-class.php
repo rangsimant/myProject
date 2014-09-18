@@ -1,7 +1,6 @@
 <?php 
 	require_once 'API-master/instagram.class.php';
 	require_once 'MySQL-PDO-Class/Db.class.php';
-	date_default_timezone_set("Asia/Bangkok");
 	/**
 	* 
 	*/
@@ -11,10 +10,14 @@
 		private $db;
 		private $lastdate;
 		private $IDuser;
-		private $max_media=30;
-		private $num_media=1;
+		private $max_media=30; // max Media
+		private $num_media=1; // start Media
+		private $user_ig_type;
+		private $check_last_feed_date;
+		private $username;
 		function __construct()
 		{
+			date_default_timezone_set("Asia/Bangkok");
 			$this->lastdate = date("Y-m-d H:i:s");
 			$this->instagram = new Instagram(array(
 		      'apiKey'      => 'ab8e71229279462bb7d276d055b7e8b3',
@@ -25,7 +28,10 @@
 		}
 
 		public function Get_Media_from_Client($username){
+			date_default_timezone_set("Asia/Bangkok");
 			foreach ($username as $keyuser => $user) {
+				$this->username[] = $user['user_ig_name'];
+				$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='username'",array("username"=>$user['user_ig_name'])); // get last date feed
 				$CheckUser = $this->instagram->searchUser($user['user_ig_name']);
 				foreach ($CheckUser->data as $keycheckuser => $Checkuser) {
 					$checkuser = $Checkuser->username;
@@ -35,14 +41,18 @@
 				}
 			}
 			foreach ($this->IDuser as $keyIDuser => $IDuser) {
+				$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='username'",array("feed_date"=>$this->lastdate,"username"=>$this->username[$keyIDuser]));
 				$allMedia = $this->instagram->getUserMedia($IDuser);
 				$this->GetMedia($allMedia); // call function GetUserMedia
 			}
 		}
 
-		public function Get_Media_from_Hashtag($hasgtag){
-			foreach ($hasgtag as $keyhashtag => $hasgtag) {
-				$allMedia = $this->instagram->getTagMedia($hasgtag['user_ig_name']);
+		public function Get_Media_from_Hashtag($hashtag){
+			date_default_timezone_set("Asia/Bangkok");
+			foreach ($hashtag as $keyhashtag => $hashtag) {
+				$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='hashtag'",array("username"=>$hashtag['user_ig_name'])); // get last date Feed
+				$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='hashtag'",array("feed_date"=>$this->lastdate,"username"=>$hashtag['user_ig_name']));
+				$allMedia = $this->instagram->getTagMedia($hashtag['user_ig_name']);
 				$this->GetMedia($allMedia); // call function GetUserMedia
 			}
 		}
@@ -66,7 +76,7 @@
 				$media_social_id = $media->id;
 				// INSERT Media & Comment
 				if ($this->num_media <= $this->max_media) {
-					echo "Get Media ID : ".$media_social_id." ".$this->num_media."\n";
+					echo "#".$this->num_media."# Get Media ID : ".$media_social_id." Author : ".$media_display_name."\n";
 					$this->InsertMedia($media_post_date,$media_author_id,$media_display_name,$media_social_id,$media_body); // insert media post to db
 					$this->GetComments($media_social_id); // get and insert comment to db
 				}
@@ -79,7 +89,7 @@
 			}
 			if ($this->instagram->pagination($allMedia) !== NULL) {
 				$allMedia = $this->instagram->pagination($allMedia);
-				echo "Next Page !\n";
+				echo "Next Page Media!\n";
 				$this->GetMedia($allMedia);
 			}
 			else{
@@ -97,7 +107,7 @@
 									  );
 				$this->db->query("INSERT INTO author(author_id,author_username,author_type) 
 								  VALUES (:author_id,:author_username,:author_type)",$insertAuthor);
-				echo "Insert new Author !\n";
+				echo "Insert Author : ".$media_display_name."\n";
 			}
 			$selectMediaID = $this->db->query("SELECT post_social_id FROM post WHERE post_social_id= '".$media_social_id."'");
 			if (empty($selectMediaID)) {
@@ -119,7 +129,7 @@
 								  	:body,:social_id,:type,
 								  	:channel)", $insertPost
 									);
-				echo "Insert new Media ! created_time : ".date("Y-m-d",$media_post_date)."\n";
+				echo "Insert Media : ".$media_social_id." time : ".date("Y-m-d H:i:s",$media_post_date)."\n";
 		
 			}
 		}
@@ -137,7 +147,11 @@
 				$comment_body =  $comments->text;
 				$comment_social_id =  $comments->id;
 				$comment_parent_social_id = $media_social_id;
-				$this->InsertComments($comment_post_date,$comment_display_name,$comment_author_id,$comment_body,$comment_social_id,$comment_parent_social_id);
+				// INSERT comment 
+				if (strtotime($this->check_last_feed_date[0]['user_ig_feed_date']) < $comment_post_date) {
+					$this->InsertComments($comment_post_date,$comment_display_name,$comment_author_id,$comment_body,$comment_social_id,$comment_parent_social_id);
+				}
+				// END
 			}
 		}
 
@@ -175,7 +189,7 @@
 									:body,:social_id,:type,
 									:channel,:parent_social_id)", $insertPost
 								);
-				echo "Insert Comment ! created_time : ".date('Y-m-d',$comment_post_date)."\n";
+				echo "Insert Comment ".$comment_social_id." time : ".date('Y-m-d H:i:s',$comment_post_date)."\n";
 			}
 		}
 	}

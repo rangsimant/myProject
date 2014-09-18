@@ -1,5 +1,5 @@
 @ECHO OFF
 cd %~dp0
-title test bot
+title #HASHTAG BOT
 php SpiderHashtag.php
 PAUSE
