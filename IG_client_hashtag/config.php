@@ -1,7 +1,15 @@
 <?php
-	$accesstoken = "21290142.5b9e1e6.ef5cb1d7664a4eae91f1b9fa2f467332";
-	$client =array("aum_patchrapa","samsungru");
-	$hashtag =array("php","photoshoot","photoshootready","samsung","mummyy");
-	$date1 = date('Y-m-d');
-	$date2 = date('Y-m-d');
+class Config{
+	public $API_KEY;
+	public $API_SECRET;
+	public $API_CALLBACK;
+	public $MAX_MDDIA;
+	function __construct(){
+		$this->API_KEY = "ab8e71229279462bb7d276d055b7e8b3";
+		$this->API_SECRET = "1d19abf1a59e4efdbf58735833303996";
+		$this->API_CALLBACK = "http://instagram.com/";
+		$this->MAX_MDDIA ="100";
+	}
+
+}
 ?>

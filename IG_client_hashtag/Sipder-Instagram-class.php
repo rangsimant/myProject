@@ -1,6 +1,11 @@
 <?php 
+try {
 	require_once 'API-master/instagram.class.php';
 	require_once 'MySQL-PDO-Class/Db.class.php';
+	require_once 'config.php';
+	} catch (Exception $e) {
+		$this->writelogfile($e->getMessage());
+	}
 	/**
 	* 
 	*/
@@ -10,50 +15,75 @@
 		private $db;
 		private $lastdate;
 		private $IDuser;
-		private $max_media=30; // max Media
+		private $max_media; // max Media
 		private $num_media=1; // start Media
 		private $user_ig_type;
 		private $check_last_feed_date;
 		private $username;
+		private $config;
+		private $totalMedia=0;
+		private $totalComment=0;
 		function __construct()
 		{
 			date_default_timezone_set("Asia/Bangkok");
+			$this->config = new Config();
+			$this->max_media=$this->config->MAX_MDDIA;
 			$this->lastdate = date("Y-m-d H:i:s");
 			$this->instagram = new Instagram(array(
-		      'apiKey'      => 'ab8e71229279462bb7d276d055b7e8b3',
-		      'apiSecret'   => '1d19abf1a59e4efdbf58735833303996',
-		      'apiCallback' => 'http://instagram.com/'
+		      'apiKey'      => $this->config->API_KEY,
+		      'apiSecret'   => $this->config->API_SECRET,
+		      'apiCallback' => $this->config->API_CALLBACK
 		    )); // New Class API Instagram
 		    $this->db = new Db(); // New class Database PDO
 		}
 
 		public function Get_Media_from_Client($username){
+			$this->totalMedia=0;
+			$this->totalComment=0;
 			date_default_timezone_set("Asia/Bangkok");
-			foreach ($username as $keyuser => $user) {
-				$this->username[] = $user['user_ig_name'];
-				$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='username'",array("username"=>$user['user_ig_name'])); // get last date feed
-				$CheckUser = $this->instagram->searchUser($user['user_ig_name']);
-				foreach ($CheckUser->data as $keycheckuser => $Checkuser) {
-					$checkuser = $Checkuser->username;
-					if ($user['user_ig_name'] == $checkuser) {
-						$this->IDuser[] = $Checkuser->id;
+			try {
+				foreach ($username as $keyuser => $user) {
+					$this->username[] = $user['user_ig_name'];
+					$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='username'",array("username"=>$user['user_ig_name'])); // get last date feed
+					$CheckUser = $this->instagram->searchUser($user['user_ig_name']);
+					foreach ($CheckUser->data as $keycheckuser => $Checkuser) {
+						$checkuser = $Checkuser->username;
+						if ($user['user_ig_name'] == $checkuser) {
+							$this->IDuser[] = $Checkuser->id;
+						}
 					}
 				}
+				foreach ($this->IDuser as $keyIDuser => $IDuser) {
+					$allMedia = $this->instagram->getUserMedia($IDuser);
+					$this->GetMedia($allMedia); // call function get Media & Comments and Insert to db
+					$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='username'",array("feed_date"=>$this->lastdate,"username"=>$this->username[$keyIDuser]));
+					
+				}
+			} catch (Exception $e) {
+				$this->writelogfile($e->getMessage());
+				echo "Error Message in file log/log.txt";
+			} finally {
+				$this->writelogfile("Client Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 			}
-			foreach ($this->IDuser as $keyIDuser => $IDuser) {
-				$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='username'",array("feed_date"=>$this->lastdate,"username"=>$this->username[$keyIDuser]));
-				$allMedia = $this->instagram->getUserMedia($IDuser);
-				$this->GetMedia($allMedia); // call function GetUserMedia
-			}
-		}
+			
 
+		}
 		public function Get_Media_from_Hashtag($hashtag){
+			$this->totalMedia=0;
+			$this->totalComment=0;
 			date_default_timezone_set("Asia/Bangkok");
-			foreach ($hashtag as $keyhashtag => $hashtag) {
-				$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='hashtag'",array("username"=>$hashtag['user_ig_name'])); // get last date Feed
-				$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='hashtag'",array("feed_date"=>$this->lastdate,"username"=>$hashtag['user_ig_name']));
-				$allMedia = $this->instagram->getTagMedia($hashtag['user_ig_name']);
-				$this->GetMedia($allMedia); // call function GetUserMedia
+			try{
+				foreach ($hashtag as $keyhashtag => $hashtag) {
+					$this->check_last_feed_date = $this->db->query("SELECT user_ig_feed_date FROM user_ig WHERE user_ig_name=:username AND user_ig_type='hashtag'",array("username"=>$hashtag['user_ig_name'])); // get last date Feed
+					$allMedia = $this->instagram->getTagMedia($hashtag['user_ig_name']);
+					$this->GetMedia($allMedia); // call function get Media & Comments and Insert to db
+					$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='hashtag'",array("feed_date"=>$this->lastdate,"username"=>$hashtag['user_ig_name']));
+				}
+			} catch (Exception $e) {
+				$this->writelogfile($e->getFile()." ".$e->getLine(),$e->getMessage());
+				echo "Error Message in file log/log.txt";
+			} finally {
+				$this->writelogfile("Hashtag Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 			}
 		}
 
@@ -109,8 +139,6 @@
 								  VALUES (:author_id,:author_username,:author_type)",$insertAuthor);
 				echo "Insert Author : ".$media_display_name."\n";
 			}
-			$selectMediaID = $this->db->query("SELECT post_social_id FROM post WHERE post_social_id= '".$media_social_id."'");
-			if (empty($selectMediaID)) {
 				$fieldpost = "post_date,post_author_display_name,post_author_id,
 							  post_body,post_social_id,post_type,
 							  post_channel";
@@ -124,14 +152,16 @@
 							"channel"=>"instagram"
 							);
 
-				$this->db->query("INSERT INTO post(".$fieldpost.") 
+				$rowMedia = $this->db->query("INSERT IGNORE INTO post(".$fieldpost.") 
 								  VALUES(:date,:display_name,:author_id,
 								  	:body,:social_id,:type,
 								  	:channel)", $insertPost
 									);
-				echo "Insert Media : ".$media_social_id." time : ".date("Y-m-d H:i:s",$media_post_date)."\n";
-		
-			}
+				if ($rowMedia > 0) {
+					$this->totalMedia++;
+					echo "Insert Media : ".$media_social_id." time : ".date("Y-m-d H:i:s",$media_post_date)."\n";
+				}
+				
 		}
 		private function GetComments($media_social_id){
 			$allComments = $this->instagram->getMediaComments($media_social_id);
@@ -156,20 +186,14 @@
 		}
 
 		private function InsertComments($comment_post_date,$comment_display_name,$comment_author_id,$comment_body,$comment_social_id,$comment_parent_social_id){
-			$selectID = $this->db->query("SELECT author_id FROM author WHERE author_id=".$comment_author_id);
-			if (empty($selectID)) {
 				$insertAuthor = array(
 									"author_id"=>$comment_author_id,
 									"author_username"=>$comment_display_name,
 									"author_type"=>"instagram"
 									);
-				$this->db->query("INSERT INTO author(author_id,author_username,author_type) 
+				$this->db->query("INSERT IGNORE INTO author(author_id,author_username,author_type) 
 								VALUES (:author_id,:author_username,:author_type)",$insertAuthor
 								);
-			
-			}
-			$selectCommentID = $this->db->query("SELECT post_social_id FROM post WHERE post_social_id= '".$comment_social_id."'");
-			if (empty($selectCommentID)){
 				$fieldComment = "post_date,post_author_display_name,post_author_id,
 								 post_body,post_social_id,post_type,
 								 post_channel,post_parent_social_id";
@@ -184,13 +208,43 @@
 									"parent_social_id"=>$comment_parent_social_id
 									);
 
-				$this->db->query("INSERT INTO post(".$fieldComment.") 
+				$rowComment = $this->db->query("INSERT IGNORE INTO post(".$fieldComment.") 
 								VALUES(:date,:display_name,:author_id,
 									:body,:social_id,:type,
 									:channel,:parent_social_id)", $insertPost
 								);
-				echo "Insert Comment ".$comment_social_id." time : ".date('Y-m-d H:i:s',$comment_post_date)."\n";
+				if ($rowComment > 0) {
+					$this->totalComment++;
+					echo "Insert Comment ".$comment_social_id." time : ".date('Y-m-d H:i:s',$comment_post_date)."\n";
+				}
+				
+		}
+		private function writelogfile($exception){
+			if (!file_exists('log')) {
+				mkdir("log",0777);
+				$this->writfile($exception);
 			}
+			else{
+				if (!file_exists("log/".date("Y-m-d").".txt")) {
+					$this->writfile($exception);
+				}
+				else{
+					$this->edit($exception);
+				}
+			}
+		}
+		private function writfile($exception){
+			$logdate = new  Datetime();
+				$myfile = fopen("log/".$logdate->format("Y-m-d").".txt", "a") or die("Unable to open file!");
+				fwrite($myfile, $this->lastdate."-".$logdate->format("Y-m-d H:i:s")."\r\n");
+				fwrite($myfile, $exception."\r\n");	
+				fclose($myfile);
+		}
+		private function edit($exception){
+			$logdate = new Datetime();
+			$newErr = $this->lastdate."-".$logdate->format("Y-m-d H:i:s")."\r\n".$exception."\r\n\r\n";
+			$newErr = $newErr.file_get_contents("log/".$logdate->format("Y-m-d").".txt");
+			file_put_contents("log/".$logdate->format("Y-m-d").".txt", $newErr);
 		}
 	}
 ?>
