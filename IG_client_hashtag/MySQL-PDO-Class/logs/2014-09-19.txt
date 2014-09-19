@@ -1,0 +1,15 @@
+Time : 09:23:51
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 09:22:49
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 09:17:47
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 14:17:09
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_feed_datea' in 'field list'
+Raw SQL : SELECT user_ig_feed_datea FROM user_ig WHERE user_ig_name=:username AND user_ig_type='username'
