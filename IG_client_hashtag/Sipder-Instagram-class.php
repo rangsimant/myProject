@@ -1,4 +1,5 @@
 <?php 
+ini_set('max_execution_time', 0);
 try {
 	require_once 'API-master/instagram.class.php';
 	require_once 'MySQL-PDO-Class/Db.class.php';
@@ -41,6 +42,7 @@ try {
 			$this->totalMedia=0;
 			$this->totalComment=0;
 			date_default_timezone_set("Asia/Bangkok");
+			echo "Getting ID from Username..\n";
 			try {
 				foreach ($username as $keyuser => $user) {
 					$this->username[] = $user['user_ig_name'];
@@ -52,21 +54,24 @@ try {
 							$this->IDuser[] = $Checkuser->id;
 						}
 					}
-				}
+				} 
 				foreach ($this->IDuser as $keyIDuser => $IDuser) {
 					$allMedia = $this->instagram->getUserMedia($IDuser);
-					$this->GetMedia($allMedia); // call function get Media & Comments and Insert to db
-					$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='username'",array("feed_date"=>$this->lastdate,"username"=>$this->username[$keyIDuser]));
+					if (isset($allMedia->data)) {
+						$this->GetMedia($allMedia); // call function get Media & Comments and Insert to db
+						$update_feed_date = $this->db->query("UPDATE user_ig SET user_ig_feed_date=:feed_date WHERE user_ig_name =:username AND user_ig_type='username'",array("feed_date"=>$this->lastdate,"username"=>$this->username[$keyIDuser]));
+					}
+					else{
+						echo "This ID ".$IDuser." is Private !\n";
+						$this->writelogfile("This ID : ".$IDuser." usernaem : ".$this->username[$keyIDuser]." is Private !");
+					}
 					
 				}
 			} catch (Exception $e) {
 				$this->writelogfile($e->getMessage());
 				echo "Error Message in file log/log.txt";
-			} finally {
-				$this->writelogfile("Client Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 			}
-			
-
+							$this->writelogfile("Client Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 		}
 		public function Get_Media_from_Hashtag($hashtag){
 			$this->totalMedia=0;
@@ -82,9 +87,8 @@ try {
 			} catch (Exception $e) {
 				$this->writelogfile($e->getFile()." ".$e->getLine(),$e->getMessage());
 				echo "Error Message in file log/log.txt";
-			} finally {
-				$this->writelogfile("Hashtag Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 			}
+			$this->writelogfile("Hashtag Insert Medias($this->totalMedia) & Comments($this->totalComment) Successed !");
 		}
 
 		private function GetMedia(& $allMedia){
@@ -97,18 +101,16 @@ try {
 					$media_display_name = $media->user->username;
 				}
 				$media_author_id = $media->user->id;
-				if (!empty($media->caption->text)) {
-					$media_body = $media->caption->text;
-				}
-				else{
-					$media_body ="";
-				}
+
 				$media_social_id = $media->id;
 				// INSERT Media & Comment
 				if ($this->num_media <= $this->max_media) {
-					echo "#".$this->num_media."# Get Media ID : ".$media_social_id." Author : ".$media_display_name."\n";
-					$this->InsertMedia($media_post_date,$media_author_id,$media_display_name,$media_social_id,$media_body); // insert media post to db
-					$this->GetComments($media_social_id); // get and insert comment to db
+					if (!empty($media->caption->text)) {
+						$media_body = $media->caption->text;
+						echo "#".$this->num_media."# Get Media ID : ".$media_social_id." Author : ".$media_display_name."\n";
+						$this->InsertMedia($media_post_date,$media_author_id,$media_display_name,$media_social_id,$media_body); // insert media post to db
+						$this->GetComments($media_social_id); // get and insert comment to db
+					}
 				}
 				else{
 					$this->num_media=1;
@@ -120,7 +122,10 @@ try {
 			if ($this->instagram->pagination($allMedia) !== NULL) {
 				$allMedia = $this->instagram->pagination($allMedia);
 				echo "Next Page Media!\n";
-				$this->GetMedia($allMedia);
+				if (isset($allMedia->data)) {
+					$this->GetMedia($allMedia);
+				}
+				
 			}
 			else{
 				$this->num_media=0;
@@ -236,13 +241,13 @@ try {
 		private function writfile($exception){
 			$logdate = new  Datetime();
 				$myfile = fopen("log/".$logdate->format("Y-m-d").".txt", "a") or die("Unable to open file!");
-				fwrite($myfile, $this->lastdate."-".$logdate->format("Y-m-d H:i:s")."\r\n");
+				fwrite($myfile, "start :".$this->lastdate."\r\nfinish :".$logdate->format("Y-m-d H:i:s")."\r\n");
 				fwrite($myfile, $exception."\r\n");	
 				fclose($myfile);
 		}
 		private function edit($exception){
 			$logdate = new Datetime();
-			$newErr = $this->lastdate."-".$logdate->format("Y-m-d H:i:s")."\r\n".$exception."\r\n\r\n";
+			$newErr = "start :".$this->lastdate."\r\nfinish :".$logdate->format("Y-m-d H:i:s")."\r\n".$exception."\r\n\r\n";
 			$newErr = $newErr.file_get_contents("log/".$logdate->format("Y-m-d").".txt");
 			file_put_contents("log/".$logdate->format("Y-m-d").".txt", $newErr);
 		}

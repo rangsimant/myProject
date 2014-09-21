@@ -1,0 +1,35 @@
+start :2014-09-21 17:26:50
+finish :2014-09-21 23:19:03
+Client Insert Medias(2414) & Comments(256412) Successed !
+
+start :2014-09-21 17:26:50
+finish :2014-09-21 21:17:00
+This ID : 223336502 usernaem : minpechaya is Private !
+
+start :2014-09-21 17:26:50
+finish :2014-09-21 18:51:21
+This ID : 373837786 usernaem : esthersupree is Private !
+
+start :2014-09-21 17:26:50
+finish :2014-09-21 18:06:37
+This ID : 1315309274 usernaem : baifrenbah is Private !
+
+start :2014-09-21 17:26:50
+finish :2014-09-21 18:06:36
+This ID : 1274108667 usernaem : babymelony is Private !
+
+start :2014-09-20 19:36:13
+finish :2014-09-21 09:46:08
+Client Insert Medias(5882) & Comments(645522) Successed !
+
+start :2014-09-20 19:36:13
+finish :2014-09-21 09:46:08
+Error: _makeCall() - cURL error: Failed to connect to api.instagram.com port 443: Timed out
+
+start :2014-09-20 19:36:13
+finish :2014-09-21 09:18:51
+This ID : 223336502 usernaem : minpechaya is Private !
+
+start :2014-09-20 19:36:13
+finish :2014-09-21 00:53:50
+This ID : 373837786 usernaem : esthersupree is Private !

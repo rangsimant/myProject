@@ -1,0 +1,71 @@
+start :2014-09-20 19:36:13
+finish :2014-09-20 22:17:20
+This ID : 1315309274 usernaem : baifrenbah is Private !
+
+start :2014-09-20 19:36:13
+finish :2014-09-20 22:17:20
+This ID : 1274108667 usernaem : babymelony is Private !
+
+start :2014-09-20 17:48:39
+finish :2014-09-20 18:58:48
+Client Insert Medias(2) & Comments(380) Successed !
+
+start :2014-09-20 17:48:39
+finish :2014-09-20 18:58:48
+Error: pagination() | This method doesn't support pagination.
+
+start :2014-09-20 13:51:21
+finish :2014-09-20 14:56:41
+Client Insert Medias(1) & Comments(221) Successed !
+
+start :2014-09-20 13:51:21
+finish :2014-09-20 14:56:41
+Error: pagination() | This method doesn't support pagination.
+
+start :2014-09-20 12:09:30
+finish :2014-09-20 13:21:49
+Client Insert Medias(4) & Comments(1001) Successed !
+
+start :2014-09-20 12:09:30
+finish :2014-09-20 13:21:49
+Error: pagination() | This method doesn't support pagination.
+
+start :2014-09-20 11:56:35
+finish :2014-09-20 11:56:35
+Client Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-20 11:56:35
+finish :2014-09-20 11:56:35
+Error: _makeCall() - cURL error: Could not resolve host: api.instagram.com
+
+start :2014-09-20 11:56:34
+finish :2014-09-20 11:56:34
+Client Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-20 11:56:34
+finish :2014-09-20 11:56:34
+Error: _makeCall() - cURL error: Could not resolve host: api.instagram.com
+
+start :2014-09-20 11:49:05
+finish :2014-09-20 11:54:06
+Client Insert Medias(1) & Comments(60) Successed !
+
+start :2014-09-20 11:49:05
+finish :2014-09-20 11:54:06
+Error: _makeCall() - cURL error: Failed to connect to api.instagram.com port 443: Timed out
+
+start :2014-09-20 01:39:52
+finish :2014-09-20 02:42:14
+Client Insert Medias(1) & Comments(232) Successed !
+
+start :2014-09-20 01:39:52
+finish :2014-09-20 02:42:14
+Error: pagination() | This method doesn't support pagination.
+
+start :2014-09-20 00:04:03
+finish :2014-09-20 01:28:52
+Client Insert Medias(800) & Comments(73992) Successed !
+
+start :2014-09-20 00:04:03
+finish :2014-09-20 01:28:52
+Error: pagination() | This method doesn't support pagination.

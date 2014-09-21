@@ -1,3 +1,11 @@
+Time : 19:54:10
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 18:30:15
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
 Time : 11:53:18
 SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '810625612991370781_262813012' for key 'post_parent_social_id_UNIQUE'
 Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
