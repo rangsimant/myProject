@@ -1,0 +1,73 @@
+Time : 19:54:10
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 18:30:15
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+
+Time : 11:53:18
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '810625612991370781_262813012' for key 'post_parent_social_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							 post_body,post_social_id,post_type,
+							 post_channel,post_parent_social_id) 
+							VALUES(:date,:display_name,:author_id,
+								:body,:social_id,:type,
+								:channel,:parent_social_id)
+
+Time : 11:52:09
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '810625612991370781_262813012' for key 'post_parent_social_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							 post_body,post_social_id,post_type,
+							 post_channel,post_parent_social_id) 
+							VALUES(:date,:display_name,:author_id,
+								:body,:social_id,:type,
+								:channel,:parent_social_id)
+
+Time : 11:51:05
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '810625612991370781_262813012' for key 'post_parent_social_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							 post_body,post_social_id,post_type,
+							 post_channel,post_parent_social_id) 
+							VALUES(:date,:display_name,:author_id,
+								:body,:social_id,:type,
+								:channel,:parent_social_id)
+
+Time : 11:46:02
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`spider`.`post`, CONSTRAINT `post_author_id_fk` FOREIGN KEY (`post_author_id`) REFERENCES `author` (`author_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							 post_body,post_social_id,post_type,
+							 post_channel,post_parent_social_id) 
+							VALUES(:date,:display_name,:author_id,
+								:body,:social_id,:type,
+								:channel,:parent_social_id)
+
+Time : 11:45:02
+SQLSTATE[42S22]: Column not found: 1054 Unknown column '306281885544365596_21290142' in 'where clause'
+Raw SQL : SELECT post_social_id FROM post WHERE post_social_id=306281885544365596_21290142
+
+Time : 11:43:56
+SQLSTATE[42S22]: Column not found: 1054 Unknown column '306281885544365596_21290142' in 'where clause'
+Raw SQL : SELECT post_social_id FROM post WHERE post_social_id=306281885544365596_21290142
+
+Time : 11:41:26
+SQLSTATE[42S22]: Column not found: 1054 Unknown column '306281885544365596_21290142' in 'where clause'
+Raw SQL : SELECT * FROM post WHERE post_social_id=306281885544365596_21290142
+
+Time : 11:13:20
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '306281885544365596_21290142' for key 'post_social_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+						  post_body,post_social_id,post_type,
+						  post_channel) 
+							  VALUES(:date,:display_name,:author_id,
+							  	:body,:social_id,:type,
+							  	:channel)
+
+Time : 11:01:41
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '21290142' for key 'post_auther_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+						  post_body,post_social_id,post_type,
+						  post_channel) 
+							  VALUES(:date,:display_name,:author_id,
+							  	:body,:social_id,:type,
+							  	:channel)

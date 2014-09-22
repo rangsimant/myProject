@@ -1,0 +1,40 @@
+Time : 11:31:03
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+Raw SQL : SELECT user_ig_date FROM user_ig WHERE
+
+Time : 11:12:00
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							  post_body,post_social_id,post_type,
+							  post_channel) 
+								  VALUES(:date,:display_name,:author_id,
+								  	:body,:social_id,:type,
+								  	:channel)
+
+Time : 11:11:26
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : INSERT INTO post(post_date,post_author_display_name,post_author_id,
+							  post_body,post_social_id,post_type,
+							  post_channel) 
+								  VALUES(:date,:display_name,:author_id,
+								  	:body,:social_id,:type,
+								  	:channel)
+
+Time : 11:10:46
+SQLSTATE[21S01]: Insert value list does not match column list: 1136 Column count doesn't match value count at row 1
+Raw SQL : INSERT INTO post() 
+								  VALUES(:date,:display_name,:author_id,
+								  	:body,:social_id,:type,
+								  	:channel)
+
+Time : 05:32:34
+SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='
+Raw SQL : UPDATE user_ig SET user_ig_date=:lastdate WHERE user_ig_name = :username AND user_ig_type='username'
+
+Time : 05:30:33
+SQLSTATE[HY000]: General error: 1267 Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '='
+Raw SQL : UPDATE user_ig SET user_ig_date=:lastdate WHERE user_ig_name = :username AND user_ig_type='username'
+
+Time : 05:18:42
+SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+

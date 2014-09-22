@@ -1,0 +1,27 @@
+Time : 14:49:44
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:47:53
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:43:48
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:42:52
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:42:40
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:42:13
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
+
+Time : 14:41:50
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'
