@@ -1,3 +1,38 @@
+Time : 16:44:03
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_queue_date' in 'order clause'
+Raw SQL : SELECT user_ig_id_user,user_ig_feed_date 
+				FROM user_ig WHERE user_ig_type = 'username' 
+				order by user_ig_queue_date ASC 
+				Limit 100
+
+Time : 16:43:51
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_queue_date' in 'order clause'
+Raw SQL : SELECT user_ig_id_user,user_ig_feed_date 
+				FROM user_ig WHERE user_ig_type = 'username' 
+				order by user_ig_queue_date ASC 
+				Limit 100
+
+Time : 16:43:49
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_queue_date' in 'order clause'
+Raw SQL : SELECT user_ig_id_user,user_ig_feed_date 
+				FROM user_ig WHERE user_ig_type = 'username' 
+				order by user_ig_queue_date ASC 
+				Limit 100
+
+Time : 16:43:46
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_queue_date' in 'order clause'
+Raw SQL : SELECT user_ig_id_user,user_ig_feed_date 
+				FROM user_ig WHERE user_ig_type = 'username' 
+				order by user_ig_queue_date ASC 
+				Limit 100
+
+Time : 16:43:44
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'user_ig_queue_date' in 'order clause'
+Raw SQL : SELECT user_ig_id_user,user_ig_feed_date 
+				FROM user_ig WHERE user_ig_type = 'username' 
+				order by user_ig_queue_date ASC 
+				Limit 100
+
 Time : 14:49:44
 SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
 Raw SQL : UPDATE user_ig SET user_ig_id_user=:id_user WHERE user_ig_name=:name AND user_ig_type='username'

@@ -1,0 +1,403 @@
+start :2014-09-23 00:33:47
+finish :2014-09-23 00:40:03
+Insert Medias(0) & Comments(1537) Successed !
+
+start :2014-09-23 00:32:58
+finish :2014-09-23 00:39:10
+Insert Medias(0) & Comments(1480) Successed !
+
+start :2014-09-23 00:38:29
+finish :2014-09-23 00:38:29
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-23 00:38:28
+finish :2014-09-23 00:38:28
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-23 00:32:23
+finish :2014-09-23 00:38:28
+Insert Medias(0) & Comments(1495) Successed !
+
+start :2014-09-23 00:32:12
+finish :2014-09-23 00:38:18
+Insert Medias(0) & Comments(1491) Successed !
+
+start :2014-09-23 00:31:41
+finish :2014-09-23 00:37:41
+Insert Medias(0) & Comments(1501) Successed !
+
+start :2014-09-23 00:30:40
+finish :2014-09-23 00:36:48
+Insert Medias(0) & Comments(1502) Successed !
+
+start :2014-09-23 00:30:49
+finish :2014-09-23 00:36:44
+Insert Medias(0) & Comments(1454) Successed !
+
+start :2014-09-23 00:31:09
+finish :2014-09-23 00:36:38
+Insert Medias(0) & Comments(1373) Successed !
+
+start :2014-09-23 00:30:29
+finish :2014-09-23 00:36:33
+Insert Medias(0) & Comments(1499) Successed !
+
+start :2014-09-23 00:29:29
+finish :2014-09-23 00:35:21
+Insert Medias(0) & Comments(1506) Successed !
+
+start :2014-09-23 00:27:37
+finish :2014-09-23 00:33:47
+Insert Medias(0) & Comments(1506) Successed !
+
+start :2014-09-23 00:27:42
+finish :2014-09-23 00:32:58
+Insert Medias(0) & Comments(1297) Successed !
+
+start :2014-09-23 00:29:06
+finish :2014-09-23 00:32:23
+Insert Medias(0) & Comments(801) Successed !
+
+start :2014-09-23 00:27:52
+finish :2014-09-23 00:32:12
+Insert Medias(0) & Comments(1108) Successed !
+
+start :2014-09-23 00:27:23
+finish :2014-09-23 00:31:41
+Insert Medias(0) & Comments(1077) Successed !
+
+start :2014-09-23 00:27:24
+finish :2014-09-23 00:31:09
+Insert Medias(0) & Comments(916) Successed !
+
+start :2014-09-23 00:27:50
+finish :2014-09-23 00:30:49
+Insert Medias(0) & Comments(691) Successed !
+
+start :2014-09-23 00:30:36
+finish :2014-09-23 00:30:40
+Insert Medias(0) & Comments(4) Successed !
+
+start :2014-09-23 00:26:24
+finish :2014-09-23 00:30:36
+Insert Medias(0) & Comments(1120) Successed !
+
+start :2014-09-23 00:24:26
+finish :2014-09-23 00:30:29
+Insert Medias(0) & Comments(1507) Successed !
+
+start :2014-09-23 00:26:17
+finish :2014-09-23 00:29:28
+Insert Medias(0) & Comments(831) Successed !
+
+start :2014-09-23 00:25:24
+finish :2014-09-23 00:29:06
+Insert Medias(0) & Comments(999) Successed !
+
+start :2014-09-23 00:23:33
+finish :2014-09-23 00:27:52
+Insert Medias(0) & Comments(1124) Successed !
+
+start :2014-09-23 00:22:30
+finish :2014-09-23 00:27:50
+Insert Medias(0) & Comments(1377) Successed !
+
+start :2014-09-23 00:23:51
+finish :2014-09-23 00:27:42
+Insert Medias(0) & Comments(959) Successed !
+
+start :2014-09-23 00:27:36
+finish :2014-09-23 00:27:36
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-23 00:23:00
+finish :2014-09-23 00:27:36
+Insert Medias(0) & Comments(1105) Successed !
+
+start :2014-09-23 00:26:08
+finish :2014-09-23 00:27:24
+Insert Medias(0) & Comments(308) Successed !
+
+start :2014-09-23 00:23:18
+finish :2014-09-23 00:27:23
+Insert Medias(0) & Comments(1013) Successed !
+
+start :2014-09-23 00:20:26
+finish :2014-09-23 00:26:24
+Insert Medias(0) & Comments(1544) Successed !
+
+start :2014-09-23 00:21:57
+finish :2014-09-23 00:26:17
+Insert Medias(0) & Comments(1063) Successed !
+
+start :2014-09-23 00:25:23
+finish :2014-09-23 00:26:08
+Insert Medias(0) & Comments(148) Successed !
+
+start :2014-09-23 00:19:45
+finish :2014-09-23 00:25:24
+Insert Medias(0) & Comments(1419) Successed !
+
+start :2014-09-23 00:24:35
+finish :2014-09-23 00:25:23
+Insert Medias(0) & Comments(142) Successed !
+
+start :2014-09-23 00:21:48
+finish :2014-09-23 00:24:35
+Insert Medias(0) & Comments(660) Successed !
+
+start :2014-09-23 00:20:01
+finish :2014-09-23 00:24:26
+Insert Medias(0) & Comments(1119) Successed !
+
+start :2014-09-23 00:18:56
+finish :2014-09-23 00:23:50
+Insert Medias(0) & Comments(1246) Successed !
+
+start :2014-09-23 00:21:36
+finish :2014-09-23 00:23:33
+Insert Medias(0) & Comments(451) Successed !
+
+start :2014-09-23 00:17:15
+finish :2014-09-23 00:23:17
+Insert Medias(0) & Comments(1496) Successed !
+
+start :2014-09-23 00:19:32
+finish :2014-09-23 00:23:00
+Insert Medias(0) & Comments(898) Successed !
+
+start :2014-09-23 00:19:00
+finish :2014-09-23 00:22:30
+Insert Medias(0) & Comments(867) Successed !
+
+start :2014-09-23 00:20:20
+finish :2014-09-23 00:21:57
+Insert Medias(0) & Comments(406) Successed !
+
+start :2014-09-23 00:20:36
+finish :2014-09-23 00:21:47
+Insert Medias(0) & Comments(288) Successed !
+
+start :2014-09-23 00:16:16
+finish :2014-09-23 00:21:36
+Insert Medias(0) & Comments(1303) Successed !
+
+start :2014-09-23 00:17:58
+finish :2014-09-23 00:20:36
+Insert Medias(0) & Comments(569) Successed !
+
+start :2014-09-23 00:13:39
+finish :2014-09-23 00:20:26
+Insert Medias(0) & Comments(1504) Successed !
+
+start :2014-09-23 00:20:04
+finish :2014-09-23 00:20:20
+Insert Medias(0) & Comments(18) Successed !
+
+start :2014-09-23 00:16:21
+finish :2014-09-23 00:20:04
+Insert Medias(0) & Comments(844) Successed !
+
+start :2014-09-23 00:14:32
+finish :2014-09-23 00:20:01
+Insert Medias(0) & Comments(1351) Successed !
+
+start :2014-09-23 00:14:59
+finish :2014-09-23 00:19:45
+Insert Medias(0) & Comments(1129) Successed !
+
+start :2014-09-23 00:16:44
+finish :2014-09-23 00:19:32
+Insert Medias(0) & Comments(596) Successed !
+
+start :2014-09-23 00:15:02
+finish :2014-09-23 00:19:00
+Insert Medias(0) & Comments(979) Successed !
+
+start :2014-09-23 00:15:04
+finish :2014-09-23 00:18:56
+Insert Medias(0) & Comments(915) Successed !
+
+start :2014-09-23 00:12:24
+finish :2014-09-23 00:17:58
+Insert Medias(0) & Comments(1271) Successed !
+
+start :2014-09-23 00:10:47
+finish :2014-09-23 00:17:15
+Insert Medias(0) & Comments(1401) Successed !
+
+start :2014-09-23 00:13:04
+finish :2014-09-23 00:16:44
+Insert Medias(0) & Comments(784) Successed !
+
+start :2014-09-23 00:14:11
+finish :2014-09-23 00:16:21
+Insert Medias(1) & Comments(493) Successed !
+
+start :2014-09-23 00:14:10
+finish :2014-09-23 00:16:16
+Insert Medias(0) & Comments(430) Successed !
+
+start :2014-09-23 00:13:55
+finish :2014-09-23 00:15:04
+Insert Medias(0) & Comments(211) Successed !
+
+start :2014-09-23 00:12:45
+finish :2014-09-23 00:15:02
+Insert Medias(0) & Comments(424) Successed !
+
+start :2014-09-23 00:11:58
+finish :2014-09-23 00:14:59
+Insert Medias(0) & Comments(575) Successed !
+
+start :2014-09-23 00:11:12
+finish :2014-09-23 00:14:32
+Insert Medias(0) & Comments(655) Successed !
+
+start :2014-09-23 00:07:35
+finish :2014-09-23 00:14:11
+Insert Medias(0) & Comments(1430) Successed !
+
+start :2014-09-23 00:07:31
+finish :2014-09-23 00:14:10
+Insert Medias(0) & Comments(1511) Successed !
+
+start :2014-09-23 00:11:29
+finish :2014-09-23 00:13:55
+Insert Medias(0) & Comments(476) Successed !
+
+start :2014-09-23 00:11:34
+finish :2014-09-23 00:13:39
+Insert Medias(0) & Comments(391) Successed !
+
+start :2014-09-23 00:09:28
+finish :2014-09-23 00:13:03
+Insert Medias(0) & Comments(803) Successed !
+
+start :2014-09-23 00:06:25
+finish :2014-09-23 00:12:45
+Insert Medias(0) & Comments(1477) Successed !
+
+start :2014-09-23 00:08:24
+finish :2014-09-23 00:12:24
+Insert Medias(0) & Comments(1059) Successed !
+
+start :2014-09-23 00:06:55
+finish :2014-09-23 00:11:58
+Insert Medias(2) & Comments(1326) Successed !
+
+start :2014-09-23 00:06:36
+finish :2014-09-23 00:11:34
+Insert Medias(0) & Comments(1224) Successed !
+
+start :2014-09-23 00:08:50
+finish :2014-09-23 00:11:29
+Insert Medias(0) & Comments(619) Successed !
+
+start :2014-09-23 00:08:23
+finish :2014-09-23 00:11:12
+Insert Medias(0) & Comments(618) Successed !
+
+start :2014-09-23 00:05:14
+finish :2014-09-23 00:10:47
+Insert Medias(0) & Comments(1298) Successed !
+
+start :2014-09-23 00:06:15
+finish :2014-09-23 00:09:28
+Insert Medias(0) & Comments(700) Successed !
+
+start :2014-09-23 00:05:22
+finish :2014-09-23 00:08:50
+Insert Medias(0) & Comments(784) Successed !
+
+start :2014-09-23 00:05:48
+finish :2014-09-23 00:08:24
+Insert Medias(0) & Comments(581) Successed !
+
+start :2014-09-23 00:04:58
+finish :2014-09-23 00:08:23
+Insert Medias(0) & Comments(920) Successed !
+
+start :2014-09-23 00:04:19
+finish :2014-09-23 00:07:35
+Insert Medias(0) & Comments(762) Successed !
+
+start :2014-09-23 00:03:40
+finish :2014-09-23 00:07:31
+Insert Medias(0) & Comments(927) Successed !
+
+start :2014-09-23 00:06:55
+finish :2014-09-23 00:06:55
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-23 00:01:02
+finish :2014-09-23 00:06:55
+Insert Medias(0) & Comments(1498) Successed !
+
+start :2014-09-23 00:01:53
+finish :2014-09-23 00:06:36
+Insert Medias(0) & Comments(1213) Successed !
+
+start :2014-09-23 00:00:23
+finish :2014-09-23 00:06:25
+Insert Medias(0) & Comments(1509) Successed !
+
+start :2014-09-23 00:04:08
+finish :2014-09-23 00:06:15
+Insert Medias(0) & Comments(486) Successed !
+
+start :2014-09-23 00:00:50
+finish :2014-09-23 00:05:48
+Insert Medias(0) & Comments(1251) Successed !
+
+start :2014-09-22 23:59:29
+finish :2014-09-23 00:05:22
+Insert Medias(0) & Comments(1499) Successed !
+
+start :2014-09-22 23:59:26
+finish :2014-09-23 00:05:14
+Insert Medias(0) & Comments(1518) Successed !
+
+start :2014-09-22 23:59:11
+finish :2014-09-23 00:04:58
+Insert Medias(0) & Comments(1505) Successed !
+
+start :2014-09-22 23:59:15
+finish :2014-09-23 00:04:19
+Insert Medias(0) & Comments(1376) Successed !
+
+start :2014-09-23 00:01:03
+finish :2014-09-23 00:04:08
+Insert Medias(0) & Comments(757) Successed !
+
+start :2014-09-22 23:58:39
+finish :2014-09-23 00:03:40
+Insert Medias(0) & Comments(1376) Successed !
+
+start :2014-09-22 23:56:15
+finish :2014-09-23 00:01:53
+Insert Medias(0) & Comments(1587) Successed !
+
+start :2014-09-23 00:01:02
+finish :2014-09-23 00:01:02
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-22 23:55:25
+finish :2014-09-23 00:01:02
+Insert Medias(0) & Comments(1502) Successed !
+
+start :2014-09-23 00:01:01
+finish :2014-09-23 00:01:02
+Insert Medias(0) & Comments(0) Successed !
+
+start :2014-09-22 23:55:37
+finish :2014-09-23 00:01:01
+Insert Medias(0) & Comments(1494) Successed !
+
+start :2014-09-22 23:55:12
+finish :2014-09-23 00:00:50
+Insert Medias(0) & Comments(1491) Successed !
+
+start :2014-09-22 23:54:27
+finish :2014-09-23 00:00:23
+Insert Medias(0) & Comments(1503) Successed !

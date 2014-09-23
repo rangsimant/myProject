@@ -38,6 +38,7 @@ try {
 		    $this->db = new Db(); // New class Database PDO
 		}
 		public function Get_Media($id_user,$feed_date){
+			date_default_timezone_set("Asia/Bangkok");
 			try{
 				$this->check_last_feed_date = $feed_date;
 				$allMedia = $this->instagram->getUserMedia($id_user);

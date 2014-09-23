@@ -1,0 +1,33 @@
+.navbar-inverse{
+	background-image: -webkit-linear-gradient(top, #FFFFFF 0, #F5F5F5 100%);
+	background-image: -o-linear-gradient(top, #FFFFFF 0, #F5F5F5 100%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0, #F5F5F5 100%);
+	border-color: #C7C4C4;
+	background-repeat: repeat-x;
+}
+body{
+	background-color: rgb(231, 231, 231);
+}
+#body-image{
+	padding-top: 60px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#sec-body{
+	height: 94%;
+	background-color: #F5F5F5;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	padding: 5px 10px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+	background-color: #F5F5F5;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
+	border:none;
+}
+#Client{
+	font-size: 20px;
+	padding-top: 3%;
+}
