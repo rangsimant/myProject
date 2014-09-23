@@ -16,7 +16,7 @@
                   var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-                    //alert("Callback has fired: [" + start.format('D MMMM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
+                    // alert("Select : [" + start.format('D MMMM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
                   }
 
                   var optionSet1 = {
@@ -72,7 +72,7 @@
 
                   $('#reportrange span').html(moment().subtract(29, 'days').format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
-                  $('#reportrange').daterangepicker(optionSet1, cb);
+                  $('#reportrange').daterangepicker(optionSet2, cb);
 
                   $('#reportrange').on('show.daterangepicker', function() { console.log("show event fired"); });
                   $('#reportrange').on('hide.daterangepicker', function() { console.log("hide event fired"); });
@@ -84,25 +84,12 @@
                     ); 
                   });
                   $('#reportrange').on('cancel.daterangepicker', function(ev, picker) { console.log("cancel event fired"); });
-
-                  $('#options1').click(function() {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-                  });
-
-                  $('#options2').click(function() {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-                  });
-
-                  $('#destroy').click(function() {
-                    $('#reportrange').data('daterangepicker').remove();
-                  }); // Date Range
-
                });
                </script>
-	<title>SAMSUNG | OFFICIAL</title>
+	<title>SAMSUNG IMAGEs | OFFICIAL</title>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar navbar-inverse" role="navigation">
       <div class="container">
       	<div class="navbar-header navbar-left">
       		<form class="navbar-form " role="form">
