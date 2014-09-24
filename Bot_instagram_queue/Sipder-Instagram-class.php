@@ -40,6 +40,7 @@ try {
 		public function Get_Media($id_user,$feed_date){
 			date_default_timezone_set("Asia/Bangkok");
 			try{
+				set_time_limit(7200); // set timeout 2 Hour
 				$this->check_last_feed_date = $feed_date;
 				$allMedia = $this->instagram->getUserMedia($id_user);
 				echo "Get Media User. From $id_user";

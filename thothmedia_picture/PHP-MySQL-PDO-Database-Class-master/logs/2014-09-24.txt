@@ -1,0 +1,31 @@
+Time : 19:22:44
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES(?,?,'facebook')' at line 2
+Raw SQL : INSERT IGNORE INTO author(author_id,author_displayname,author_type
+							  VALUES(:author_id,:displayname,'facebook')
+
+Time : 19:19:31
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES(?,?,'facebook')' at line 2
+Raw SQL : INSERT IGNORE INTO author(author_id,author_username,author_type
+							  VALUES(:author_id,:author_username,'facebook')
+
+Time : 19:15:12
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`social_image`.`post`, CONSTRAINT `author_id_fk` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_author_display_name,post_text,post_created_time,post_link) 
+							  VALUES (:author_id,:post_social_id,:post_author_display_name,:post_text,:post_created_time,:post_link)
+
+Time : 18:34:55
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '118133614869896_948071771876072' for key 'post_social_id_UNIQUE'
+Raw SQL : INSERT INTO post(post_social_id,post_author_display_name,post_text,post_created_time,post_link) 
+							  VALUES (:post_social_id,:post_author_display_name,:post_text,:post_created_time,:post_link)
+
+Time : 18:33:25
+SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '118133614869896' for key 'PRIMARY'
+Raw SQL : INSERT INTO post(post_id,post_author_display_name,post_text,post_created_time,post_link) 
+							  VALUES (:post_id,:post_author_display_name,:post_text,:post_created_time,:post_link)
+
+Time : 16:28:35
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_name' in 'field list'
+Raw SQL : INSERT INTO account(account_id_user,account_name,account_channel) VALUE ('118133614869896','samsungthailand','facebook'),('136805923037665','SamsungEgypt','facebook'),('161841567214009','SamsungSouthAfrica','facebook'),('210249512340911','SamsungMobileSA','facebook'),('208043925927503','SamsungAustralia','facebook'),('253147511975','SamsungHK','facebook'),('131173933569944','SamsungMobileHK','facebook'),('123688241046671','samsungIN','facebook'),('133803174373','SamsungMobileIndia','facebook'),('170499732992726','SamsungIndonesia','facebook'),('137362696323133','SamsungMobileIndonesia','facebook')
+
+Time : 16:02:37
+SQLSTATE[HY000] [1049] Unknown database 'testdb'

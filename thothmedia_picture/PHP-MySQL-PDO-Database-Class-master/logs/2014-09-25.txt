@@ -1,0 +1,9 @@
+Time : 00:34:28
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post_updated_time' in 'field list'
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_updated_time,post_link) 
+							  VALUES (:author_id,:post_social_id,:post_text,:post_updated_time,:post_link)
+
+Time : 00:29:42
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post_updated_time' in 'field list'
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_updated_time,post_link) 
+							  VALUES (:author_id,:post_social_id,:post_text,:post_updated_time,:post_link)
