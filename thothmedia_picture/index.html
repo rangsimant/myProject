@@ -16,7 +16,7 @@
                   var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-                    //alert("Callback has fired: [" + start.format('D MMMM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
+                    alert("Callback has fired: [" + start.format('D MMMM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
                   }
 
                   var optionSet1 = {
@@ -57,7 +57,7 @@
                   };
 
                   var optionSet2 = {
-                    startDate: moment().subtract(7, 'days'),
+                    startDate: moment().subtract(1, 'days'),
                     endDate: moment(),
                     opens: 'left',
                     ranges: {
@@ -70,9 +70,9 @@
                     }
                   };
 
-                  $('#reportrange span').html(moment().subtract(29, 'days').format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+                  $('#reportrange span').html(moment().subtract(1, 'days').format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY')); // date on load
 
-                  $('#reportrange').daterangepicker(optionSet1, cb);
+                  $('#reportrange').daterangepicker(optionSet2, cb);
 
                   $('#reportrange').on('show.daterangepicker', function() { console.log("show event fired"); });
                   $('#reportrange').on('hide.daterangepicker', function() { console.log("hide event fired"); });
@@ -83,37 +83,24 @@
                       + picker.endDate.format('D MMMM YYYY')
                     ); 
                   });
-                  $('#reportrange').on('cancel.daterangepicker', function(ev, picker) { console.log("cancel event fired"); });
-
-                  $('#options1').click(function() {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
-                  });
-
-                  $('#options2').click(function() {
-                    $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
-                  });
-
-                  $('#destroy').click(function() {
-                    $('#reportrange').data('daterangepicker').remove();
-                  }); // Date Range
 
                });
                </script>
-	<title>SAMSUNG | OFFICIAL</title>
+  <title>SAMSUNG | OFFICIAL</title>
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
-      	<div class="navbar-header navbar-left">
-      		<form class="navbar-form " role="form">
-      			<p id="Client">SAMSUNG</p>
-      		</form>
-      	</div>
+        <div class="navbar-header navbar-left">
+          <form class="navbar-form " role="form">
+            <p id="Client">SAMSUNG</p>
+          </form>
+        </div>
         <div class="navbar-header navbar-right">
-        	<form class="navbar-form " role="form">
+          <form class="navbar-form " role="form">
             <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                   <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span>25 August 2014 - 23 September 2014</span> <b class="caret"></b>
+                  <span></span> <b class="caret"></b>
                </div>
            </form>
            
@@ -121,24 +108,24 @@
       </div>
     </div>
     <div id="body-image">
-		<ul class="nav nav-tabs" role="tablist" id="myTab">
-		  <li class="active"><a href="#instagram" data-toggle="tab">Instagram</a></li>
-		  <li ><a href="#facebook" data-toggle="tab">Facebook</a></li>
-		  <li ><a href="#all" data-toggle="tab">All Media</a></li>
-		</ul>
-		<section id="sec-body">
-			<div class="tab-content">
-			  <div class="tab-pane fade in active" id="instagram">
-			  	Instagram
-			  </div>
-			  <div class="tab-pane fade" id="facebook">
-			  	Facebook
-			  </div>
-			  <div class="tab-pane fade" id="all">
-			  	All Picture
-			  </div>
-			</div>
-		</section>
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
+      <li class="active"><a href="#instagram" data-toggle="tab">Instagram</a></li>
+      <li ><a href="#facebook" data-toggle="tab">Facebook</a></li>
+      <li ><a href="#all" data-toggle="tab">All Media</a></li>
+    </ul>
+    <section id="sec-body">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="instagram">
+          Instagram
+        </div>
+        <div class="tab-pane fade" id="facebook">
+          Facebook
+        </div>
+        <div class="tab-pane fade" id="all">
+          All Picture
+        </div>
+      </div>
+    </section>
     </div>
 </body>
 </html>
