@@ -57,7 +57,7 @@
                   };
 
                   var optionSet2 = {
-                    startDate: moment().subtract(7, 'days'),
+                    startDate: moment().subtract(1, 'days'),
                     endDate: moment(),
                     opens: 'left',
                     ranges: {
@@ -70,7 +70,7 @@
                     }
                   };
 
-                  $('#reportrange span').html(moment().subtract(29, 'days').format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
+                  $('#reportrange span').html(moment().subtract(1, 'days').format('D MMMM YYYY') + ' - ' + moment().format('D MMMM YYYY'));
 
                   $('#reportrange').daterangepicker(optionSet2, cb);
 
@@ -100,7 +100,7 @@
         	<form class="navbar-form " role="form">
             <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
                   <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span>25 August 2014 - 23 September 2014</span> <b class="caret"></b>
+                  <span></span> <b class="caret"></b>
                </div>
            </form>
            

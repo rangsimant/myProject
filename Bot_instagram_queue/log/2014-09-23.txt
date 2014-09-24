@@ -1,3 +1,35 @@
+start :2014-09-23 18:48:44
+finish :2014-09-23 18:53:39
+Insert Medias(11) & Comments(3000) Successed !
+
+start :2014-09-23 18:46:53
+finish :2014-09-23 18:50:54
+Insert Medias(11) & Comments(2998) Successed !
+
+start :2014-09-23 18:48:52
+finish :2014-09-23 18:48:57
+Insert Medias(2) & Comments(8) Successed !
+
+start :2014-09-23 18:46:43
+finish :2014-09-23 18:48:52
+Insert Medias(10) & Comments(1888) Successed !
+
+start :2014-09-23 18:46:49
+finish :2014-09-23 18:48:44
+Insert Medias(11) & Comments(1558) Successed !
+
+start :2014-09-23 18:44:27
+finish :2014-09-23 18:46:53
+Insert Medias(11) & Comments(1432) Successed !
+
+start :2014-09-23 18:42:33
+finish :2014-09-23 18:46:49
+Insert Medias(11) & Comments(3000) Successed !
+
+start :2014-09-23 18:43:10
+finish :2014-09-23 18:46:43
+Insert Medias(11) & Comments(2596) Successed !
+
 start :2014-09-23 18:41:41
 finish :2014-09-23 18:44:27
 Insert Medias(9) & Comments(2385) Successed !
