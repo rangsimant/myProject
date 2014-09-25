@@ -1,3 +1,38 @@
+Time : 16:48:35
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime=?) WHERE account_username=?' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime=:last_datetime) WHERE account_username=:username
+
+Time : 16:45:15
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime) VALUES ? WHERE account_username=?' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime) VALUES :last_datetime WHERE account_username=:username
+
+Time : 16:43:31
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime) VALUES ? WHERE account_username=':username'' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime) VALUES :last_datetime WHERE account_username=':username'
+
+Time : 11:39:24
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id_user' in 'field list'
+Raw SQL : SELECT account_id_user,account_username ,account_last_datetimeFROM account
+
+Time : 11:38:30
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'account_id_user' in 'field list'
+Raw SQL : SELECT account_id_user,account_username ,account_last_datetimeFROM account
+
+Time : 16:36:22
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime) VALUES ? WHERE account_username=?' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime) VALUES :last_datetime WHERE account_username=:username
+
+Time : 16:32:17
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime) VALUES ?' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime) VALUES :last_datetime
+
+Time : 16:31:36
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(account_last_datetime) VALUES ?' at line 1
+Raw SQL : UPDATE account SET (account_last_datetime) VALUES :last_datetime
+
+Time : 05:47:06
+SQLSTATE[HY000] [1049] Unknown database 'social_image'
+
 Time : 00:34:28
 SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post_updated_time' in 'field list'
 Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_updated_time,post_link) 

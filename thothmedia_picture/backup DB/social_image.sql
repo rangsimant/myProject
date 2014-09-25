@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `social_image` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `social_image` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `social_image`;
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: social_image
+-- Host: localhost    Database: social_image
 -- ------------------------------------------------------
 -- Server version	5.6.16
 
@@ -31,7 +31,8 @@ CREATE TABLE `account` (
   `account_channel` enum('facebook','instagram') NOT NULL DEFAULT 'instagram',
   `account_last_datetime` datetime NOT NULL,
   PRIMARY KEY (`account_id`),
-  UNIQUE KEY `account_id_user_UNIQUE` (`account_id_user`)
+  UNIQUE KEY `account_id_user_UNIQUE` (`account_id_user`),
+  UNIQUE KEY `account_username_UNIQUE` (`account_username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -41,7 +42,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'118133614869896','samsungthailand','facebook','0000-00-00 00:00:00'),(2,'136805923037665','SamsungEgypt','facebook','0000-00-00 00:00:00'),(3,'161841567214009','SamsungSouthAfrica','facebook','0000-00-00 00:00:00'),(4,'210249512340911','SamsungMobileSA','facebook','0000-00-00 00:00:00'),(5,'208043925927503','SamsungAustralia','facebook','0000-00-00 00:00:00'),(6,'253147511975','SamsungHK','facebook','0000-00-00 00:00:00'),(7,'131173933569944','SamsungMobileHK','facebook','0000-00-00 00:00:00'),(8,'123688241046671','samsungIN','facebook','0000-00-00 00:00:00'),(9,'133803174373','SamsungMobileIndia','facebook','0000-00-00 00:00:00'),(10,'170499732992726','SamsungIndonesia','facebook','0000-00-00 00:00:00'),(11,'137362696323133','SamsungMobileIndonesia','facebook','0000-00-00 00:00:00');
+INSERT INTO `account` VALUES (1,'118133614869896','samsungthailand','facebook','2014-09-01 00:00:00'),(2,'136805923037665','SamsungEgypt','facebook','2014-09-01 00:00:00'),(3,'161841567214009','SamsungSouthAfrica','facebook','2014-09-01 00:00:00'),(4,'210249512340911','SamsungMobileSA','facebook','2014-09-01 00:00:00'),(5,'208043925927503','SamsungAustralia','facebook','2014-09-01 00:00:00'),(6,'253147511975','SamsungHK','facebook','2014-09-25 17:42:40'),(7,'131173933569944','SamsungMobileHK','facebook','2014-09-25 17:42:40'),(8,'123688241046671','samsungIN','facebook','2014-09-01 00:00:00'),(9,'133803174373','SamsungMobileIndia','facebook','2014-09-01 00:00:00'),(10,'170499732992726','SamsungIndonesia','facebook','2014-09-01 00:00:00'),(11,'137362696323133','SamsungMobileIndonesia','facebook','2014-09-01 00:00:00');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,8 +85,8 @@ CREATE TABLE `post` (
   `post_created_time` datetime NOT NULL,
   `post_added_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `post_social_id` varchar(50) NOT NULL,
-  `post_link` varchar(45) DEFAULT NULL,
   `post_channel` enum('facebook','instagram') NOT NULL DEFAULT 'instagram',
+  `post_img_name` varchar(100) NOT NULL,
   PRIMARY KEY (`post_id`),
   UNIQUE KEY `post_social_id_UNIQUE` (`post_social_id`),
   KEY `author_id_fk_idx` (`author_id`),
@@ -111,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-25  1:51:56
+-- Dump completed on 2014-09-25 18:23:29

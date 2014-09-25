@@ -3,6 +3,6 @@
 require_once('facebook.php');
 $fb = new GetFacebook();
 echo "<pre>";
-$fb->test();
+$fb->Download_Picture();
 
 ?>
