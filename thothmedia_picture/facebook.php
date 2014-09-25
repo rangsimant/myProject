@@ -25,7 +25,7 @@ class GetFacebook
 		));
 		$this->bot_run_time =date("Y-m-d H:i:s");
 		$this->db = new Db();
-		$this->facebook_id = $this->db->query("SELECT account_id_user,account_username ,account_last_datetime FROM account");
+		$this->facebook_id = $this->db->query("SELECT account_id_user,account_username ,account_last_datetime FROM account WHERE account_channel ='facebook'");
 	}
 
 	public function Download_Picture(){
