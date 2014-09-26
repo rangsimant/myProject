@@ -63,6 +63,7 @@ class GetFacebook
 							$datefile = date("Y-m-d",strtotime($created_time));
 							$images = $image['attachments']['data'][0]['media']['image']['src'];
 							$img_name = "fb_".$datefile."_".$this->username.$post_key.".jpeg";
+							$link = "https://www.facebook.com/".str_replace("_", "/posts/", $post_id);
 							if (!file_exists("images")) {
 								mkdir("images");
 							}
@@ -71,15 +72,16 @@ class GetFacebook
 											  array("author_id"=>$user_id,
 											  	"displayname"=>$name
 											  	));
-							$insert_post = $this->db->query("INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name) 
-											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name)",
+							$insert_post = $this->db->query("INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link) 
+											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link)",
 											  array(
 											  	"author_id"=>$user_id,
 											  	"post_social_id"=>$post_id,
 											  	"post_text"=>$text,
 											  	"post_created_time"=>$created_time,
 											  	"post_channel"=>'facebook',
-											  	"post_img_name"=>$img_name
+											  	"post_img_name"=>$img_name,
+											  	"post_link"=>$link
 											  	));
 						} // end if check height 200
 							if ($insert_post > 0) {

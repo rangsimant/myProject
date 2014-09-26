@@ -2,8 +2,9 @@
 <head>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="myStyle/myCss.css">
 <link rel="stylesheet" type="text/css" href="bootstrap-daterangepicker-master/daterangepicker-bs3.css" />
+<link href="font-awesome-4.2.0\css\font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="myStyle/myCss.css">
 
 <script type="text/javascript" src="Jquery/jquery-2.1.1.min.js"></script> <!-- First away -->
 <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> <!-- Second -->
@@ -16,7 +17,23 @@
                   var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-                    alert("Callback has fired: [" + start.format('D MMMM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
+                    // alert("Callback has fired: [ " + start.format('D MM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
+                    var dateStart = start.format('YYYY-MM-D');
+                    var dateEnd = end.format('YYYY-MM-D');
+                    var setDate = {date1:dateStart,date2:dateEnd};
+                    $("#all").html("");
+                    $.ajax({
+                        url:"filter_all.php",
+                        type:"POST",
+                        dataType:"HTML",
+                        data:setDate,
+                        success:function(data){
+                          $("#all").hide().html(data).fadeIn('slow').css({"height":"auto","background-color":"#F5F5F5"});
+                        },
+                        error:function(jqXHR,data){
+                          alert(data);
+                        }
+                       });
                   }
 
                   var optionSet1 = {
@@ -109,23 +126,23 @@
     </div>
     <div id="body-image">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-      <li class="active"><a href="#instagram" data-toggle="tab">Instagram</a></li>
+      <li class="active"><a href="#all" data-toggle="tab">All Picture</a></li>
+      <li ><a href="#instagram" data-toggle="tab">Instagram</a></li>
       <li ><a href="#facebook" data-toggle="tab">Facebook</a></li>
-      <li ><a href="#all" data-toggle="tab">All Media</a></li>
     </ul>
-    <section id="sec-body">
+    <!-- <section id="sec-body"> -->
       <div class="tab-content">
-        <div class="tab-pane fade in active" id="instagram">
+        <div class="tab-pane fade  in active" id="all" align='center'>
+          All Picture
+        </div>
+        <div class="tab-pane fade" id="instagram">
           Instagram
         </div>
         <div class="tab-pane fade" id="facebook">
           Facebook
         </div>
-        <div class="tab-pane fade" id="all">
-          All Picture
-        </div>
       </div>
-    </section>
+    <!-- </section> -->
     </div>
 </body>
 </html>

@@ -42,17 +42,57 @@ class GetInstagram
 
 	private function GetAllMedia($media){
 		foreach ($media->data as $key => $mediadata) {
-			if (date("Y-m-d H:i:s",strtotime($mediadata->caption->created_time)) > $this->last_datetime) {
-				$text = $mediadata->caption->text;
-				$displayname = $mediadata->caption->full_name;
-				$user_id =  $mediadata->caption->id;
-				$image = $mediadata->images->standard_resolution->url;
+			if (date("Y-m-d H:i:s",$mediadata->created_time) > $this->last_datetime) {
+				if (isset($mediadata->caption->text)) {
+					$text = $mediadata->caption->text;
+				}
+				else{
+					$text = "";
+				}
+				if (isset($mediadata->user->full_name)) {
+					$displayname = $mediadata->user->full_name;
+				}
+				else{
+					$displayname = $mediadata->user->username;
+				}
+				$user_id =  $mediadata->caption->from->id;
 				$created_time =$mediadata->caption->created_time;
+				$images = $mediadata->images->standard_resolution->url;
+				$img_name = "ig_".date("Y-m-d",$created_time)."_".$mediadata->caption->from->username.$key.".jpeg";
 				$media_id = $mediadata->id;
 				$link = $mediadata->link;
+				if (!file_exists("images")) {
+					mkdir("images");
+				}
+
+				$this->db->query("INSERT IGNORE INTO author(author_id,author_displayname,author_type)
+											  VALUES(:author_id,:displayname,'instagram')",
+											  array("author_id"=>$user_id,
+											  	"displayname"=>$displayname
+											  	));
+				$insert_media = $this->db->query("INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link) 
+											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link)",
+											  array(
+											  	"author_id"=>$user_id,
+											  	"post_social_id"=>$media_id,
+											  	"post_text"=>$text,
+											  	"post_created_time"=>date("Y-m-d H:i:s",$created_time),
+											  	"post_channel"=>'instagram',
+											  	"post_img_name"=>$img_name,
+											  	"post_link"=>$link
+											  	));
+				if ($insert_media > 0) {
+					file_put_contents("images/".$img_name,file_get_contents($images)); // Save Image
+					echo " I";
+				}
 			}
+			else{
+				return;
+			}
+
 		}
 		if (isset($media->pagination->next_url)) {
+			echo " >";
 			$media = $this->instagram->pagination($media);
 			$this->GetAllMedia($media);
 		}

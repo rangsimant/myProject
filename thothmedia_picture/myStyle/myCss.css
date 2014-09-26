@@ -13,7 +13,6 @@ body{
 	padding-right: 15px;
 }
 #sec-body{
-	height: 80%;
 	background-color: #F5F5F5;
 	border-bottom: 1px solid #ddd;
 	border-left: 1px solid #ddd;
@@ -29,4 +28,28 @@ body{
 #Client{
 	font-size: 20px;
 	padding-top: 3%;
+}
+.thumnail{
+/*	background-color: white;*/
+}
+.thumnail > a>img{
+	height: 180px;
+	width: 180px;
+	padding-bottom: 0px;
+}
+.top-image{
+	margin: 2px;
+}
+.button-image{
+	margin: 2px;
+	padding-bottom: 20px
+}
+.logo{
+	font-size: 15px;
+}
+.col-md-2{
+	padding: 0px;
+}
+p{
+	font-size: 12px;
 }

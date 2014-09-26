@@ -5,6 +5,6 @@ require_once('instagram.php');
 $fb = new GetFacebook();
 $ig = new GetInstagram();
 echo "<pre>";
-// $fb->Download_Picture();
-$ig->Download_Picture();
+$fb->Download_Picture();
+// $ig->Download_Picture();
 ?>
