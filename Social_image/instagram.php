@@ -28,7 +28,7 @@ class GetInstagram
 		foreach ($this->instagram_id as $key => $id_user) {
 			$this->last_datetime = $id_user['account_last_datetime'];
 			$this->username = $id_user['account_username'];
-			echo "\nAuthor : ".$this->username;
+			echo "\n".$this->username;
 			$id_user = $id_user['account_id_user'];
 			$media = $this->instagram->getUserMedia($id_user);
 			$this->GetAllMedia($media);
@@ -36,7 +36,6 @@ class GetInstagram
 							  array("last_datetime"=>$this->bot_run_time,
 							  	"username"=>$this->username
 							  	));
-			echo " [x] Done";
 		}
 	}
 
@@ -55,10 +54,10 @@ class GetInstagram
 				else{
 					$displayname = $mediadata->user->username;
 				}
-				$user_id =  $mediadata->caption->from->id;
-				$created_time =$mediadata->caption->created_time;
+				$user_id =  $mediadata->user->id;
+				$created_time =$mediadata->created_time;
 				$images = $mediadata->images->standard_resolution->url;
-				$img_name = "ig_".date("Y-m-d",$created_time)."_".$mediadata->caption->from->username.$key.".jpeg";
+				$img_name = "ig_".date("Y-m-d",$created_time)."_".$mediadata->user->username.$key.".jpeg";
 				$media_id = $mediadata->id;
 				$link = $mediadata->link;
 				if (!file_exists("images")) {
@@ -83,7 +82,7 @@ class GetInstagram
 											  	));
 				if ($insert_media > 0) {
 					file_put_contents("images/".$img_name,file_get_contents($images)); // Save Image
-					echo " I";
+					echo ".";
 				}
 			}
 			else{
@@ -92,7 +91,7 @@ class GetInstagram
 
 		}
 		if (isset($media->pagination->next_url)) {
-			echo " >";
+			echo ">";
 			$media = $this->instagram->pagination($media);
 			$this->GetAllMedia($media);
 		}

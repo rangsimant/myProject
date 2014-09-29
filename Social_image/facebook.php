@@ -33,7 +33,7 @@ class GetFacebook
 		foreach ($this->facebook_id as $key => $id_user) {
 			$this->last_datetime = $id_user['account_last_datetime'];
 			$this->username = $id_user['account_username'];
-			echo "\nAuthor : ".$this->username;
+			echo "\n".$this->username;
 			$id_user = $id_user['account_id_user'];
 			$url = ('/'.$id_user.'/posts?fields=id,message,from{name},name,created_time');
 			$this->getPost($url);
@@ -41,7 +41,6 @@ class GetFacebook
 							  array("last_datetime"=>$this->bot_run_time,
 							  	"username"=>$this->username
 							  	));
-			echo " [x] Done";
 		}
 	}
 
@@ -86,7 +85,7 @@ class GetFacebook
 						} // end if check height 200
 							if ($insert_post > 0) {
 								file_put_contents("images/".$img_name,file_get_contents($images)); // Save Image
-								echo " I";
+								echo ".";
 							}
 					} // end if isset image
 				} // end if isset Message
@@ -96,7 +95,7 @@ class GetFacebook
 			}
 		} // end foreach all Post
 		if (isset($jsonPost->paging->next)) { // next pagination
-			echo " >";
+			echo ">";
 			$url = $jsonPost->paging->next;
 			$url = substr($url, 32); // cut direct link
 			$this->getPost($url);

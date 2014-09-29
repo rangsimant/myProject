@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="bootstrap-daterangepicker-master/daterangepicker-bs3.css" />
-<link href="font-awesome-4.2.0\css\font-awesome.min.css" rel="stylesheet">
+<link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="myStyle/animate.min.css">
 <link rel="stylesheet" href="myStyle/myCss.css">
 
 <script type="text/javascript" src="Jquery/jquery-2.1.1.min.js"></script> <!-- First away -->
@@ -13,28 +14,111 @@
 <script type="text/javascript" src="bootstrap-daterangepicker-master/daterangepicker.js"></script>
 <script type="text/javascript">
                $(document).ready(function() {
-
                   var cb = function(start, end, label) {
                     console.log(start.toISOString(), end.toISOString(), label);
                     $('#reportrange span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));
-                    // alert("Callback has fired: [ " + start.format('D MM YYYY') + " to " + end.format('D MMMM YYYY') + ", label = " + label + "]");
                     var dateStart = start.format('YYYY-MM-D');
                     var dateEnd = end.format('YYYY-MM-D');
                     var setDate = {date1:dateStart,date2:dateEnd};
                     $("#all").html("");
+                    $("#instagram").html("");
+                    $("#facebook").html("");
                     $.ajax({
-                        url:"filter_all.php",
+                        url:"all_image.php",
                         type:"POST",
                         dataType:"HTML",
                         data:setDate,
                         success:function(data){
-                          $("#all").hide().html(data).fadeIn('slow').css({"height":"auto","background-color":"#F5F5F5"});
+                          $("#all").hide().html(data).fadeIn('slow');
+                        },
+                        error:function(jqXHR,data){
+                          alert(data);
+                        }
+                       });
+                    $.ajax({
+                        url:"filter_instagram.php",
+                        type:"POST",
+                        dataType:"HTML",
+                        data:setDate,
+                        success:function(data){
+                          $("#instagram").hide().html(data).fadeIn('slow');
+                        },
+                        error:function(jqXHR,data){
+                          alert(data);
+                        }
+                       });
+                    $.ajax({
+                        url:"filter_facebook.php",
+                        type:"POST",
+                        dataType:"HTML",
+                        data:setDate,
+                        success:function(data){
+                          $("#facebook").hide().html(data).fadeIn('slow');
                         },
                         error:function(jqXHR,data){
                           alert(data);
                         }
                        });
                   }
+                  ////// Start Load /////////
+                    var dateStart = moment().subtract(1,'days').format("YYYY-MM-D");
+                    var dateEnd  =moment().format("YYYY-MM-D");
+                    var setDate = {date1:dateStart,date2:dateEnd};
+                    $("#all").html("");
+                    $("#instagram").html("");
+                    $("#facebook").html("");
+                    $.ajax({
+                      url:"all_image.php",
+                      type:"POST",
+                      dataType:"HTML",
+                      data:setDate,
+                      success:function(data){
+                        $("#all").hide().html(data).fadeIn('slow');
+                      },
+                      error:function(jqXHR,data){
+                        alert(data);
+                      }
+                     });
+                  $.ajax({
+                      url:"filter_instagram.php",
+                      type:"POST",
+                      dataType:"HTML",
+                      data:setDate,
+                      success:function(data){
+                        $("#instagram").hide().html(data).fadeIn('slow');
+                      },
+                      error:function(jqXHR,data){
+                        alert(data);
+                      }
+                     });
+                  $.ajax({
+                      url:"filter_facebook.php",
+                      type:"POST",
+                      dataType:"HTML",
+                      data:setDate,
+                      success:function(data){
+                        $("#facebook").hide().html(data).fadeIn('slow');
+                      },
+                      error:function(jqXHR,data){
+                        alert(data);
+                      }
+                     });
+                     $("#btn-all").click(function(){
+                      $("#all").css({"z-index":"1"});
+                      $("#instagram").css({"position":"","z-index":"0"});
+                      $("#facebook").css({"position":"","z-index":"0"});
+                    });
+                    $("#btn-ig").click(function(){
+                      $("#instagram").css({"z-index":"1"});
+                      $("#all").css({"position":"","z-index":"0"});
+                      $("#facebook").css({"position":"","z-index":"0"});
+                    });
+                     $("#btn-fb").click(function(){
+                      $("#facebook").css({"z-index":"1"});
+                      $("#all").css({"position":"","z-index":"0"});
+                      $("#instagram").css({"position":"","z-index":"0"});
+                    });
+                     ////// end loaded ////////
 
                   var optionSet1 = {
                     startDate: moment().subtract(29, 'days'),
@@ -126,19 +210,19 @@
     </div>
     <div id="body-image">
     <ul class="nav nav-tabs" role="tablist" id="myTab">
-      <li class="active"><a href="#all" data-toggle="tab">All Picture</a></li>
-      <li ><a href="#instagram" data-toggle="tab">Instagram</a></li>
-      <li ><a href="#facebook" data-toggle="tab">Facebook</a></li>
+      <li id="btn-all" class="active"><a href="#all" data-toggle="tab">All Social</a></li>
+      <li id="btn-ig"><a href="#instagram" data-toggle="tab"><img src='icon/instagram.png' class='ig-logo'>Instagram</a></li>
+      <li id="btn-fb"><a href="#facebook" data-toggle="tab"><img src='icon/facebook.png' class='ig-logo'>Facebook</a></li>
     </ul>
     <!-- <section id="sec-body"> -->
       <div class="tab-content">
-        <div class="tab-pane fade  in active" id="all" align='center'>
-          All Picture
+        <div class="tab-pane fade  in active fix-image" id="all" align='center'>
+          All Picture 
         </div>
-        <div class="tab-pane fade" id="instagram">
+        <div class="tab-pane fade fix-image" id="instagram" align='center'>
           Instagram
         </div>
-        <div class="tab-pane fade" id="facebook">
+        <div class="tab-pane fade fix-image" id="facebook" align='center'>
           Facebook
         </div>
       </div>

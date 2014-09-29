@@ -4,6 +4,7 @@
 	background-image: linear-gradient(to bottom, #FFFFFF 0, #F5F5F5 100%);
 	border-color: #C7C4C4;
 	background-repeat: repeat-x;
+	margin-bottom: 1px;
 }
 body{
 	background-color: rgb(231, 231, 231);
@@ -29,10 +30,10 @@ body{
 	font-size: 20px;
 	padding-top: 3%;
 }
-.thumnail{
-/*	background-color: white;*/
+div.thumbnail{
+	width: 207px;
 }
-.thumnail > a>img{
+.thumbnail > a>img{
 	height: 180px;
 	width: 180px;
 	padding-bottom: 0px;
@@ -49,7 +50,54 @@ body{
 }
 .col-md-2{
 	padding: 0px;
+	width: 207.666667px;
 }
 p{
-	font-size: 12px;
+	margin: 0;
+	font-size: 11px;
+	font-weight: bolder;
+}
+.ig-logo{
+	height: 18px;
+	width: 18px;
+	margin-bottom: 4px;
+	margin-right: 4px;
+	border-radius: 10px;
+}
+.img-footer{
+	padding-top: 4px;
+	height: 20px;
+	font-size: 10px;
+	width: 187px;
+}
+.download{
+	font-size: 15px;
+	float: right;
+	padding-right: 3px;
+}
+.footer-bar{
+	padding-left: 3px;
+}
+.fa{
+	color: rgb(185, 185, 185);
+}
+.fa:hover{
+	color:#3B579D;
+}
+
+.thumbnail {
+	margin-bottom: 2px;
+	background-image: -webkit-linear-gradient(top, #F5F5F5 0, #F5F5F5 100%);
+	background-image: -o-linear-gradient(top, #F5F5F5 0, #F5F5F5 100%);
+	background-image: linear-gradient(to bottom, #F5F5F5 0, #F5F5F5 100%);
+    position:relative;
+    overflow:hidden;
+}
+ 
+
+.thumbnail:hover{
+	border: 1px solid rgb(160, 160, 160);
+}
+.fix-image{
+	position: absolute;
 }
