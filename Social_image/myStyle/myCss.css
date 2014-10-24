@@ -6,10 +6,14 @@
 	background-repeat: repeat-x;
 	margin-bottom: 1px;
 }
+body > div.navbar.navbar-inverse > div > div > form{
+	margin-top: 2px;
+}
 body{
 	background-color: rgb(231, 231, 231);
 }
-#body-image{
+.contain{
+	padding-top: 15px;
 	padding-left: 15px;
 	padding-right: 15px;
 }
@@ -52,7 +56,7 @@ div.thumbnail{
 	padding: 0px;
 	width: 207.666667px;
 }
-p{
+#title{
 	margin: 0;
 	font-size: 11px;
 	font-weight: bolder;
@@ -73,10 +77,10 @@ p{
 .download{
 	font-size: 15px;
 	float: right;
-	padding-right: 3px;
+	padding-right: 7px;
 }
 .footer-bar{
-	padding-left: 3px;
+	margin-left: 9px;
 }
 .fa{
 	color: rgb(185, 185, 185);
@@ -86,6 +90,7 @@ p{
 }
 
 .thumbnail {
+	text-align: center;
 	margin-bottom: 2px;
 	background-image: -webkit-linear-gradient(top, #F5F5F5 0, #F5F5F5 100%);
 	background-image: -o-linear-gradient(top, #F5F5F5 0, #F5F5F5 100%);
@@ -100,4 +105,66 @@ p{
 }
 .fix-image{
 	position: absolute;
+}
+body > div.navbar.navbar-inverse > div > div.navbar-header.navbar-left{
+	padding-right: 40px;
+}
+#reportrange{
+	margin-top: 2px;
+}
+.loading{
+	height: 40px;
+	width:40px;
+	padding: 4px;
+}
+
+.mask{
+font-size: 10px;
+position: absolute;
+bottom: 21;
+left: 9;
+width: 91%;
+color: white;
+}
+.mask>p{
+	margin-bottom: 0px;
+}
+.view-first:hover img {
+-webkit-transform: scale(1.03,1.03);
+-moz-transform:scale(1.03,1.03);
+-o-transform: scale(1.03,1.03);
+-ms-transform: scale(1.03,1.03);
+transform: scale(1.03,1.03);
+}
+.thumbnail a>img{
+	width: 180px;
+	height: 180px;
+}
+.navbar-nav>li>a{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+a#drop-subject{
+	color: #333;
+}
+a#drop-subject:hover{
+	color: #333;
+}
+#drop-subject{
+	font-weight: bold;
+	font-size: 18px;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
+	text-shadow:none;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus{
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #F5F5F5;
+}
+#body-image{
+	padding-top: 60px;
+}
+#body-image.col-md-2{
+	padding-top: 0px;
 }

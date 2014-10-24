@@ -1,0 +1,43 @@
+Time : 17:38:07
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post.channel' in 'where clause'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-06-4 00:00:00' AND 
+			 	  post.post_created_time <='2014-10-5 23:59:59' AND
+			 	  post.channel = 'instagram'
+			 	  ORDER BY post.post_created_time DESC LIMIT 40,20
+
+Time : 17:37:48
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post.channel' in 'where clause'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-10-5 00:00:00' AND 
+			 	  post.post_created_time <='2014-10-5 23:59:59' AND
+			 	  post.channel = 'instagram'
+			 	  ORDER BY post.post_created_time DESC LIMIT 40,20
+
+Time : 17:37:35
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post.channel' in 'where clause'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-09-6 00:00:00' AND 
+			 	  post.post_created_time <='2014-10-5 23:59:59' AND
+			 	  post.channel = 'instagram'
+			 	  ORDER BY post.post_created_time DESC LIMIT 40,20
+
+Time : 17:37:26
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'post.channel' in 'where clause'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-10-5 00:00:00' AND 
+			 	  post.post_created_time <='2014-10-5 23:59:59' AND
+			 	  post.channel = 'instagram'
+			 	  ORDER BY post.post_created_time DESC LIMIT 40,20

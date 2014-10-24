@@ -1,0 +1,40 @@
+Time : 09:52:24
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'caret'></span>'
+			 	  ORDER BY post.post_created_time DESC
+			 	  LIMIT 0,36' at line 7
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-10-10 00:00:00' AND 
+			 	  post.post_created_time <='2014-10-10 23:59:59' AND
+			 	  post.post_subject = 'Acer  <span class='caret'></span>'
+			 	  ORDER BY post.post_created_time DESC
+			 	  LIMIT 0,36
+
+Time : 07:46:45
+SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+
+Time : 07:46:45
+SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+
+Time : 07:46:19
+SQLSTATE[HY000] [2002] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+
+
+Time : 11:32:37
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':post_subject)' at line 2
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link,post_subject) 
+											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link,post_subject:post_subject)
+
+Time : 11:31:30
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link) 
+											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link)
+
+Time : 11:30:41
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link) 
+											  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link)

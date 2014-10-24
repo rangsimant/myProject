@@ -1,0 +1,263 @@
+<html>
+<head>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-daterangepicker-master/daterangepicker-bs3.css" />
+<link href="font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="myStyle/animate.min.css">
+<link rel="stylesheet" href="myStyle/hover.css">
+<link rel="stylesheet" href="myStyle/myCss.css">
+
+<script type="text/javascript" src="Jquery/jquery-2.1.1.min.js"></script> <!-- First away -->
+<script type="text/javascript" src="bootstrap-daterangepicker-master/moment.js"></script>
+<script type="text/javascript" src="bootstrap-daterangepicker-master/daterangepicker.js"></script>
+<script src="infinite-scroll-master/jquery.infinitescroll.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> <!-- Second -->
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> <!-- Third -->
+<script type="text/javascript">
+var dateStart;
+var dateEnd;
+var subject;
+ $(document).ready(function() {
+                  var cb = function(start, end, label) {
+                    sessionStorage.setItem('dateStart',start.format("YYYY-MM-D"));
+                    sessionStorage.setItem('dateEnd',end.format("YYYY-MM-D"));
+                    sessionStorage.setItem('setdate1',start.format("MM DD YYYY"));
+                    sessionStorage.setItem('setdate2',end.format("MM DD YYYY"));
+                    $('#body-image').infinitescroll('destroy');
+                    $('#body-image').infinitescroll('bind');
+                    $('#body-image').infinitescroll({
+                           loading: {
+                          img: "",
+                          finishedMsg: "",
+                          msgText: "<div class='col-md-12 text-center navbar-inverse navbar-fixed-bottom'><h4><img src='icon/loader.gif' class='loading'></img>Loading more Image...</h4></div>",
+                          speed: 'fast',
+                        },
+                        state: {
+                          isDuringAjax: false,
+                          isInvalidPage: false,
+                          isDestroyed: false,
+                          isDone: false, // For when it goes all the way through the archive.
+                          isPaused: false,
+                          currPage: 1
+                        },
+                      navSelector   : "#next:last",
+                      nextSelector  : "a#next:last",
+                      itemSelector  : "#body-image",
+                      debug     : true,
+                      dataType    : 'html',
+                      path: function(index) {
+                        return "query-ig.php?page="+index+"&date1="+dateStart+"&date2="+dateEnd+"&loadsubject="+$('#drop-subject').text();
+                      },
+                    }
+                    );
+                    console.log(start.toISOString(), end.toISOString(), label);
+                    $('#reportrange span').html(start.format('DD MMMM YYYY') + ' - ' + end.format('DD MMMM YYYY'));
+                     dateStart = start.format('YYYY-MM-D');
+                     dateEnd = end.format('YYYY-MM-D');
+                     subject = $('#drop-subject').text();
+                    var setDate = {date1:dateStart,date2:dateEnd,loadsubject:subject};
+                    $("#body-image").html("");
+                    $.ajax({
+                        url:"filter_instagram.php",
+                        type:"POST",
+                        dataType:"HTML",
+                        data:setDate,
+                        success:function(data){
+                          $("#body-image").hide().html(data).fadeIn('slow');
+                            },
+                          error:function(jqXHR,data){
+                            alert(data);
+                          }
+                       });
+                    var labelDate;
+                    if (label == 'Today' || label == 'Yesterday') {
+                        labelDate = label  +' | '+ start.format('DD MMMM YYYY');
+                      }
+                      else if (label == 'This Month' || label == 'Last Month') {
+                        labelDate = start.format('MMMM');
+                      }
+                      else if (label != "Custom Range"){
+                        labelDate = label +' | '+ start.format('DD MMMM YYYY')+" - "+end.format('DD MMMM YYYY');
+                      }
+                     $('#reportrange span').text(labelDate);
+                     sessionStorage.setItem('labeldate', $('#reportrange span').text());
+                    }; 
+
+                    //////// On Load ////////
+                     if (sessionStorage.getItem("labeldate") != null) {
+                       dateStart = sessionStorage.getItem('dateStart');
+                        dateEnd  =sessionStorage.getItem('dateEnd');
+                    }else{
+                     dateStart = moment().format("YYYY-MM-D");
+                     dateEnd  =moment().format("YYYY-MM-D");
+                    };
+                    if (sessionStorage.getItem('subject') != null) {
+                    $('#drop-subject').html(sessionStorage.getItem('subject')+" <span class='caret'></span>");
+                  };
+                    /////// LOAD SUBJECT ////////
+                    $.ajax({
+                      url:"query-subject-ig.php",
+                      type:"POST",
+                      dataType:"HTML",
+                      data:setDate,
+                      success:function(data){
+                        $("#list-subject").html(data);
+                      },
+                      error:function(jqXHR,data){
+                        alert(data);
+                      }
+                     });
+                    /////// END LOAD SUBJECT ////////
+                    var setDate = {date1:dateStart,date2:dateEnd,loadsubject:$('#drop-subject').text()};
+                    /////// LOAD IMAGE ////////
+                    $("#body-image").html("");
+                    $.ajax({
+                      url:"filter_instagram.php",
+                      type:"POST",
+                      dataType:"HTML",
+                      data:setDate,
+                      success:function(data){
+                        $("#body-image").hide().html(data).fadeIn('slow');
+                      },
+                      error:function(jqXHR,data){
+                        alert(data);
+                      }
+                     });
+                    /////// END LOAD IMAGE ////////
+                   if (sessionStorage.getItem("labeldate") != null) {
+                       dateStart = sessionStorage.getItem('dateStart');
+                        dateEnd  =sessionStorage.getItem('dateEnd');
+                         var optionSet2 = {
+                    startDate: sessionStorage.getItem('setdate1'),
+                    endDate: sessionStorage.getItem('setdate2'),
+                    opens: 'left',
+                    ranges: {
+                       'Today': [moment(), moment()],
+                       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                       'This Month': [moment().startOf('month'), moment().endOf('month')],
+                       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                  };
+                    }else{
+                     dateStart = moment().format("YYYY-MM-D");
+                     dateEnd  =moment().format("YYYY-MM-D");
+                      var optionSet2 = {
+                    startDate: moment().format("MM DD YYYY"),
+                    endDate: moment().format("MM DD YYYY"),
+                    opens: 'left',
+                    ranges: {
+                       'Today': [moment(), moment()],
+                       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                       'This Month': [moment().startOf('month'), moment().endOf('month')],
+                       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                  };
+                    };
+                  $('#reportrange span').html('Today | '+moment().format("DD MMMM YYYY"));
+                  $('#reportrange').daterangepicker(optionSet2, cb);
+
+                   if (sessionStorage.getItem("labeldate") != null) {
+                       $('#reportrange span').html(sessionStorage.getItem("labeldate"));
+                    };
+                  $('#reportrange').on('show.daterangepicker', function() { console.log("show event fired"); });
+                  $('#reportrange').on('hide.daterangepicker', function() { console.log("hide event fired"); });
+                  $('#reportrange').on('apply.daterangepicker', function(ev, picker) { 
+                    console.log("apply event fired, start/end dates are " 
+                      + picker.startDate.format('DD MMMM YYYY') 
+                      + " to " 
+                      + picker.endDate.format('DD MMMM YYYY')
+                    ); 
+                  });
+                    $('.dropdown-toggle').dropdown();
+               });
+
+               </script>
+  <title>SOCIAL IMAGEs</title>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="">
+        <div class="navbar-header navbar-left">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop-subject" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Samsung <span class="caret"></span></a>
+              <ul id='list-subject' class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <!-- PHP INSERT -->
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="navbar-form " role="form">
+          <form class="navbar-form " role="form">
+            <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+              <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+              <span></span> <b class="caret"></b>
+            </div>
+          </form>
+          <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li id="btn-all" ><a href="all-social.html">All Social</a></li>
+            <li id="btn-ig" class="active"><a><img src='icon/instagram.png' class='ig-logo'>Instagram</a></li>
+            <li id="btn-fb"><a href="facebook.html"><img src='icon/facebook.png' class='ig-logo'>Facebook</a></li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    <div id="body-image" class='contain'>
+      <!-- BODY CONTENT -->
+
+    </div>
+<a id="next" href="query-ig.php"></a>
+    <script>
+$('#body-image').infinitescroll({
+     loading: {
+        img: "",
+        finishedMsg: "<em >No images.</em>",
+        msgText: "<div class='col-md-12 text-center navbar-inverse navbar-fixed-bottom'><h4>        <img src='icon/loader.gif' class='loading'></img>Loading more Image...</h4></div>",
+        speed: 'fast',
+      },
+      state: {
+        isDuringAjax: false,
+        isInvalidPage: false,
+        isDestroyed: false,
+        isDone: false, // For when it goes all the way through the archive.
+        isPaused: false,
+        currPage: 1
+      },
+
+    navSelector   : "#next:last",
+    nextSelector  : "a#next:last",
+    itemSelector  : "#body-image",
+    debug     : true,
+    dataType    : 'html',
+    pixelsFromNavToBottom: false,
+//    prefill     : true,
+//    path: ["http://nuvique/infinite-scroll/test/index", ".html"]
+    path: function(index) {
+      return "query-ig.php?page="+index+"&date1="+dateStart+"&date2="+dateEnd+"&loadsubject="+$('#drop-subject').text();
+    },
+    // behavior   : 'facebook',
+    // appendCallback : false, // USE FOR PREPENDING
+    // pathParse      : function( pathStr, nextPage ){ 
+    //   return pathStr.replace('2', nextPage ),alert(nextPage); 
+    // }
+  },
+    function(newElements, data, url){
+      // USE FOR PREPENDING
+ 
+      // $(newElements).css('background-color','#ffef00');
+       // $(this).append(newElements);
+    //  // END OF PREPENDING
+
+    // window.console && console.log('context: ',this);
+    // window.console && console.log('returned: ', newElements);
+      
+    }
+  );
+    </script>
+</body>
+</html>

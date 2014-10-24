@@ -1,0 +1,21 @@
+Time : 12:32:13
+SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user ''@'localhost' for table 'post'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+				FROM social_image.post 
+				INNER JOIN social_image.author 
+				ON author.author_id = post.author_id
+				WHERE post.post_created_time >='2014-09-30 00:00:00' AND 
+				 	  post.post_created_time <='2014-09-30 23:59:59' AND
+				 	  post.post_channel = 'facebook'
+				 	  ORDER BY post.post_created_time DESC
+Time : 12:32:13
+SQLSTATE[42000]: Syntax error or access violation: 1142 SELECT command denied to user ''@'localhost' for table 'post'
+Raw SQL : SELECT author.author_displayname,post.post_text,post.post_created_time,post.post_channel,post.post_img_name,post.post_link 
+			FROM social_image.post 
+			INNER JOIN social_image.author 
+			ON author.author_id = post.author_id
+			WHERE post.post_created_time >='2014-09-30 00:00:00' AND 
+			 	  post.post_created_time <='2014-09-30 23:59:59' 
+			 	  ORDER BY post.post_created_time DESC
+m'
+				 	  ORDER BY post.post_created_time DESC

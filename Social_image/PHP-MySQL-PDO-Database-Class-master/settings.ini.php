@@ -1,6 +1,6 @@
 ;<?php return; ?>
 [SQL]
 host = tools.thothmedia.com
-user = tools
+user =  tools
 password = thtools+th
 dbname = social_image

@@ -1,0 +1,14 @@
+Time : 09:33:03
+SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+Raw SQL : INSERT IGNORE INTO author(author_id,author_displayname,author_type)
+												  VALUES(:author_id,:displayname,'facebook')
+
+Time : 00:41:17
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':subject)' at line 2
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link,post_subject) 
+												  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link:subject)
+
+Time : 00:40:47
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':subject)' at line 2
+Raw SQL : INSERT IGNORE INTO post(author_id,post_social_id,post_text,post_created_time,post_channel,post_img_name,post_link,post_subject) 
+												  VALUES (:author_id,:post_social_id,:post_text,:post_created_time,:post_channel,:post_img_name,:post_link:subject)

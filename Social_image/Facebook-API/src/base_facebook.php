@@ -138,9 +138,9 @@ abstract class BaseFacebook
    * @var array
    */
   public static $CURL_OPTS = array(
-    CURLOPT_CONNECTTIMEOUT => 10,
+    CURLOPT_CONNECTTIMEOUT => 300,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 60,
+    CURLOPT_TIMEOUT        => 300,
     CURLOPT_USERAGENT      => 'facebook-php-3.2',
   );
 

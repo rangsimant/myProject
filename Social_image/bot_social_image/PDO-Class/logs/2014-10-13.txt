@@ -1,0 +1,4 @@
+Time : 08:05:58
+SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+Raw SQL : INSERT IGNORE INTO author(author_id,author_displayname,author_type)
+												  VALUES(:author_id,:displayname,'facebook')

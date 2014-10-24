@@ -1,0 +1,2 @@
+Time : 14:20:18
+SQLSTATE[HY000] [1049] Unknown database 'testdb'
