@@ -34,7 +34,7 @@ function LoginFacebook(username,password){
 	});
 	casper.thenClick(XPath('//*[@id="u_0_0"]'));
 	casper.waitForSelector("#fbProfileCover",function(){
-		casper.captureSelector(page+"/FB_stat/FB_stat_coverPage.png","#fbProfileCover");
+		casper.captureSelector(page+"/Cover_.jpg","#fbProfileCover");
 	});
 }
 
@@ -42,7 +42,7 @@ function captureLikeChart(){
 	casper.thenOpen("https://facebook.com/"+page+"/likes");
 
 	casper.waitForSelector(XPath('//*[@id="pagelet_timeline_main_column"]/div/div/div/div[2]/div[2]/div'),function(){
-		this.captureSelector(page+"/FB_stat/FB_stat_talkAbout.png",XPath('//*[@id="pagelet_timeline_main_column"]/div/div/div/div[2]/div[2]/div'));
+		this.captureSelector(page+"/LikeChart_"+page+".jpg",XPath('//*[@id="pagelet_timeline_main_column"]/div/div/div/div[2]/div[2]/div'));
 	});
 }
 
@@ -50,9 +50,9 @@ function captureInsightsOverview(){
 	casper.thenOpen("https://facebook.com/"+page+"/insights");
 	
 	casper.waitForSelector('#u_0_x > div > div._5don > div > div:nth-child(2) > div',function(){
-		this.captureSelector(page+'/Overview_PageLikes.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(1)");
-		this.captureSelector(page+'/Overview_PostReach.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(2)");
-		this.captureSelector(page+'/Overview_Engagement.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(3)");
+		this.captureSelector(page+'/Overview_PageLikes.jpg',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(1)");
+		this.captureSelector(page+'/Overview_PostReach.jpg',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(2)");
+		this.captureSelector(page+'/Overview_Engagement.jpg',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(3)");
 	});
 }
 
@@ -61,17 +61,17 @@ function captureInsightLikes(){
 
 	// Daily data is recorded in the Pacific time zone.
 	casper.waitForSelector('div._5nw8',function(){
-			this.captureSelector(page+'/Likes_Daily.png',"div._5nw8");
+			this.captureSelector(page+'/Likes_Daily.jpg',"div._5nw8");
 	});
 
 	// Total Page Likes as of Today
 	casper.then(function(){
 		var Total_Likes = "div._5dop._4-u2:nth-child(2)";
-		this.captureSelector(page+'/Likes_TotalPageLikes.png',Total_Likes);
+		this.captureSelector(page+'/Likes_TotalPageLikes.jpg',Total_Likes);
 		
 		this.thenClick("span._53py",function(){
 			this.wait(2000);
-			this.captureSelector(page+'/Likes_TotalPageLikes-Average.png',Total_Likes);
+			this.captureSelector(page+'/Likes_TotalPageLikes-Average.jpg',Total_Likes);
 		});
 	});
 
@@ -79,45 +79,45 @@ function captureInsightLikes(){
 	casper.then(function(){
 		var Net_Likes = "div._5dop._4-u2:nth-child(3)";
 
-		this.captureSelector(page+'/Likes_NetLikes.png',Net_Likes);
+		this.captureSelector(page+'/Likes_NetLikes.jpg',Net_Likes);
 		
 		this.clickLabel("Unlikes","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_NetLikes_Unlikes.png',Net_Likes);
+		this.captureSelector(page+'/Likes_NetLikes_Unlikes.jpg',Net_Likes);
 
 		this.clickLabel("Organic Likes","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_NetLikes_OrganicLikes.png',Net_Likes);
+		this.captureSelector(page+'/Likes_NetLikes_OrganicLikes.jpg',Net_Likes);
 
 		this.clickLabel("Paid Likes","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_NetLikes_PaidLikes.png',Net_Likes);
+		this.captureSelector(page+'/Likes_NetLikes_PaidLikes.jpg',Net_Likes);
 	});
 
 	// Where Your Page Likes Happened
 	casper.then(function(){
 		var Likes_Happened = "div._5dop._4-u2:nth-child(4)";
-		this.captureSelector(page+'/FB_stat_ads/FB_stat_ads_whereYourPageLike.png',Likes_Happened);
+		this.captureSelector(page+'/Likes_LikesHappened.jpg',Likes_Happened);
 	
 		this.clickLabel("Ads","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_LikesHappened_Ads.png',Likes_Happened);
+		this.captureSelector(page+'/Likes_LikesHappened_Ads.jpg',Likes_Happened);
 
 		this.clickLabel("Page Suggestions","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_LikesHappened_PageSuggestions.png',Likes_Happened);
+		this.captureSelector(page+'/Likes_LikesHappened_PageSuggestions.jpg',Likes_Happened);
 
 		this.clickLabel("On Your Page","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes__LikesHappened_OnYourPage.png',Likes_Happened);
+		this.captureSelector(page+'/Likes__LikesHappened_OnYourPage.jpg',Likes_Happened);
 
 		this.clickLabel("Uncategorized Mobile","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_LikesHappened_UncategorizedMobile.png',Likes_Happened);
+		this.captureSelector(page+'/Likes_LikesHappened_UncategorizedMobile.jpg',Likes_Happened);
 
 		this.clickLabel("Others","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Likes_LikesHappened_Others.png',"div._5dop._4-u2:nth-child(4)");
+		this.captureSelector(page+'/Likes_LikesHappened_Others.jpg',"div._5dop._4-u2:nth-child(4)");
 
 	});
 }
@@ -127,21 +127,21 @@ function captureInsightReach(){
 
 	// Daily data is recorded in the Pacific time zone.
 	casper.waitForSelector("div._5nw8",function(){
-		this.captureSelector(page+'/Reach_Daily.png',"div._5nw8");
+		this.captureSelector(page+'/Reach_Daily.jpg',"div._5nw8");
 	});
 
 	// Post Reach
 	casper.then(function(){
 		var PostReach = "div._5dop._4-u2:nth-child(2)";
-		this.captureSelector(page+"/Reach_PostReach.png",PostReach);
+		this.captureSelector(page+"/Reach_PostReach.jpg",PostReach);
 
 		this.clickLabel("Organic","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_PostReach_Organic.png',PostReach);
+		this.captureSelector(page+'/Reach_PostReach_Organic.jpg',PostReach);
 
 		this.clickLabel("Paid","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_PostReach_Paid.png',PostReach);
+		this.captureSelector(page+'/Reach_PostReach_Paid.jpg',PostReach);
 	});
 
 	// Likes, Comments, and Shares
@@ -150,43 +150,43 @@ function captureInsightReach(){
 		var Likes="#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
 		var Comments = "#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span";
 		var Shares = "#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(3) > span";
-		this.captureSelector(page+"/FB_stat/Reach_LikesCommentsShares.png",LikesCommentsShares);
+		this.captureSelector(page+"/Reach_LikesCommentsShares.jpg",LikesCommentsShares);
 
 		this.thenClick(Likes,function(){
 			this.wait(2000);
-			this.captureSelector(page+'/FB_stat/FB_stat_like.png',LikesCommentsShares);
+			this.captureSelector(page+'/Reach_LikesCommentsShares_Likes.jpg',LikesCommentsShares);
 		});
 
 		this.thenClick(Comments,function(){
 			this.wait(2000);
-			this.captureSelector(page+'/FB_stat/FB_stat_coment.png',LikesCommentsShares);
+			this.captureSelector(page+'/Reach_LikesCommentsShares_Comments.jpg',LikesCommentsShares);
 		});
 
 		this.clickLabel("Shares","span");
 		this.wait(2000);
-		this.captureSelector(page+'/FB_stat/FB_stat_share.png',LikesCommentsShares);
+		this.captureSelector(page+'/Reach_LikesCommentsShares_Shares.jpg',LikesCommentsShares);
 	});
 
 	// Hide, Report as Spam, and Unlikes
 	casper.then(function(){
 		var HideSpamUnlikes = "div._5dop._4-u2:nth-child(4)";
-		this.captureSelector(page+"/Reach_HideSpamUnlikes.png",HideSpamUnlikes);
+		this.captureSelector(page+"/Reach_HideSpamUnlikes.jpg",HideSpamUnlikes);
 
 		this.clickLabel("Hide Post","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_HideSpamUnlikes_HidePost.png',HideSpamUnlikes);
+		this.captureSelector(page+'/Reach_HideSpamUnlikes_HidePost.jpg',HideSpamUnlikes);
 
 		this.clickLabel("Hide All Posts","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_HideSpamUnlikes_HideAllPosts.png',HideSpamUnlikes);
+		this.captureSelector(page+'/Reach_HideSpamUnlikes_HideAllPosts.jpg',HideSpamUnlikes);
 
 		this.clickLabel("Report as Spam","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_HideSpamUnlikes_ReportasSpam.png',HideSpamUnlikes);
+		this.captureSelector(page+'/Reach_HideSpamUnlikes_ReportasSpam.jpg',HideSpamUnlikes);
 
 		this.clickLabel("Unlike Page","span");
 		this.wait(2000);
-		this.captureSelector(page+'/Reach_HideSpamUnlikes_UnlikePage.png',HideSpamUnlikes);
+		this.captureSelector(page+'/Reach_HideSpamUnlikes_UnlikePage.jpg',HideSpamUnlikes);
 	});
 
 	// Total Reach
@@ -194,16 +194,16 @@ function captureInsightReach(){
 		var TotalReach = "div._5dop._4-u2:nth-child(5)";
 		var Organic = "#u_0_x > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
 		var Paid = "#u_0_x > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span"
-		this.captureSelector(page+"/FB_stat/Reach_TotalReach.png",TotalReach);
+		this.captureSelector(page+"/Reach_TotalReach.jpg",TotalReach);
 
 		this.thenClick(Organic,function(){
 			this.wait(2000);
-			this.captureSelector(page+'/FB_stat/Reach_TotalReach_Organic.png',TotalReach);
+			this.captureSelector(page+'/Reach_TotalReach_Organic.jpg',TotalReach);
 		});
 
 		this.thenClick(Paid,function(){
 			this.wait(2000);
-			this.captureSelector(page+'/FB_stat/Reach_TotalReach_Paid.png',TotalReach);
+			this.captureSelector(page+'/Reach_TotalReach_Paid.jpg',TotalReach);
 		});
 	});
 }
@@ -213,7 +213,7 @@ function captureInsightVisits(){
 
 	// Daily data is recorded in the Pacific time zone.
 	casper.waitForSelector("div._5nw8",function(){
-		this.captureSelector(page+'/Visits_Daily.png',"div._5nw8");
+		this.captureSelector(page+'/Visits_Daily.jpg',"div._5nw8");
 	});
 
 	// Page and Tab Visits
@@ -224,7 +224,7 @@ function captureInsightVisits(){
 				return document.querySelectorAll(Menu).length;
 			});
 
-		this.captureSelector(page+"/Visits_PageTabVisits.png",div);
+		this.captureSelector(page+"/Visits_PageTabVisits.jpg",div);
 
 		ClickAndCapture(div,"PageTabVisits",2,totalmenu);
 
@@ -239,7 +239,7 @@ function captureInsightVisits(){
 		});
 		var totalmenu = kid.length/2;
 
-		this.captureSelector(page+"/Visits_ExternalReferrers.png",div);
+		this.captureSelector(page+"/Visits_ExternalReferrers.jpg",div);
 
 		ClickAndCapture(div,"ExternalReferrers",3,totalmenu);
 	});
@@ -251,7 +251,7 @@ function captureInsightPosts(){
 	// When Your Fans Are Online
 	var WhenYourFansAreOnline = "#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2)";
 	casper.waitForSelector(WhenYourFansAreOnline,function(){
-		this.captureSelector(page+'/FB_stat/FB_stat_whenYourFanAreOnline.png',WhenYourFansAreOnline);
+		this.captureSelector(page+'/Posts_Daily.jpg',WhenYourFansAreOnline);
 	});
 
 	// Post Types
@@ -261,7 +261,7 @@ function captureInsightPosts(){
 
 		this.clickLabel("Post Types","span");
 		this.waitForSelector(waitGraph,function(){
-			this.captureSelector(page+'/FB_stat/FB_stat_postType.png',"#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2)");
+			this.captureSelector(page+'/Posts_PostTypes_AllPosts.jpg',"#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2)");
 		});
 	});
 }
@@ -271,7 +271,7 @@ function captureInsightPeople(){
 
 	var waitGraph = "#u_0_x > div > div._5don > div > div:nth-child(2) > div > div > div:nth-child(2)";
 	casper.waitForSelector(waitGraph,function(){
-		this.capture(page+'/FB_stat/FB_stat_yourFan.png',{top:420,left:0,height:450,width:926});
+		this.capture(page+'/People_YourFans.jpg',{top:420,left:0,height:450,width:926});
 	});
 
 	casper.then(function(){
@@ -279,11 +279,11 @@ function captureInsightPeople(){
 		
 		this.clickLabel("People Reached","span");
 		this.waitForSelector(waitGraph,function(){
-			this.capture(page+'/FB_stat/FB_stat_peopleReach.png',{top:420,left:0,height:450,width:926});
+			this.capture(page+'/People_PeopleReached.jpg',{top:420,left:0,height:450,width:926});
 
 			this.clickLabel("People Engaged","span");
 				this.waitForSelector(waitGraph,function(){
-					this.capture(page+'/FB_stat/FB_stat_peopleEngaged.png',{top:420,left:0,height:450,width:926});
+					this.capture(page+'/People_PeopleEngaged.jpg',{top:420,left:0,height:450,width:926});
 			});
 		});
 	});
@@ -296,7 +296,7 @@ function ClickAndCapture(element,title,numElement,totalmenu){
 		var namefile = casper.getHTML(Clickbtn);
 		casper.click(Clickbtn);
 		casper.wait(2000);
-		casper.captureSelector(page+'/'+title+"_"+namefile+'.png',element);
+		casper.captureSelector(page+'/'+title+"_"+namefile+'.jpg',element);
 	};
 }
 
