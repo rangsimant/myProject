@@ -12,18 +12,22 @@ var casper = require('casper').create({
     waitTimeout:20000
 });
 var XPath = require('casper').selectXPath;
+var mouse = require("mouse").create(casper);
+
+
 var page = "acerthailand";
 var user = "thothreport@gmail.com";
 var pass = "thothreport!";
 
 LoginFacebook(user,pass);
-captureLikeChart();
-captureInsightsOverview();
+// captureLikeChart();
+// captureInsightsOverview();
 captureInsightLikes();
-captureInsightReach();
-captureInsightVisits();
-captureInsightPosts();
-captureInsightPeople();
+// captureInsightReach();
+// captureInsightVisits();
+// captureInsightPosts();
+// captureInsightPeople();
+// captureTopPosts()
 
 function LoginFacebook(username,password){
 	casper.start("https://facebook.com/"+page+"/");
@@ -49,10 +53,10 @@ function captureLikeChart(){
 function captureInsightsOverview(){
 	casper.thenOpen("https://facebook.com/"+page+"/insights");
 	
-	casper.waitForSelector('#u_0_x > div > div._5don > div > div:nth-child(2) > div',function(){
-		this.captureSelector(page+'/Overview_PageLikes.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(1)");
-		this.captureSelector(page+'/Overview_PostReach.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(2)");
-		this.captureSelector(page+'/Overview_Engagement.png',"#u_0_x > div > div._5don > div > div:nth-child(2) > div > a:nth-child(3)");
+	casper.waitForSelector('#u_0_y > div > div._5don > div > div:nth-child(2) > div',function(){
+		this.captureSelector(page+'/Overview_PageLikes.png',"#u_0_y > div > div._5don > div > div:nth-child(2) > div > a:nth-child(1)");
+		this.captureSelector(page+'/Overview_PostReach.png',"#u_0_y > div > div._5don > div > div:nth-child(2) > div > a:nth-child(2)");
+		this.captureSelector(page+'/Overview_Engagement.png',"#u_0_y > div > div._5don > div > div:nth-child(2) > div > a:nth-child(3)");
 	});
 }
 
@@ -60,6 +64,7 @@ function captureInsightLikes(){
 	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navLikes");
 
 	// Daily data is recorded in the Pacific time zone.
+	CalendarRangeDate("7/29/2014","navLikes")
 	casper.waitForSelector('div._5nw8',function(){
 			this.captureSelector(page+'/Likes_Daily.png',"div._5nw8");
 	});
@@ -147,9 +152,9 @@ function captureInsightReach(){
 	// Likes, Comments, and Shares
 	casper.then(function(){
 		var LikesCommentsShares = "div._5dop._4-u2:nth-child(3)";
-		var Likes="#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
-		var Comments = "#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span";
-		var Shares = "#u_0_x > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(3) > span";
+		var Likes="#u_0_y > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
+		var Comments = "#u_0_y > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span";
+		var Shares = "#u_0_y > div > div._5don > div > div:nth-child(3) > div._532o > div._532u > div > div._5npp > a:nth-child(3) > span";
 		this.captureSelector(page+"/FB_stat/Reach_LikesCommentsShares.png",LikesCommentsShares);
 
 		this.thenClick(Likes,function(){
@@ -192,8 +197,8 @@ function captureInsightReach(){
 	// Total Reach
 	casper.then(function(){
 		var TotalReach = "div._5dop._4-u2:nth-child(5)";
-		var Organic = "#u_0_x > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
-		var Paid = "#u_0_x > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span"
+		var Organic = "#u_0_y > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(1) > span";
+		var Paid = "#u_0_y > div > div._5don > div > div:nth-child(5) > div._532o > div._532u > div > div._5npp > a:nth-child(2) > span"
 		this.captureSelector(page+"/FB_stat/Reach_TotalReach.png",TotalReach);
 
 		this.thenClick(Organic,function(){
@@ -220,7 +225,7 @@ function captureInsightVisits(){
 	casper.then(function(){
 		var div = "div._5dop._4-u2:nth-child(2)"; 
 		var totalmenu = casper.evaluate(function(){
-				var Menu = "#u_0_x > div > div._5don > div > div:nth-child(2) > div._532o > div._532u > div > div._5npp > a"; // find count element a
+				var Menu = "#u_0_y > div > div._5don > div > div:nth-child(2) > div._532o > div._532u > div > div._5npp > a"; // find count element a
 				return document.querySelectorAll(Menu).length;
 			});
 
@@ -249,19 +254,19 @@ function captureInsightPosts(){
 	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navPosts");
 
 	// When Your Fans Are Online
-	var WhenYourFansAreOnline = "#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2)";
+	var WhenYourFansAreOnline = "#u_0_y > div > div._5don > div > div._5nzo > div:nth-child(2)";
 	casper.waitForSelector(WhenYourFansAreOnline,function(){
 		this.captureSelector(page+'/FB_stat/FB_stat_whenYourFanAreOnline.png',WhenYourFansAreOnline);
 	});
 
 	// Post Types
 	casper.then(function(){
-		var PostTypes = "#u_0_x > div > div._5don > div > div._5nzo > div._5nwo._5cmi > a._5nwp._5cmf._5nwq._5cmg > span";
-		var waitGraph = "#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2) > div > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div > div._5kn4 > div._5abm > div._352g";
+		var PostTypes = "#u_0_y > div > div._5don > div > div._5nzo > div._5nwo._5cmi > a._5nwp._5cmf._5nwq._5cmg > span";
+		var waitGraph = "#u_0_y > div > div._5don > div > div._5nzo > div:nth-child(2) > div > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div > div._5kn4 > div._5abm > div._352g";
 
 		this.clickLabel("Post Types","span");
 		this.waitForSelector(waitGraph,function(){
-			this.captureSelector(page+'/FB_stat/FB_stat_postType.png',"#u_0_x > div > div._5don > div > div._5nzo > div:nth-child(2)");
+			this.captureSelector(page+'/FB_stat/FB_stat_postType.png',"#u_0_y > div > div._5don > div > div._5nzo > div:nth-child(2)");
 		});
 	});
 }
@@ -269,13 +274,13 @@ function captureInsightPosts(){
 function captureInsightPeople(){
 	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navPeople");
 
-	var waitGraph = "#u_0_x > div > div._5don > div > div:nth-child(2) > div > div > div:nth-child(2)";
+	var waitGraph = "#u_0_y > div > div._5don > div > div:nth-child(2) > div > div > div:nth-child(2)";
 	casper.waitForSelector(waitGraph,function(){
 		this.capture(page+'/FB_stat/FB_stat_yourFan.png',{top:420,left:0,height:450,width:926});
 	});
 
 	casper.then(function(){
-		var waitGraph = "#u_0_x > div > div._5don > div > div:nth-child(2) > div > div > div:nth-child(2) > div._55q5.clearfix > div > div:nth-child(1) > canvas";
+		var waitGraph = "#u_0_y > div > div._5don > div > div:nth-child(2) > div > div > div:nth-child(2) > div._55q5.clearfix > div > div:nth-child(1) > canvas";
 		
 		this.clickLabel("People Reached","span");
 		this.waitForSelector(waitGraph,function(){
@@ -289,15 +294,138 @@ function captureInsightPeople(){
 	});
 }
 
+function captureTopPosts(){
+	var ReachSort = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > thead > tr > th:nth-child(5)";
+	var PostDetail = "div._4-u2.mbm._5jmm._5pat._5v3q._5x16";
+	var PostAyalytics = "body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55ii > div > div._ohf.rfloat > div";
+	var maxTop=5;
+
+	casper.thenOpen("https://www.facebook.com/"+page+"/insights?section=navPosts",function(){
+		this.waitForText('All Posts Published',function(){
+			if (this.exists(ReachSort)) {
+				this.thenClick(ReachSort,function(){
+					this.wait(15000,function(){
+
+						var top1 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top2 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(2) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top3 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(3) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top4 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(4) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top5 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(5) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+
+						this.thenClick(top1,function(){
+							this.waitForSelector(PostDetail,function(){
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_1.png",PostDetail);
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_1.png",PostAyalytics);
+								this.wait(2000,function(){
+									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								});
+							});
+						});
+
+						this.thenClick(top2,function(){
+							this.waitForSelector(PostDetail,function(){
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_2.png",PostDetail);
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_2.png",PostAyalytics);
+								this.wait(2000,function(){
+									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								});
+							});
+						});
+
+						this.thenClick(top3,function(){
+							this.waitForSelector(PostDetail,function(){
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_3.png",PostDetail);
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_3.png",PostAyalytics);
+								this.wait(2000,function(){
+									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								});
+							});
+						});
+
+						this.thenClick(top4,function(){
+							this.waitForSelector(PostDetail,function(){
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_4.png",PostDetail);
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_4.png",PostAyalytics);
+								this.wait(2000,function(){
+									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								});
+							});
+						});
+
+						this.thenClick(top5,function(){
+							this.waitForSelector(PostDetail,function(){
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_5.png",PostDetail);
+								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_5.png",PostAyalytics);
+								this.wait(2000,function(){
+									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								});
+							});
+						});
+
+
+
+						// for (var count = 1; count <= maxTop; count++) {
+						// 	var linktop = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child("+count+") > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						// 	this.thenClick(linktop,function(){
+						// 		this.waitForSelector(PostDetail,function(){
+						// 			this.captureSelector(page+"/FB_top5_posts/topPosts_Post_"+count+".png",PostDetail);
+						// 			this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics"+count+".png",PostAyalytics);
+						// 			this.wait(2000,function(){
+						// 				this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+						// 			});
+						// 		});
+						// 	});
+						// }; // end for
+					});
+				});
+			}; // end if
+		});
+	});
+
+}
+
 function ClickAndCapture(element,title,numElement,totalmenu){
 	console.log("################# "+totalmenu+" ###################")
 	for (var Menu = 1; Menu <= totalmenu; Menu++) {
-		var Clickbtn = "#u_0_x > div > div._5don > div > div:nth-child("+numElement+") > div._532o > div._532u > div > div._5npp > a:nth-child("+Menu+") > span"
+		var Clickbtn = "#u_0_y > div > div._5don > div > div:nth-child("+numElement+") > div._532o > div._532u > div > div._5npp > a:nth-child("+Menu+") > span"
 		var namefile = casper.getHTML(Clickbtn);
 		casper.click(Clickbtn);
 		casper.wait(2000);
 		casper.captureSelector(page+'/'+title+"_"+namefile+'.png',element);
 	};
+}
+
+function CalendarRangeDate(endDate,secNav){
+	// click calendar and fill-in value
+	// format = d/m/yyyy
+	var calendarValueFrom = "1/1/2014";
+	var calendarValueTo = endDate;
+	var calendarInputSelecter = 'input._5qcz';
+
+	casper.thenOpen("https://facebook.com/"+page+"/insights?section="+secNav, function(){
+		// wait for calendar label first
+		this.waitForSelector('Daily data is recorded in the Pacific time zone.', function(){
+			calendarBoxSelector = 'input._5qcz';
+			if(this.exists(calendarBoxSelector))
+			{
+				// pass arguments to evaluate function
+				// selector = calendarInputSelecter
+				// fromValue = calendarValueFrom
+				// toValue = calendarValueTo
+				this.evaluate(function(selector, fromValue, toValue) {
+					// get all input with class e.g class = "_5qcz"
+					var calendarInputs = __utils__.findAll(selector);
+					var from = calendarInputs[0];
+					var to = calendarInputs[1];
+					// from.value = fromValue;
+					to.value = toValue;
+			    }, calendarInputSelecter, calendarValueFrom, calendarValueTo);
+				this.click('#u_0_y > div > div._5don > div > div._5nw8 > div._5nw9 > a:nth-child(3)');
+			    //capture to see the result
+			    this.capture('calendarChanged.png');
+			}
+		});
+	});
 }
 
 
