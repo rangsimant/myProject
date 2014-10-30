@@ -14,20 +14,25 @@ var casper = require('casper').create({
 var XPath = require('casper').selectXPath;
 var mouse = require("mouse").create(casper);
 
+casper.echo("DateFrom : "+casper.cli.get("datefrom"));
+casper.echo("DateTo : "+casper.cli.get("dateto"));
 
 var page = "acerthailand";
 var user = "thothreport@gmail.com";
 var pass = "thothreport!";
+var dateFrom = casper.cli.get("datefrom");
+var dateTo = casper.cli.get("dateto");
 
 LoginFacebook(user,pass);
-// captureLikeChart();
-// captureInsightsOverview();
-captureInsightLikes();
-// captureInsightReach();
-// captureInsightVisits();
-// captureInsightPosts();
-// captureInsightPeople();
-// captureTopPosts()
+captureLikeChart();
+captureInsightsOverview();
+CalendarDateLikes(dateFrom,dateTo);
+CalendarDateReach(dateFrom,dateTo);
+CalendarDateVisits(dateFrom,dateTo);
+captureInsightPosts();
+captureInsightPeople();
+captureTopPosts();
+
 
 function LoginFacebook(username,password){
 	casper.start("https://facebook.com/"+page+"/");
@@ -61,12 +66,9 @@ function captureInsightsOverview(){
 }
 
 function captureInsightLikes(){
-	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navLikes");
-
 	// Daily data is recorded in the Pacific time zone.
-	CalendarRangeDate("7/29/2014","navLikes")
 	casper.waitForSelector('div._5nw8',function(){
-			this.captureSelector(page+'/Likes_Daily.png',"div._5nw8");
+			this.capture(page+'/Likes_Daily.png',{top:420,left:0,height:110,width:926});
 	});
 
 	// Total Page Likes as of Today
@@ -116,9 +118,19 @@ function captureInsightLikes(){
 		this.wait(2000);
 		this.captureSelector(page+'/Likes__LikesHappened_OnYourPage.png',Likes_Happened);
 
-		this.clickLabel("Uncategorized Mobile","span");
-		this.wait(2000);
-		this.captureSelector(page+'/Likes_LikesHappened_UncategorizedMobile.png',Likes_Happened);
+		if (this.exists("span[text=Uncategorized Mobile]")) {
+			this.clickLabel("Uncategorized Mobile","span");
+			this.wait(2000);
+			this.captureSelector(page+'/Likes_LikesHappened_UncategorizedMobile.png',Likes_Happened);
+		}else if (this.exists("span[text=Uncategorized Mobile]")) {
+			this.clickLabel("API","span");
+			this.wait(2000);
+			this.captureSelector(page+'/Likes_LikesHappened_API.png',Likes_Happened);
+		}else{
+			this.clickLabel("Uncategorized Desktop","span");
+			this.wait(2000);
+			this.captureSelector(page+'/Likes_LikesHappened_Uncategorized Desktop.png',Likes_Happened);
+		};
 
 		this.clickLabel("Others","span");
 		this.wait(2000);
@@ -128,11 +140,12 @@ function captureInsightLikes(){
 }
 
 function captureInsightReach(){
-	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navReach");
-
 	// Daily data is recorded in the Pacific time zone.
-	casper.waitForSelector("div._5nw8",function(){
-		this.captureSelector(page+'/Reach_Daily.png',"div._5nw8");
+	casper.then(function(){
+		this.waitForSelector("div._5nw8",function(){
+			this.captureSelector(page+'/Reach_Daily.png',"div._5nw8");
+			this.captureSelector(page+'/Reach_Daily.png',"div._5nw8");
+		});
 	});
 
 	// Post Reach
@@ -185,9 +198,11 @@ function captureInsightReach(){
 		this.wait(2000);
 		this.captureSelector(page+'/Reach_HideSpamUnlikes_HideAllPosts.png',HideSpamUnlikes);
 
-		this.clickLabel("Report as Spam","span");
-		this.wait(2000);
-		this.captureSelector(page+'/Reach_HideSpamUnlikes_ReportasSpam.png',HideSpamUnlikes);
+		if(this.exists("span[text=Report as Spam]")) {
+			this.clickLabel("Report as Spam","span");
+			this.wait(2000);
+			this.captureSelector(page+'/Reach_HideSpamUnlikes_ReportasSpam.png',HideSpamUnlikes);
+		};
 
 		this.clickLabel("Unlike Page","span");
 		this.wait(2000);
@@ -214,10 +229,9 @@ function captureInsightReach(){
 }
 
 function captureInsightVisits(){
-	casper.thenOpen("https://facebook.com/"+page+"/insights?section=navVisits");
-
 	// Daily data is recorded in the Pacific time zone.
 	casper.waitForSelector("div._5nw8",function(){
+		this.captureSelector(page+'/Visits_Daily.png',"div._5nw8");
 		this.captureSelector(page+'/Visits_Daily.png',"div._5nw8");
 	});
 
@@ -314,50 +328,60 @@ function captureTopPosts(){
 
 						this.thenClick(top1,function(){
 							this.waitForSelector(PostDetail,function(){
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_1.png",PostDetail);
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_1.png",PostAyalytics);
-								this.wait(2000,function(){
-									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								this.wait(3000,function(){
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_1.png",PostDetail);
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_1.png",PostAyalytics);
+									this.wait(2000,function(){
+										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									});
 								});
 							});
 						});
 
 						this.thenClick(top2,function(){
 							this.waitForSelector(PostDetail,function(){
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_2.png",PostDetail);
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_2.png",PostAyalytics);
-								this.wait(2000,function(){
-									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								this.wait(3000,function(){
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_2.png",PostDetail);
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_2.png",PostAyalytics);
+									this.wait(2000,function(){
+										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									});
 								});
 							});
 						});
 
 						this.thenClick(top3,function(){
 							this.waitForSelector(PostDetail,function(){
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_3.png",PostDetail);
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_3.png",PostAyalytics);
-								this.wait(2000,function(){
-									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+								this.wait(3000,function(){
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_3.png",PostDetail);
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_3.png",PostAyalytics);
+									this.wait(2000,function(){
+										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									});
 								});
 							});
 						});
 
 						this.thenClick(top4,function(){
-							this.waitForSelector(PostDetail,function(){
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_4.png",PostDetail);
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_4.png",PostAyalytics);
-								this.wait(2000,function(){
-									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+							this.wait(3000,function(){
+								this.waitForSelector(PostDetail,function(){
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_4.png",PostDetail);
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_4.png",PostAyalytics);
+									this.wait(2000,function(){
+										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									});
 								});
 							});
 						});
 
 						this.thenClick(top5,function(){
-							this.waitForSelector(PostDetail,function(){
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Post_5.png",PostDetail);
-								this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_5.png",PostAyalytics);
-								this.wait(2000,function(){
-									this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+							this.wait(3000,function(){
+								this.waitForSelector(PostDetail,function(){
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_5.png",PostDetail);
+									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_5.png",PostAyalytics);
+									this.wait(2000,function(){
+										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									});
 								});
 							});
 						});
@@ -395,38 +419,48 @@ function ClickAndCapture(element,title,numElement,totalmenu){
 	};
 }
 
-function CalendarRangeDate(endDate,secNav){
-	// click calendar and fill-in value
-	// format = d/m/yyyy
-	var calendarValueFrom = "1/1/2014";
-	var calendarValueTo = endDate;
-	var calendarInputSelecter = 'input._5qcz';
-
-	casper.thenOpen("https://facebook.com/"+page+"/insights?section="+secNav, function(){
-		// wait for calendar label first
-		this.waitForSelector('Daily data is recorded in the Pacific time zone.', function(){
-			calendarBoxSelector = 'input._5qcz';
-			if(this.exists(calendarBoxSelector))
-			{
-				// pass arguments to evaluate function
-				// selector = calendarInputSelecter
-				// fromValue = calendarValueFrom
-				// toValue = calendarValueTo
-				this.evaluate(function(selector, fromValue, toValue) {
-					// get all input with class e.g class = "_5qcz"
-					var calendarInputs = __utils__.findAll(selector);
-					var from = calendarInputs[0];
-					var to = calendarInputs[1];
-					// from.value = fromValue;
-					to.value = toValue;
-			    }, calendarInputSelecter, calendarValueFrom, calendarValueTo);
-				this.click('#u_0_y > div > div._5don > div > div._5nw8 > div._5nw9 > a:nth-child(3)');
-			    //capture to see the result
-			    this.capture('calendarChanged.png');
-			}
+function CalendarDateLikes(dateFrom,dateTo){
+	casper.thenOpen("https://www.facebook.com/"+page+"/insights?section=navLikes",function(){
+		this.waitForSelector("div._5nwa",function(){
+			this.fillSelectors("div._5nwa",{
+				'span[name="sinceCalendar"] > input._5qcz': dateFrom,
+				'span[name="untilCalendar"] > input._5qcz': dateTo
+			},true);
+			this.wait(2000,function(){
+				captureInsightLikes();
+			});
 		});
 	});
 }
+
+function CalendarDateReach(dateFrom,dateTo){
+	casper.thenOpen("https://www.facebook.com/"+page+"/insights?section=navReach",function(){
+		this.waitForSelector("div._5nwa",function(){
+			this.fillSelectors("div._5nwa",{
+				'span[name="sinceCalendar"] > input._5qcz': dateFrom,
+				'span[name="untilCalendar"] > input._5qcz': dateTo
+			},true);
+			this.wait(2000,function(){
+				captureInsightReach();
+			});
+		});
+	});
+}
+
+function CalendarDateVisits(dateFrom,dateTo){
+	casper.thenOpen("https://www.facebook.com/"+page+"/insights?section=navVisits",function(){
+		this.waitForSelector("div._5nwa",function(){
+			this.fillSelectors("div._5nwa",{
+				'span[name="sinceCalendar"] > input._5qcz': dateFrom,
+				'span[name="untilCalendar"] > input._5qcz': dateTo
+			},true);
+			this.wait(2000,function(){
+				captureInsightVisits();
+			});
+		});
+	});
+}
+
 
 
 casper.run();
