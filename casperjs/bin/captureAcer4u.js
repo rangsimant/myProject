@@ -13,10 +13,11 @@ var casper = require('casper').create({
     waitTimeout:20000
 });
 var XPath = require('casper').selectXPath;
-var dateNow = new Date();
+var dateNow = new Date(); // datetime
 
 captureHomepage();
 captureNewandReview(dateNow);
+capturePromotion(dateNow);
 
 function captureHomepage () {
     casper.start("http://www.acer4u.in.th/",function(){
@@ -27,16 +28,37 @@ function captureHomepage () {
 function captureNewandReview(datemonth){
     casper.thenOpen("http://www.acer4u.in.th/category/pr-news/",function(){
         var len = this.evaluate(function(){
-            return document.querySelectorAll("#main > article").length;
+            return document.querySelectorAll("#main > article").length; // return length of artcle
         });
-        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% "+len);
         for (var i = 1; i <= len; i++) {
             var datetime = this.getElementAttribute('div[id=main] > article:nth-child('+i+') > time', 'datetime'); // "Google"
             var newformatDate = new Date(datetime);
-            if (newformatDate.getMonth() == datemonth.getMonth()) {
+            if (newformatDate.getMonth() == datemonth.getMonth()) { // check Month between Post and this date.
                 this.captureSelector("acerthailand/acer4u_stat/acer4u_stat_review_"+i+".png","div[id=main] > article:nth-child("+i+")");
+                console.log("Save article to Image.");
             }else{
-                console.log(i+" NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                // Do something
+                console.log("Not found article this Date.");
+            };
+        };
+        
+    });
+}
+
+function capturePromotion(datemonth){
+    casper.thenOpen("http://www.acer4u.in.th/category/promotion/",function(){
+        var len = this.evaluate(function(){
+            return document.querySelectorAll("#main > article").length; // return length of artcle
+        });
+        for (var i = 1; i <= len; i++) {
+            var datetime = this.getElementAttribute('div[id=main] > article:nth-child('+i+') > time', 'datetime'); // "Google"
+            var newformatDate = new Date(datetime);
+            if (newformatDate.getMonth() == datemonth.getMonth()) { // check Month between Post and this date.
+                this.captureSelector("acerthailand/acer4u_stat/acer4u_stat_promotion_"+i+".png","div[id=main] > article:nth-child("+i+")");
+                console.log("Save article to Image.");
+            }else{
+                // Do something
+                console.log("Not found article this Date.");
             };
         };
         

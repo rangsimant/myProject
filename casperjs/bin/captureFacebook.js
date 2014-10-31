@@ -122,14 +122,18 @@ function captureInsightLikes(){
 			this.clickLabel("Uncategorized Mobile","span");
 			this.wait(2000);
 			this.captureSelector(page+'/Likes_LikesHappened_UncategorizedMobile.png',Likes_Happened);
-		}else if (this.exists("span[text=Uncategorized Mobile]")) {
+		}else if (this.exists("span[text=API]")) {
 			this.clickLabel("API","span");
 			this.wait(2000);
 			this.captureSelector(page+'/Likes_LikesHappened_API.png',Likes_Happened);
-		}else{
+		}else  if (this.exists("span[text=Uncategorized Desktop]")){
 			this.clickLabel("Uncategorized Desktop","span");
 			this.wait(2000);
 			this.captureSelector(page+'/Likes_LikesHappened_Uncategorized Desktop.png',Likes_Happened);
+		}else{
+			this.clickLabel("On Your Page","span");
+			this.wait(2000);
+			this.captureSelector(page+'/Likes_LikesHappened_On Your Page.png',Likes_Happened);
 		};
 
 		this.clickLabel("Others","span");
