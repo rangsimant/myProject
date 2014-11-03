@@ -9,7 +9,22 @@ var casper = require('casper').create({
     },
     logLevel: "debug",              // Only "info" level messages will be logged
     verbose: true ,
-    waitTimeout:20000
+    waitTimeout:20000,
+    onWaitTimeout:function(){
+    	console.log("wait selector timeout !");
+    	var step = casper.getStepNumber();
+    	casper.gotoStep(step+1);
+    },
+    onStepTimeout:function(){
+    	this.echo("Step timed out");
+    	var step = casper.getStepNumber();
+    	casper.gotoStep(step+1);
+    },
+    onTimeout:function(){
+    	this.echo("timed out");
+    	var step = casper.getStepNumber();
+    	casper.gotoStep(step+1);
+    }
 });
 var XPath = require('casper').selectXPath;
 var mouse = require("mouse").create(casper);
@@ -323,74 +338,72 @@ function captureTopPosts(){
 			if (this.exists(ReachSort)) {
 				this.thenClick(ReachSort,function(){
 					this.wait(15000,function(){
-
-						var top1 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
-						var top2 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(2) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
-						var top3 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(3) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
-						var top4 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(4) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
-						var top5 = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(5) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
-
-						this.thenClick(top1,function(){
-							this.waitForSelector(PostDetail,function(){
-								this.wait(3000,function(){
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_1.png",PostDetail);
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_1.png",PostAyalytics);
-									this.wait(2000,function(){
-										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
-									});
-								});
-							});
-						});
-
-						this.thenClick(top2,function(){
-							this.waitForSelector(PostDetail,function(){
-								this.wait(3000,function(){
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_2.png",PostDetail);
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_2.png",PostAyalytics);
-									this.wait(2000,function(){
-										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
-									});
-								});
-							});
-						});
-
-						this.thenClick(top3,function(){
-							this.waitForSelector(PostDetail,function(){
-								this.wait(3000,function(){
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_3.png",PostDetail);
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_3.png",PostAyalytics);
-									this.wait(2000,function(){
-										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
-									});
-								});
-							});
-						});
-
-						this.thenClick(top4,function(){
-							this.wait(3000,function(){
+						var top1 = "div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top2 = "div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(2) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top3 = "div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(3) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top4 = "div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(4) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						var top5 = "div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child(5) > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
+						if (casper.getHTML("div > div._5don > div > div._5dop._4-u2 > div._532o > div > div") != "No posts were published during this period") {
+							this.thenClick(top1,function(){
 								this.waitForSelector(PostDetail,function(){
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_4.png",PostDetail);
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_4.png",PostAyalytics);
-									this.wait(2000,function(){
-										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									this.wait(3000,function(){
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Post_1.png",PostDetail);
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_1.png",PostAyalytics);
+										this.wait(2000,function(){
+											this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+										});
 									});
 								});
 							});
-						});
 
-						this.thenClick(top5,function(){
-							this.wait(3000,function(){
+							this.thenClick(top2,function(){
 								this.waitForSelector(PostDetail,function(){
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Post_5.png",PostDetail);
-									this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_5.png",PostAyalytics);
-									this.wait(2000,function(){
-										this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+									this.wait(3000,function(){
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Post_2.png",PostDetail);
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_2.png",PostAyalytics);
+										this.wait(2000,function(){
+											this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+										});
 									});
 								});
 							});
-						});
 
+							this.thenClick(top3,function(){
+								this.waitForSelector(PostDetail,function(){
+									this.wait(3000,function(){
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Post_3.png",PostDetail);
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_3.png",PostAyalytics);
+										this.wait(2000,function(){
+											this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+										});
+									});
+								});
+							});
 
+							this.thenClick(top4,function(){
+								this.wait(3000,function(){
+									this.waitForSelector(PostDetail,function(){
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Post_4.png",PostDetail);
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_4.png",PostAyalytics);
+										this.wait(2000,function(){
+											this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+										});
+									});
+								});
+							});
+
+							this.thenClick(top5,function(){
+								this.wait(3000,function(){
+									this.waitForSelector(PostDetail,function(){
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Post_5.png",PostDetail);
+										this.captureSelector(page+"/FB_top5_posts/topPosts_Analytics_5.png",PostAyalytics);
+										this.wait(2000,function(){
+											this.click("body > div.uiLayer._3qw._55vx > div:nth-child(2) > div > div > div > div > div > div._55m4 > button");
+										});
+									});
+								});
+							});
+						};
 
 						// for (var count = 1; count <= maxTop; count++) {
 						// 	var linktop = "#u_0_y > div > div._5don > div > div._5dop._4-u2 > div._532o > div._5b9o > table > tbody > tr:nth-child("+count+") > td:nth-child(2) > div > div > div:nth-child(2) > div > div";
