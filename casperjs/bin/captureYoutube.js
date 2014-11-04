@@ -7,15 +7,28 @@ var casper = require('casper').create({
         javascriptEnabled: true,
         userAgent: userAgent,
     },
-    viewportSize:{width: 1366, height: 3080}, // Resolution for Display Labtop 1366x768
+    viewportSize:{width: 1366,height:6080}, // Resolution for Display Labtop 1366x768
     logLevel: "debug",      
     verbose: true ,
     waitTimeout:20000
 });
 var XPath = require('casper').selectXPath;
 var channel = "acerthailand";
+var username = "mkt.acerthailand@gmail.com";
+var password = "acerthailand";
+
+casper.echo("DateStart : "+casper.cli.get('datefrom')+" DateEnd : "+casper.cli.get('dateto'));
+casper.echo("DateStartCompare : "+casper.cli.get('datefromcompare')+" DateEndCompare : "+casper.cli.get('datetocompare'));
+
+
+// format date 10/10/2014 = MM/DD/YYYY
+var dateStart = casper.cli.get('datefrom');
+var dateEnd = casper.cli.get('dateto');
+var dateStartCompare = casper.cli.get('datefromcompare');
+var dateToCompare = casper.cli.get('datetocompare');
 
 channelPage(channel);
+youtubeAnalytics(username,password,dateStart,dateEnd,dateStartCompare,dateToCompare);
 
 function channelPage (channel) {
     var count=2;
@@ -60,216 +73,55 @@ function channelPage (channel) {
     });
 }
 
-//     casper.start("http://www.youtube.com/user/"+channel);
-//     //############# Acer Channel #############
-//     // first Acer Channel
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(2)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Channel_1.png","#browse-items-primary > li:nth-child(2)");
-//             });
-//         });
-//     });
+function youtubeAnalytics (username,password,dateFrom,dateTo,dateFromCompare,dateToCompare) {
+    var calendar = "#gwt-debug-datePicker > button.GCJJMQ4DMCB.GCJJMQ4DBDB.GCJJMQ4DDDB.GCJJMQ4DOW.GCJJMQ4DODB";
+    var calendarCompare = "#gwt-debug-datePicker1 > button.GCJJMQ4DMCB.GCJJMQ4DBDB.GCJJMQ4DDDB.GCJJMQ4DOW.GCJJMQ4DODB";
+    var groupCalendar = "#body > div.gwt-PopupPanel > div > div";
 
-//     // next second Acer Channel
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(2)",function(){
-//             this.click("#browse-items-primary > li:nth-child(2) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Channel_2.png","#browse-items-primary > li:nth-child(2)");
-//             });
-//         });
-//     });
+    casper.thenOpen("https://www.youtube.com/analytics",function(){
+        this.sendKeys("#Email",username);
+        this.sendKeys("#Passwd",password);
+        this.click("#signIn")
+    });
 
-//     // next third Acer Channel
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(2)",function(){
-//             this.click("#browse-items-primary > li:nth-child(2) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Channel_3.png","#browse-items-primary > li:nth-child(2)");
-//             });
-//         });
-//     });
-//     //############# End Channel #############
+    casper.then(function(){
+        this.waitForSelector("#creator-sidebar-item-id-views > a > span",function(){
+            this.thenClick("#creator-sidebar-item-id-views > a > span",function(){;
+                this.waitForSelector("#gwt-debug-fullCompare",function(){
 
-//     //############# Smartphone #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(3)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Smartphone_1.png","#browse-items-primary > li:nth-child(3)");
-//             });
-//         });
-//     });
+                    // date range
+                    this.click("#gwt-debug-fullCompare"); // click add compare
+                    this.wait(2000,function(){
+                        this.thenClick(calendar,function(){
+                            this.fillSelectors(groupCalendar,{
+                                'div.popupContent>div>div:nth-child(1)>input':dateFrom, // input dateFrom
+                                'div.popupContent>div>div:nth-child(2)>input':dateTo // inout dateTo
+                            },true);
+                            this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
+                        });
+                    });
 
-//     // second
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(3)",function(){
-//             this.click("#browse-items-primary > li:nth-child(3) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Smartphone_2.png","#browse-items-primary > li:nth-child(3)");
-//             });
-//         });
-//     });
 
-//     // third
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(3)",function(){
-//             this.click("#browse-items-primary > li:nth-child(3) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Smartphone_3.png","#browse-items-primary > li:nth-child(3)");
-//             });
-//         });
-//     });
-//     //############# End SSmartphone #############
+                    // date Compare
+                    this.wait(2000,function(){ // wait 2 second
+                        this.thenClick(calendarCompare,function(){ // click button Calendar 
+                            this.fillSelectors(groupCalendar,{ // find group of input
+                                'div.popupContent>div>div:nth-child(1)>input':dateFromCompare, // input dateFrom
+                                'div.popupContent>div>div:nth-child(2)>input':dateToCompare // inout dateTo
+                            },true);
+                            this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
+                            this.wait(2000,function(){
+                                this.capture("acerthailand/YT_stat/Compare.png",{top:495,left:240,width:490,height:150});
+                                this.captureSelector("acerthailand/YT_stat/ChartCompare.png","svg[width='774'] > rect");
+                                this.capture("acerthailand/YT_stat/List_video.png",{top:980,left:240,width:810,height:560})
+                            });
+                        });
+                    });
+                });
+            })
+        });
+    });
 
-//     //############# Tablet #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(4)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Tablet_1.png","#browse-items-primary > li:nth-child(4)");
-//             });
-//         });
-//     });
-
-//     // second
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(4)",function(){
-//             this.click("#browse-items-primary > li:nth-child(4) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Tablet_2.png","#browse-items-primary > li:nth-child(4)");
-//             });
-//         });
-//     });
-
-//     // third
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(4)",function(){
-//             this.click("#browse-items-primary > li:nth-child(4) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Tablet_3.png","#browse-items-primary > li:nth-child(4)");
-//             });
-//         });
-//     });
-//     //############# End Tablet #############
-
-//     //############# Notebook #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(5)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Notebook_1.png","#browse-items-primary > li:nth-child(5)");
-//             });
-//         });
-//     });
-
-//     // second
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(5)",function(){
-//             this.click("#browse-items-primary > li:nth-child(5) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Notebook_2.png","#browse-items-primary > li:nth-child(5)");
-//             });
-//         });
-//     });
-
-//     // third
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(5)",function(){
-//             this.click("#browse-items-primary > li:nth-child(5) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Notebook_3.png","#browse-items-primary > li:nth-child(5)");
-//             });
-//         });
-//     });
-//     //############# End Notebook #############
-
-//     //############# Projector #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(6)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Projector_1.png","#browse-items-primary > li:nth-child(6)");
-//             });
-//         });
-//     });
-//     //############# End Projector #############
-
-//     //############# All in One #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(7)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/All_in_One.png","#browse-items-primary > li:nth-child(7)");
-//             });
-//         });
-//     });
-//     //############# End All in One #############
-
-//     //############# Accessories #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(8)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Accessories.png","#browse-items-primary > li:nth-child(8)");
-//             });
-//         });
-//     });
-//     //############# End Accessories #############
-
-//     //############# Apacer #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(9)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Apacer.png","#browse-items-primary > li:nth-child(9)");
-//             });
-//         });
-//     });
-//     //############# End Apacer #############
-
-//      //############# Acer Activity #############
-//     // first Acer 
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(10)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Activity_1.png","#browse-items-primary > li:nth-child(10)");
-//             });
-//         });
-//     });
-
-//     // next second 
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(10)",function(){
-//             this.click("#browse-items-primary > li:nth-child(10) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Activity_2.png","#browse-items-primary > li:nth-child(10)");
-//             });
-//         });
-//     });
-
-//     // next third 
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(10)",function(){
-//             this.click("#browse-items-primary > li:nth-child(10) > div.feed-item-dismissable > div > div > div > div > div > button.yt-uix-button.yt-uix-button-size-default.yt-uix-button-shelf-slider-pager.yt-uix-shelfslider-next > span > span");
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Acer_Activity_3.png","#browse-items-primary > li:nth-child(10)");
-//             });
-//         });
-//     });
-//     //############# End Activity #############   
-
-//     //############# Other #############
-//     // first
-//     casper.then(function(){
-//         this.waitForSelector("#browse-items-primary > li:nth-child(11)",function(){
-//             this.wait(3000,function(){
-//                 this.captureSelector("acerthailand/YT_stat/YT_stat_channel/Other.png","#browse-items-primary > li:nth-child(11)");
-//             });
-//         });
-//     });
-//     //############# End Other #############
-// }
+}
 
 casper.run();

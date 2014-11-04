@@ -35,6 +35,8 @@ casper.echo("DateTo : "+casper.cli.get("dateto"));
 var page = "acerthailand";
 var user = "thothreport@gmail.com";
 var pass = "thothreport!";
+
+// fotmat date MM/DD/YYYY
 var dateFrom = casper.cli.get("datefrom");
 var dateTo = casper.cli.get("dateto");
 
