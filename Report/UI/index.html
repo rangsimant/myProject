@@ -1,0 +1,66 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="libs/bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="libs/bootstrap-daterangepicker/daterangepicker-bs2.css" />
+
+<link rel="stylesheet" href="libs/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+
+<link rel="stylesheet" href="myCss/style.css">
+
+<script type="text/javascript" src="libs/jquery/jquery-2.1.1.min.js"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="libs/bootstrap-daterangepicker/moment.js"></script>
+<script type="text/javascript" src="libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<script type="text/javascript" src="myJs/myscript.js"></script>
+	<title>Gen Report</title>
+</head>
+<body>
+	<div class="nav">
+		<div class="container">
+			<form class="navbar-form navbar-right" role="form">
+	            <div class="form-group">
+	              <h4>Date : </h4>
+	            </div>
+	            <div class="form-group">
+	              <div id="reportrange" class="btn pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+	                		<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+	                		<span></span> <b class="caret"></b>
+	               		</div>
+	            </div>
+	          </form>
+		</div>
+	</div>
+	<div class="container">
+		<div >
+            <h2>Facebook Page</h2>
+            <a class="btn btn-primary" href="#" role="button">Add +</a>
+        </div>
+            <div id="input" class="navbar-form navbar-left">
+        	<div class="form-group">
+            	<input type="text" placeholder="Email" class="form-control">
+        	</div>
+	    	<div class="form-group">
+            	<input type="Password" placeholder="Password" class="form-control">
+        	</div>
+	    	<div class="form-group">
+            	<input type="text" placeholder="Page Name" class="form-control">
+        	</div>
+            </div>
+
+            <div id="input" class="navbar-form navbar-right">
+		    	<div class="form-group">
+            		<p id="report-date"></p>
+	        	</div>
+            	<div class="form-group">
+	              <div id="date-Compare" class="btn" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+	                		<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+	                		<span></span> <b class="caret"></b>
+	               		</div>
+	            </div>
+            </div>
+	</div>
+</body>
+</html>

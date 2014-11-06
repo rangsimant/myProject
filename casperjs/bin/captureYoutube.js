@@ -27,7 +27,7 @@ var dateEnd = casper.cli.get('dateto');
 var dateStartCompare = casper.cli.get('datefromcompare');
 var dateToCompare = casper.cli.get('datetocompare');
 
-channelPage(channel);
+// channelPage(channel);
 youtubeAnalytics(username,password,dateStart,dateEnd,dateStartCompare,dateToCompare);
 
 function channelPage (channel) {
@@ -74,6 +74,7 @@ function channelPage (channel) {
 }
 
 function youtubeAnalytics (username,password,dateFrom,dateTo,dateFromCompare,dateToCompare) {
+    casper.start();
     var calendar = "#gwt-debug-datePicker > button.GCJJMQ4DMCB.GCJJMQ4DBDB.GCJJMQ4DDDB.GCJJMQ4DOW.GCJJMQ4DODB";
     var calendarCompare = "#gwt-debug-datePicker1 > button.GCJJMQ4DMCB.GCJJMQ4DBDB.GCJJMQ4DDDB.GCJJMQ4DOW.GCJJMQ4DODB";
     var groupCalendar = "#body > div.gwt-PopupPanel > div > div";
@@ -91,32 +92,40 @@ function youtubeAnalytics (username,password,dateFrom,dateTo,dateFromCompare,dat
 
                     // date range
                     this.click("#gwt-debug-fullCompare"); // click add compare
-                    this.wait(2000,function(){
+                    this.wait(4000,function(){
                         this.thenClick(calendar,function(){
-                            this.fillSelectors(groupCalendar,{
-                                'div.popupContent>div>div:nth-child(1)>input':dateFrom, // input dateFrom
-                                'div.popupContent>div>div:nth-child(2)>input':dateTo // inout dateTo
-                            },true);
-                            this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
+                           this.capture("Afddgdfdf.png");
+                           this.sendKeys("div.popupContent>div>div:nth-child(1)>input",dateFrom);
+                           this.sendKeys("div.popupContent>div>div:nth-child(2)>input",dateTo);
+                            // this.fillSelectors(groupCalendar,{
+                            //     'div.popupContent>div>div:nth-child(1)>input':dateFrom, // input dateFrom
+                            //     'div.popupContent>div>div:nth-child(2)>input':dateTo // inout dateTo
+                            // },true);
+                            this.capture("Fill.png");
+                            this.wait(3000,function(){
+                                this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
+                            });
                         });
                     });
 
 
                     // date Compare
-                    this.wait(2000,function(){ // wait 2 second
-                        this.thenClick(calendarCompare,function(){ // click button Calendar 
-                            this.fillSelectors(groupCalendar,{ // find group of input
-                                'div.popupContent>div>div:nth-child(1)>input':dateFromCompare, // input dateFrom
-                                'div.popupContent>div>div:nth-child(2)>input':dateToCompare // inout dateTo
-                            },true);
-                            this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
-                            this.wait(2000,function(){
-                                this.capture("acerthailand/YT_stat/Compare.png",{top:495,left:240,width:490,height:150});
-                                this.captureSelector("acerthailand/YT_stat/ChartCompare.png","svg[width='774'] > rect");
-                                this.capture("acerthailand/YT_stat/List_video.png",{top:980,left:240,width:810,height:560})
-                            });
-                        });
-                    });
+                    // this.wait(4000,function(){ // wait 4 second
+                    //     this.thenClick(calendarCompare,function(){ // click button Calendar 
+                    //         this.fillSelectors(groupCalendar,{ // find group of input
+                    //             'div.popupContent>div>div:nth-child(1)>input':dateFromCompare, // input dateFrom
+                    //             'div.popupContent>div>div:nth-child(2)>input':dateToCompare // inout dateTo
+                    //         },true);
+                    //         this.wait(3000,function(){
+                    //             this.click("#body > div.gwt-PopupPanel > div > div > div.GCJJMQ4DEX > button.GCJJMQ4DMCB.GCJJMQ4DPDB > span"); // click Apply calendar
+                    //         });
+                    //         this.wait(2000,function(){
+                    //             this.capture("acerthailand/YT_stat/Compare.png",{top:495,left:240,width:490,height:150});
+                    //             this.captureSelector("acerthailand/YT_stat/ChartCompare.png","svg[width='774'] > rect");
+                    //             this.capture("acerthailand/YT_stat/List_video.png",{top:980,left:240,width:810,height:560})
+                    //         });
+                    //     });
+                    // });
                 });
             })
         });

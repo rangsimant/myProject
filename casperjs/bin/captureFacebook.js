@@ -480,6 +480,4 @@ function CalendarDateVisits(dateFrom,dateTo){
 	});
 }
 
-
-
 casper.run();

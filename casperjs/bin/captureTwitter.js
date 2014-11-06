@@ -19,12 +19,13 @@ var XPath = require('casper').selectXPath;
 var user="acerthailand";
 var pass="acer2010";
 
+// // format date MMDDYYYY or MM/DD/YYYY
 var dateStart = casper.cli.get('datefrom');
 var dateEnd = casper.cli.get('dateto');
 
 
 loginTwitter(user,pass);
-// captureTweereach();
+captureTweereach();
 captureTwittercounter(dateStart,dateEnd)
 
 function loginTwitter(username,password) {
@@ -80,13 +81,13 @@ function captureTwittercounter(datefrom,dateto){
                     this.capture("fill.png");
                     this.thenClick("div.range_inputs > button",function(){
                         this.thenOpen("http://twittercounter.com/pages/you",function(){ //wait for render graph
-                            this.waitForSelector("#sel2-clear > i.flaticon",function(){
-                                this.thenClick("#sel2-clear > i.flaticon.solid.x-1",function(){
+                            // this.waitForSelector("#sel2-clear",function(){
+                                this.thenClick("#sel2-clear > i.flaticon.solid",function(){
                                     this.wait(5000,function(){
                                         this.capture("ChangeDate.png",{top:500,left:580,width:760,height:440});
                                     });
                                 });
-                            });
+                            // });
                         });
                     });
                 });
