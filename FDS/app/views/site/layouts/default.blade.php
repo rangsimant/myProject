@@ -103,13 +103,6 @@
 		</div>
 		<!-- ./wrap -->
 
-
-	    <div id="footer">
-	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
-	      </div>
-	    </div>
-
 		<!-- Javascripts
 		================================================== -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>

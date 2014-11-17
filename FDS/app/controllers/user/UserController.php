@@ -28,10 +28,13 @@ class UserController extends BaseController {
     public function getIndex()
     {
         list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
+        $this->profile = $this->profile->getProfileByUserId($user->id);
+        $profile = clone $this->profile;
+
         if($redirect){return $redirect;}
 
         // Show the page
-        return View::make('site/user/index', compact('user'));
+        return View::make('site/user/index', compact('user'),compact('profile'));
     }
 
     /**
@@ -78,7 +81,7 @@ class UserController extends BaseController {
         $this->profile->user_id = $user->id;
 
         // Get User Profile from user_id
-        $userProfile = $this->profile->getProfileByUserId($user->id);
+        $userProfile = $this->profile->getCountProfileByUserId($user->id);
         if ($userProfile == 0) 
         {
             $this->profile->save();
@@ -114,8 +117,8 @@ class UserController extends BaseController {
 
         if ($validator->passes())
         {
-            $oldUser = clone $user;
 
+            $oldUser = clone $user;
             $user->username = Input::get( 'username' );
             $user->email = Input::get( 'email' );
 
@@ -142,6 +145,17 @@ class UserController extends BaseController {
 
             // Save if valid. Password field will be hashed before save
             $user->amend();
+
+            $user_id = $user->id;
+            $first_name = Input::get( 'first_name' );
+            $last_name = Input::get( 'last_name' );
+            $address = Input::get( 'address' );
+            $tel = Input::get( 'tel' );
+            
+            // Update Profile
+            $this->profile->updateProfile($user_id,$first_name,$last_name,$address,$tel);
+
+            
         }
 
         // Get validation errors (see Ardent package)
