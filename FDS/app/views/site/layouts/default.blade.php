@@ -66,6 +66,7 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+						<li><a href="{{{ URL::to('site/patient') }}}">Patient</a></li>
 					</ul>
 
                     <ul class="nav navbar-nav pull-right">
