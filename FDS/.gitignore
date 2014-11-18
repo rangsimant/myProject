@@ -1,6 +1,6 @@
 # Laravel
-/bootstrap/compiled.php
-/vendor
+#/bootstrap/compiled.php
+#/vendor
 
 # Configuration
 /app/config/local

@@ -29,7 +29,7 @@ body {
         <div class="form-group {{{ $errors->has('username') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="username">Username</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" name="username" id="username" value="{{{ Input::old('username', $user->username) }}}" />
+                <input class="form-control" type="text" name="username" id="username" value="{{{ Input::old('username', $user->username) }}}" READONLY/>
                 {{ $errors->first('username', '<span class="help-inline">:message</span>') }}
             </div>
         </div>
@@ -39,7 +39,7 @@ body {
         <div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="email">Email</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}" />
+                <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}"/>
                 {{ $errors->first('email', '<span class="help-inline">:message</span>') }}
             </div>
         </div>
@@ -69,11 +69,41 @@ body {
         <div class="form-group {{{ $errors->has('first_name') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="first_name">First name</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" name="first_name" id="first_name" value="{{{ Input::old('username')}}}" />
+                <input class="form-control" type="text" name="first_name" id="first_name" value="{{{ Input::old('first_name',$profile->first_name)}}}" />
                 {{ $errors->first('first_name', '<span class="help-inline">:message</span>') }}
             </div>
         </div>
         <!-- ./ first_name -->
+
+        <!-- last_name -->
+        <div class="form-group {{{ $errors->has('last_name') ? 'error' : '' }}}">
+            <label class="col-md-2 control-label" for="last_name">Last name</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="last_name" id="last_name" value="{{{ Input::old('last_name',$profile->last_name)}}}" />
+                {{ $errors->first('last_name', '<span class="help-inline">:message</span>') }}
+            </div>
+        </div>
+        <!-- ./ last_name -->
+
+        <!-- address -->
+        <div class="form-group {{{ $errors->has('address') ? 'error' : '' }}}">
+            <label class="col-md-2 control-label" for="address">Address</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="address" id="address" value="{{{ Input::old('address',$profile->address)}}}" />
+                {{ $errors->first('address', '<span class="help-inline">:message</span>') }}
+            </div>
+        </div>
+        <!-- ./ address -->
+
+        <!-- tel -->
+        <div class="form-group {{{ $errors->has('tel') ? 'error' : '' }}}">
+            <label class="col-md-2 control-label" for="tel">Telephone</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" name="tel" id="tel" value="{{{ Input::old('tel',$profile->tel)}}}" maxlength="10"/>
+                {{ $errors->first('tel', '<span class="help-inline">:message</span>') }}
+            </div>
+        </div>
+        <!-- ./ tel -->
 
     </div>
     <!-- ./ general tab -->

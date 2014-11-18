@@ -26,6 +26,7 @@
 		================================================== -->
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
 
 		<style>
         body {
@@ -66,10 +67,18 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+						
+						@if (Auth::check())
+
+						@if (Auth::user()->can('manage_note'))
+						 <li><a href="{{{ URL::to('site/note') }}}">Note</a></li>
+						@endif
+						@endif
 					</ul>
 
                     <ul class="nav navbar-nav pull-right">
                         @if (Auth::check())
+
                         @if (Auth::user()->hasRole('admin'))
                         <li><a href="{{{ URL::to('admin') }}}">Admin Panel</a></li>
                         @endif
@@ -103,18 +112,12 @@
 		</div>
 		<!-- ./wrap -->
 
-
-	    <div id="footer">
-	      <div class="container">
-	        <p class="muted credit">Laravel 4 Starter Site on <a href="https://github.com/andrew13/Laravel-4-Bootstrap-Starter-Site">Github</a>.</p>
-	      </div>
-	    </div>
-
 		<!-- Javascripts
 		================================================== -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-
+        
         @yield('scripts')
+
 	</body>
 </html>

@@ -2,6 +2,11 @@
 
 class AdminUsersController extends AdminController {
 
+    /**
+     * Profile Model
+     * @var Profile
+     */
+    protected $profile;
 
     /**
      * User Model
@@ -27,12 +32,13 @@ class AdminUsersController extends AdminController {
      * @param Role $role
      * @param Permission $permission
      */
-    public function __construct(User $user, Role $role, Permission $permission)
+    public function __construct(User $user, Role $role, Permission $permission,Profile $profile)
     {
         parent::__construct();
         $this->user = $user;
         $this->role = $role;
         $this->permission = $permission;
+        $this->profile = $profile;
     }
 
     /**
@@ -103,6 +109,17 @@ class AdminUsersController extends AdminController {
 
         // Save if valid. Password field will be hashed before save
         $this->user->save();
+
+        // Get ID from Username
+        $user = $this->user->getUserByUsername($this->user->username);
+        $this->profile->user_id = $user->id;
+
+        // Get User Profile from user_id
+        $userProfile = $this->profile->getCountProfileByUserId($user->id);
+        if ($userProfile == 0) 
+        {
+            $this->profile->save();
+        }
 
         if ( $this->user->id )
         {
