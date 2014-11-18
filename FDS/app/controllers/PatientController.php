@@ -1,6 +1,16 @@
 <?php
 class PatientController extends BaseController 
 {
+	    /**
+     * Initializer.
+     *
+     * @return \AdminController
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
 	public function getIndex()
 	{
 		$title = Lang::get('patient/patient.title');

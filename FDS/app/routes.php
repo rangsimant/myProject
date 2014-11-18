@@ -111,4 +111,7 @@ Route::post('{postSlug}', 'BlogController@postView');
 Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
 
 # Patient
-Route::controller('site/patient','PatientController');
+Route::group(array('before' => 'auth'), function()
+{
+    Route::controller('site/patient','PatientController');
+});

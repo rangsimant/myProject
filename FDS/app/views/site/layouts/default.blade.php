@@ -66,7 +66,12 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+
+						@if (Auth::check())
+                        @if (Auth::user()->can('manage_patient'))
 						<li><a href="{{{ URL::to('site/patient') }}}">Patient</a></li>
+						@endif
+						@endif
 					</ul>
 
                     <ul class="nav navbar-nav pull-right">
