@@ -13,12 +13,17 @@ class Patient extends Eloquent
 							'users_profile.address',
 							'users_profile.tel',
 							'users.username',
-							'users.id',
+							'users.id as user_id',
 							'users.email',
 							'assigned_roles.role_id',
 							'roles.name as role_name'
 							)
 					->get();
 		return $patient;
+	}
+
+	public function saveNote()
+	{
+
 	}
 }

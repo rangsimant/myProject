@@ -50,8 +50,6 @@ class UserController extends BaseController {
         // Profile
         $this->profile->first_name = Input::get( 'first_name' );
         $this->profile->last_name = Input::get( 'last_name' );
-        $this->profile->address = Input::get( 'address' );
-        $this->profile->tel = Input::get( 'tel' );
 
         $password = Input::get( 'password' );
         $passwordConfirmation = Input::get( 'password_confirmation' );
@@ -75,19 +73,21 @@ class UserController extends BaseController {
         }
 
         // Save if valid. Password field will be hashed before save
-        $this->user->save();
+        $save_user = $this->user->save();
+        $saved = true;
 
-        // Get ID from Username
-        $user = $this->user->getUserByUsername($this->user->username);
-        $this->profile->user_id = $user->id;
+        if ($save_user == $saved) {
+            // Get ID from Username
+            $user = $this->user->getUserByUsername($this->user->username);
+            $this->profile->user_id = $user->id;
 
-        // Get User Profile from user_id
-        $userProfile = $this->profile->getCountProfileByUserId($user->id);
-        if ($userProfile == 0) 
-        {
-            $this->profile->save();
-        }
-        
+            // Get User Profile from user_id
+            $userProfile = $this->profile->getCountProfileByUserId($user->id);
+            if ($userProfile == 0) 
+            {
+                $this->profile->save();
+            }
+        };
 
         if ( $this->user->id )
         {

@@ -114,5 +114,9 @@ Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getInde
 # Patient Route
 Route::group(array('before' => 'auth'), function()
 {
-    Route::controller('site/patient','PatientController');
+    Route::get('site/patient','PatientController@getIndex');
+    Route::post( 'site/patient/note', array(
+        'as' => 'patient.create',
+        'uses' => 'PatientController@create'
+    ) );
 });

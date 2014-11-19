@@ -28,9 +28,11 @@
 		</thead>
 		<tbody>
 			@foreach($patient as $data)
-			<tr>
-				<td>
-					<a  data-toggle="modal" data-target="#patient-modal" 
+			<tr 
+			@if (Auth::check())
+				@if (Auth::user()->hasRole('admin')) // if current user has 'Admin' Role 
+					data-toggle="modal" 
+					data-target="#patient-modal" 
 					data-profilename="{{ $data->first_name }} {{ $data->last_name }}"
 					data-username="{{ $data->username }}" 
 					data-firstname="{{ $data->first_name }}" 
@@ -38,7 +40,12 @@
 					data-address="{{ $data->address }}"
 					data-email="{{ $data->email }}"
 					data-tel="{{ $data->tel }}"
-					>{{ $data->username }}</a>
+					data-userid="{{ $data->user_id }}"
+				@endif
+			@endif
+				>
+				<td>
+					{{ $data->username }}
 				</td>
 				<td>
 					{{ $data->first_name }} {{ $data->last_name }}
@@ -56,7 +63,7 @@
 
 	<!-- Patient Modal -->
 	<div class="modal fade bs-example-modal-lg" id="patient-modal" tabindex="-1" role="dialog" aria-labelledby="patient-modalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -105,14 +112,30 @@
 		      		</div>
 	      		</div>
 	      		<div role="tabpanel" class="tab-pane" id="tab-note">
-	      			<div class="modal-body">
-		      			<form role="form">
-		  	          		<div class="form-group">
-			            		<label for="note" class="control-label">Note:</label>
-			            		<textarea type="text" class="form-control" id="note"></textarea>
-			          		</div>
-			          	</form>
-		          </div>
+	      			{{ Form::open( array(
+					    'route' => 'patient.create',
+					    'method' => 'post',
+					    'id' => 'form-note'
+					) ) }}
+					 
+					<div class="modal-footer">
+					<div class="form-group">
+					{{ Form::label( 'lbnote', 'Note:' ) }}
+					{{ Form::textarea( 'note', '', array(
+					    'id' => 'note',
+					    'placeholder' => 'Note..',
+					    'maxlength' => 30,
+					    'required' => true,
+					    'class' => 'form-control'
+					) ) }}
+					 <div>
+					</div>
+					{{ Form::submit( 'Post', array(
+					    'id' => 'save_note',
+					    'class' => 'btn btn-warning'
+					) ) }}
+					 
+					{{ Form::close() }}
 	      		</div>
 	  		</div>
 	    </div>
@@ -125,30 +148,9 @@
 {{-- Scripts --}}
 @section('scripts')
 	<script type="text/javascript">
-		var oTable;
 		$(document).ready(function() {
-			$('#patient-modal').on('show.bs.modal', function (event) {
-				  var button = $(event.relatedTarget) // Button that triggered the modal
-				  var profilename = button.data('profilename');
-				  var username = button.data('username') // Extract info from data-* attributes
-				  var first_name = button.data('firstname');
-				  var last_name = button.data('lastname');
-				  var address = button.data('address');
-				  var email = button.data('email');
-				  var tel = button.data('tel');
-				  var note = button.data('note');
-				  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-				  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-				  var modal = $(this)
-				  modal.find('.modal-title').text('Profile (' + profilename +')')
-				  modal.find('.modal-body input').val(username)
-				  modal.find('#patient-firstname').val(first_name);
-				  modal.find('#patient-lastname').val(last_name);
-				  modal.find('#address').val(address);
-				  modal.find('#email').val(email);
-				  modal.find('#tel').val(tel);
-				  modal.find('#note').val(note);
-				});
-			});
+			showDataOnModal();
+			saveNote();
+		});
 	</script>
 @stop
