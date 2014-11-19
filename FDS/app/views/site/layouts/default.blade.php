@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('fds/css/style.css')}}">
 
 		<style>
         body {
@@ -67,11 +68,11 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
 						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
-						
-						@if (Auth::check())
 
-						@if (Auth::user()->can('manage_note'))
-						 <li><a href="{{{ URL::to('site/note') }}}">Note</a></li>
+						@if (Auth::check())
+                        @if (Auth::user()->can('manage_patient'))
+						<li><a href="{{{ URL::to('site/patient') }}}">Patient</a></li>
+						
 						@endif
 						@endif
 					</ul>
@@ -116,6 +117,7 @@
 		================================================== -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('fds/js/Validation.js')}}"></script>
         
         @yield('scripts')
 

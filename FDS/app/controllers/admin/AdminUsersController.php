@@ -115,10 +115,11 @@ class AdminUsersController extends AdminController {
         $this->profile->user_id = $user->id;
 
         // Get User Profile from user_id
-        $userProfile = $this->profile->getCountProfileByUserId($user->id);
+
+        $userProfile = $this->profile->getCountProfileByUserId($this->user->id);
         if ($userProfile == 0) 
         {
-            $this->profile->save();
+            $this->profile->save(); // Save Users Profile Empty
         }
 
         if ( $this->user->id )

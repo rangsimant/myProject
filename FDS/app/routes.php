@@ -110,5 +110,9 @@ Route::post('{postSlug}', 'BlogController@postView');
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
 
-# Note Management
-Route::controller('site/note', 'NoteController');
+
+# Patient Route
+Route::group(array('before' => 'auth'), function()
+{
+    Route::controller('site/patient','PatientController');
+});
