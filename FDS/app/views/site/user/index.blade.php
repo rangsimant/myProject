@@ -101,7 +101,8 @@ body {
         <div class="form-group {{{ $errors->has('tel') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="tel">Telephone</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" name="tel" id="tel" value="{{{ Input::old('tel',$profile->tel)}}}" maxlength="10"/>
+                <input class="form-control" type="text" name="tel" id="tel" value="{{{ Input::old('tel',$profile->tel)}}}" maxlength="10"
+                />
                 {{ $errors->first('tel', '<span class="help-inline">:message</span>') }}
             </div>
         </div>
@@ -125,8 +126,7 @@ body {
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#form').validator()
-           validateInput('#email','#password','#password_confirmation');
+           validateInput();
         });
     </script>
 @stop

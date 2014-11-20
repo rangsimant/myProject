@@ -19,7 +19,7 @@
 					<h1>Signup</h1>
 				</div>
 		        <div class="form-group">
-		            <label for="username">{{{ Lang::get('confide::confide.username') }}}</label>
+		            <label for="username" >{{{ Lang::get('confide::confide.username') }}}</label>
 		            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.username') }}}" type="text" name="username" id="username" value="{{{ Input::old('username') }}}">
 		        </div>
 		        <div class="email form-group">
@@ -31,11 +31,11 @@
 				        data-bv-onstatus="onFieldStatus"/>
 			       	<span id="validEmail" class="" aria-hidden="true"></span>
 		        </div>
-		        <div class="form-group">
+		        <div class="form-group {{{ $errors->has('password') ? 'error' : '' }}}">
 		            <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
 		            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
 		        </div>
-		        <div class="password form-group">
+		        <div class="password form-group {{{ $errors->has('password_confirmation') ? 'error' : '' }}}">
 		            <label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
 		            <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
 		        	<span id="validPassword" class="" aria-hidden="true"></span>
@@ -66,7 +66,7 @@
 @section('scripts')
     <script type="text/javascript">
         $(document).ready(function() {
-        	validateCreate();
+        	validateInput();
         });
     </script>
 @stop

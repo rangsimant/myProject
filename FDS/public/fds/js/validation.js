@@ -1,4 +1,4 @@
-function validateCreate()
+function validateInput()
 {
     $('#form').bootstrapValidator({
         container: 'tooltip',
@@ -53,10 +53,10 @@ function validateCreate()
                 validators: {
                     stringLength:{
                         min:4,
-                        message: 'The password must be not less than 4 characters'
+                        message: 'The Password must be not less than 4 characters'
                     },
                     notEmpty: {
-                        message: 'The Username is required'
+                        message: 'The Password is required'
                     }
                 }
             },
@@ -64,10 +64,28 @@ function validateCreate()
                 validators: {
                     stringLength:{
                         min:4,
-                        message: 'The password confirm must be not less than 4 characters'
+                        message: 'The Password confirm must be not less than 4 characters'
                     },
                     notEmpty: {
-                        message: 'The Username is required'
+                        message: 'The Password confirm is required'
+                    }
+                }
+            },
+            address: {    
+                feedbackIcons: true,
+                validators: {
+                    stringLength:{
+                        min:4,
+                        message: 'The Address must be not less than 4 characters'
+                    },
+                }
+            },
+            tel: {
+                feedbackIcons: true,
+                validators: {
+                    phone: {
+                        country: 'US',
+                        message: 'The Phone number is not valid'
                     }
                 }
             }
@@ -75,65 +93,4 @@ function validateCreate()
     });
 }
 
-function adminValidateCreate()
-{
-        $('#form').bootstrapValidator({
-        container: 'tooltip',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            username: {
-                validators: {
-                    stringLength:{
-                        min:5,
-                        message: 'The Username must be not less than 5 characters'
-                    },
-                    notEmpty: {
-                        message: 'The Username is required'
-                    }
-                }
-            },
-            email: {
-                onError: function(e, data) {
-                    // Do something ...
-                },
-                onSuccess: function(e, data) {
-                    // Do something ...
-                },
-                onStatus: function(e, data) {
-                    // Do something ...
-                },
-                validators: {
-                    notEmpty: {
-                        message: 'The E-mail is required'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    stringLength:{
-                        min:4,
-                        message: 'The password must be not less than 4 characters'
-                    },
-                    notEmpty: {
-                        message: 'The Username is required'
-                    }
-                }
-            },
-            password_confirmation: {    
-                validators: {
-                    stringLength:{
-                        min:4,
-                        message: 'The password confirm must be not less than 4 characters'
-                    },
-                    notEmpty: {
-                        message: 'The Username is required'
-                    }
-                }
-            }
-        }
-    });
-}
+
