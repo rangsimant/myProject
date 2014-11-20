@@ -21,9 +21,4 @@ class Patient extends Eloquent
 					->get();
 		return $patient;
 	}
-
-	public function saveNote()
-	{
-
-	}
 }

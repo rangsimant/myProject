@@ -1,70 +1,139 @@
-function validatePassword (password,password_confirm) 
+function validateCreate()
 {
-    $(password_confirm).focusout(function()
-    {
-        var _password = $(password).val();
-        var _password_confirmation = $(password_confirm).val();
-        if (password != "") 
-        {
-            if (_password == _password_confirmation && _password.length >= 4 && _password_confirmation.length >= 4) 
-            {
-                $("#valid-password").text("PASS").css({color:"Green"});
-            }else
-            {
-                $("#valid-password").text("NOT MATCH").css({color:"Red"});
-            };
-        };
-    });
-    $(password).focusout(function()
-    {
-        var _password = $(password).val();
-        var _password_confirmation = $(password_confirm).val();
-        if (password != "") 
-        {
-            if (_password == _password_confirmation && _password.length >= 4 && _password_confirmation.length >= 4) 
-            {
-                $("#valid-password").text("PASS").css({color:"Green"});
-            }else
-            {
-                $("#valid-password").text("NOT MATCH").css({color:"Red"});
-            };
-        };
-    });
-}
-function validateEmail(emailAddress) 
-{
-    $(emailAddress).focusout(function()
-    {
-        var pattern = new RegExp(/^(\w+)+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/);
-        var email = $(emailAddress).val();
-        if(pattern.test(email) == true)
-        {   
-            $("#valid-email").text("PASS").css({color:"Green"});
-        }else
-        {
-            $("#valid-email").text("NOT PASS").css({color:"RED"});
-        };
+    $('#form').bootstrapValidator({
+        container: 'tooltip',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            first_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The First name is required'
+                    }
+                }
+            },
+            last_name: {
+                validators: {
+                    notEmpty: {
+                        message: 'The Last name is required'
+                    }
+                }
+            },
+            username: {
+                validators: {
+                    stringLength:{
+                        min:5,
+                        message: 'The Username must be not less than 5 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            },
+            email: {
+                onError: function(e, data) {
+                    // Do something ...
+                },
+                onSuccess: function(e, data) {
+                    // Do something ...
+                },
+                onStatus: function(e, data) {
+                    // Do something ...
+                },
+                validators: {
+                    notEmpty: {
+                        message: 'The E-mail is required'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    stringLength:{
+                        min:4,
+                        message: 'The password must be not less than 4 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            },
+            password_confirmation: {    
+                validators: {
+                    stringLength:{
+                        min:4,
+                        message: 'The password confirm must be not less than 4 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            }
+        }
     });
 }
 
-function validateInputIsEmpty()
+function adminValidateCreate()
 {
-    if (($('#username').val() != "" && $('#email').val() != "" && $('#first_name').val() != "" && $('#last_name').val() != "" && $('#password').val() != "" && $('#password_confirmation').val() != "")) {
-        var submit = $('button[type=submit]');
-        submit.removeAttr("disabled");
-    }else
-    {
-        submit.attr("disabled","disabled");
-    };
-}
-
-function validateInput(email,password,password_confirm)
-{
-    $('#form').find(':input').each(function(){
-        $(this).change(function(){
-            validateEmail(email);
-            validatePassword(password,password_confirm);
-            validateInputIsEmpty();
-        });
+        $('#form').bootstrapValidator({
+        container: 'tooltip',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            username: {
+                validators: {
+                    stringLength:{
+                        min:5,
+                        message: 'The Username must be not less than 5 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            },
+            email: {
+                onError: function(e, data) {
+                    // Do something ...
+                },
+                onSuccess: function(e, data) {
+                    // Do something ...
+                },
+                onStatus: function(e, data) {
+                    // Do something ...
+                },
+                validators: {
+                    notEmpty: {
+                        message: 'The E-mail is required'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    stringLength:{
+                        min:4,
+                        message: 'The password must be not less than 4 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            },
+            password_confirmation: {    
+                validators: {
+                    stringLength:{
+                        min:4,
+                        message: 'The password confirm must be not less than 4 characters'
+                    },
+                    notEmpty: {
+                        message: 'The Username is required'
+                    }
+                }
+            }
+        }
     });
 }

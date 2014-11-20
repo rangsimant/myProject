@@ -145,8 +145,6 @@
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
 
-    <!-- FDS Javescripts -->
-    <script src="{{asset('fds/js/validation.js')}}"></script>
 
     <script type="text/javascript">
     	$('.wysihtml5').wysihtml5();

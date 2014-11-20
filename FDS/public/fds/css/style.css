@@ -19,6 +19,10 @@ textarea.form-control
 }
 #tab-note .modal-body
 {
-	height: 400px;
-	overflow-y: scroll;
+	height: 300px;
+	overflow-y: auto; /*auto show scrollbar*/
+}
+.left
+{
+	float:left;
 }

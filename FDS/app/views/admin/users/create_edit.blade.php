@@ -9,7 +9,7 @@
 	<!-- ./ tabs -->
 
 	{{-- Create User Form --}}
-	<form class="form-horizontal" method="post" action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/edit') }}@endif" autocomplete="off">
+	<form id="form" class="form-horizontal" method="post" action="@if (isset($user)){{ URL::to('admin/users/' . $user->id . '/edit') }}@endif" autocomplete="off">
 		<!-- CSRF Token -->
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 		<!-- ./ csrf token -->
@@ -32,7 +32,11 @@
 				<div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
 					<label class="col-md-2 control-label" for="email">Email</label>
 					<div class="col-md-10">
-						<input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" />
+						<input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', isset($user) ? $user->email : null) }}}" 
+						data-bv-emailaddress
+				        data-bv-onerror="onFieldError"
+				        data-bv-onsuccess="onFieldSuccess"
+				        data-bv-onstatus="onFieldStatus"/>
 						{{ $errors->first('email', '<span class="help-inline">:message</span>') }}
 					</div>
 				</div>
@@ -114,4 +118,14 @@
 		</div>
 		<!-- ./ form actions -->
 	</form>
+<!-- FDS Javescripts -->
+@stop
+
+{{-- Scripts --}}
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+        	adminValidateCreate();
+        });
+    </script>
 @stop

@@ -28,16 +28,13 @@ class PatientController extends BaseController
             ) );
         }
  
-        $note = Input::get( 'note' );
-        $user_id = Input::get( 'user_id' );
- 
         //.....
         //validate data
         //and then store it in DB
         //.....
  
-        $response = Input::all();
+        $patient = Input::all();
  
-        return Response::json( $response );
+        return Response::json( $patient );
 	}
 }

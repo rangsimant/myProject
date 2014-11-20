@@ -44,7 +44,6 @@ $( '#form-note' ).on( 'submit', function() {
         //.....
         //show some spinner etc to indicate operation in progress
         //.....
- 
         $.post(
             $( this ).prop( 'action' ),
             {

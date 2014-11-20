@@ -19,7 +19,7 @@ body {
 <div class="page-header">
 	<h3>Edit your settings</h3>
 </div>
-<form class="form-horizontal" method="post" action="{{ URL::to('user/' . $user->id . '/edit') }}"  autocomplete="off">
+<form id="form" data-toggle="validator" class="form-horizontal" method="post" action="{{ URL::to('user/' . $user->id . '/edit') }}"  autocomplete="off">
     <!-- CSRF Token -->
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
     <!-- ./ csrf token -->
@@ -38,9 +38,10 @@ body {
         <!-- Email -->
         <div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="email">Email</label>
-            <div class="col-md-10">
+            <div class="email col-md-10">
                 <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}"/>
                 {{ $errors->first('email', '<span class="help-inline">:message</span>') }}
+                <span id="validEmail" class="" aria-hidden="true"></span>
             </div>
         </div>
         <!-- ./ email -->
@@ -58,9 +59,10 @@ body {
         <!-- Password Confirm -->
         <div class="form-group {{{ $errors->has('password_confirmation') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="password_confirmation">Password Confirm</label>
-            <div class="col-md-10">
+            <div class="password col-md-10">
                 <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="" />
                 {{ $errors->first('password_confirmation', '<span class="help-inline">:message</span>') }}
+                <span id="validPassword" class="" aria-hidden="true"></span>
             </div>
         </div>
         <!-- ./ password confirm -->
@@ -117,4 +119,14 @@ body {
     <!-- ./ form actions -->
 </form>
 </form>
+@stop
+
+{{-- Scripts --}}
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#form').validator()
+           validateInput('#email','#password','#password_confirmation');
+        });
+    </script>
 @stop

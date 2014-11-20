@@ -122,6 +122,11 @@
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
 
+    <!-- FDS Javescripts -->
+    <script src="{{asset('fds/js/validation.js')}}"></script>
+    <script src="{{asset('fds/js/patient.js')}}"></script>
+    <script src="{{asset('fds/js/bootstrapvalidate.js')}}"></script>
+
  <script type="text/javascript">
 $(document).ready(function(){
 $('.close_popup').click(function(){
