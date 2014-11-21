@@ -1,7 +1,8 @@
-var button; // Button that triggered the modal
+var button;
 var user_id;
+var author_id;
 var profilename;
-var username; // Extract info from data-* attributes
+var username;
 var first_name;
 var last_name;
 var address;
@@ -13,27 +14,58 @@ var note;
 function showDataOnModal () 
 {
 	$('#patient-modal').on('show.bs.modal', function (event) {
+		$('#note').val('');
+
 	  	button = $(event.relatedTarget) // Button that triggered the modal
 		user_id = button.data('userid');
-	  	profilename = button.data('profilename');
-	  	username = button.data('username') // Extract info from data-* attributes
-	  	first_name = button.data('firstname');
-	  	last_name = button.data('lastname');
-	  	address = button.data('address');
-	  	email = button.data('email');
-	  	tel = button.data('tel');
-	  	note = button.data('note');
+		author_id = button.data('authorid');
+
 	  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	  	var modal = $(this)
-	  	modal.find('.modal-title').text('Profile (' + profilename +') ID : '+user_id)
-	  	modal.find('.modal-body input').val(username)
-	  	modal.find('#patient-firstname').val(first_name);
-	  	modal.find('#patient-lastname').val(last_name);
-	  	modal.find('#address').val(address);
-	  	modal.find('#email').val(email);
-	 	modal.find('#tel').val(tel);
-	 	modal.find('#note').val(note);
+	  	var modal = $(this);
+
+	 	$.ajax(
+	 	{
+	 		url:'patient/profile',
+	 		type:'get',
+	 		data:{user_id:user_id,author_id:author_id},
+	 		dataType:'json',
+	 		success:function(data)
+	 		{	
+	 			if (data['profile'].length > 0) 
+	 			{
+	 				var name = data['profile'][0].first_name+" "+data['profile'][0].last_name;
+	 				modal.find('.modal-title').text('Profile (' + name+ ') ID : '+user_id)
+				  	modal.find('.modal-body input').val(data['profile'][0].username)
+				  	modal.find('#patient-firstname').val(data['profile'][0].first_name);
+				  	modal.find('#patient-lastname').val(data['profile'][0].last_name);
+				  	modal.find('#address').val(data['profile'][0].address);
+				  	modal.find('#email').val(data['profile'][0].email);
+				 	modal.find('#tel').val(data['profile'][0].tel);
+	 			}
+	 			else
+	 			{
+	 				console.log('This User not found profile');
+	 			}
+
+				modal.find('#tab-note  div.modal-body').html(""); // clear list notes
+
+	 			if (data['note'].length > 0) 
+ 				{
+ 					$.each(data['note'],function(index,value)
+ 					{
+ 						var collapse = "<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'> <div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'>  <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'>"+value.notes+" </h4> </div> </a><div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> </div> </div> </div>";
+ 						modal.find('#tab-note  div.modal-body').append(collapse);
+ 						console.log('Have '+data['note'].length+' notes.');
+ 					});
+ 				}
+ 				else
+ 				{
+ 					console.log('This user no notes.');
+ 				}
+	 		}
+
+	 	});
 	});
 }
 
@@ -49,7 +81,8 @@ $( '#form-note' ).on( 'submit', function() {
             {
                 "_token": $( this ).find( 'input[name=_token]' ).val(),
                 "note": $( '#note' ).val(),
-                "user_id":user_id
+                "user_id":user_id,
+                "author_id":author_id
             },
             function( data ) {
                 //do something with data/response returned by server

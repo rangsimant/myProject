@@ -26,3 +26,19 @@ textarea.form-control
 {
 	float:left;
 }
+.panel-default>a>.panel-heading
+{
+	color:black;
+	background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%); */
+	/* background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%); */
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+}
+.modal-body .panel-group
+{
+	margin-bottom: 5px;
+}
+a:hover
+{
+	text-decoration: none;
+}

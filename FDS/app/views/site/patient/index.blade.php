@@ -33,14 +33,8 @@
 				@if (Auth::user()->hasRole('admin')) // if current user has 'Admin' Role 
 					data-toggle="modal" 
 					data-target="#patient-modal" 
-					data-profilename="{{ $data->first_name }} {{ $data->last_name }}"
-					data-username="{{ $data->username }}" 
-					data-firstname="{{ $data->first_name }}" 
-					data-lastname="{{ $data->last_name }}"
-					data-address="{{ $data->address }}"
-					data-email="{{ $data->email }}"
-					data-tel="{{ $data->tel }}"
 					data-userid="{{ $data->user_id }}"
+					data-authorid="{{{ Auth::user()->id }}}"
 				@endif
 			@endif
 				>

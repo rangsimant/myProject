@@ -14,10 +14,17 @@ class PatientController extends BaseController
 	public function getIndex()
 	{
 		$title = Lang::get('patient/patient.title');
-		$getpatient = new Patient();
-		$patient = $getpatient->getPatient();
+		$patient = Patient::getPatient();
 		return View::make('site/patient/index',compact('patient','title'));
 	}
+
+    public function showProfile()
+    {
+        $user_id = $_GET['user_id'];
+        $profile = Patient::getProfile($user_id);
+        $note =  Note::getNote($user_id);
+        return Response::json( array('profile'=>$profile,'note'=>$note) );
+    }
 
 	public function create()
 	{
@@ -33,8 +40,9 @@ class PatientController extends BaseController
         //and then store it in DB
         //.....
  
-        $patient = Input::all();
+        $input = Input::all();
+        Note::saveNote($input['user_id'],$input['author_id'],$input['note']);
  
-        return Response::json( $patient );
+        return Response::json( $input );
 	}
 }
