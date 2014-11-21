@@ -110,7 +110,8 @@
 							    'id' => 'form-note'
 							) ) }}
  							<div class="modal-body">
-
+ 								<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>
+ 								</div>
 							</div>
 						<div class="modal-footer">
 							<div class="form-group">

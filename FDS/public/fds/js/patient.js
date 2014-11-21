@@ -48,14 +48,14 @@ function showDataOnModal ()
 	 				console.log('This User not found profile');
 	 			}
 
-				modal.find('#tab-note  div.modal-body').html(""); // clear list notes
+				modal.find('.panel-group').html(""); // clear list notes
 
 	 			if (data['note'].length > 0) 
  				{
  					$.each(data['note'],function(index,value)
  					{
- 						var collapse = "<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'> <div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'>  <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'>"+value.notes+" </h4> </div> </a><div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> </div> </div> </div>";
- 						modal.find('#tab-note  div.modal-body').append(collapse);
+ 						var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'>  <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'>"+value.notes+" </h4> </div> </a><div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> </div> </div>";
+ 						modal.find('.panel-group').append(collapse);
  						console.log('Have '+data['note'].length+' notes.');
  					});
  				}
