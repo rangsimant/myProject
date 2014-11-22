@@ -15,6 +15,9 @@ class PatientController extends BaseController
 	{
 		$title = Lang::get('patient/patient.title');
 		$patient = Patient::getPatient();
+        foreach ($patient as $idx => $value) {
+            $patient[$idx]->countnote = Patient::getCountNote($value->user_id);
+        }
 		return View::make('site/patient/index',compact('patient','title'));
 	}
 

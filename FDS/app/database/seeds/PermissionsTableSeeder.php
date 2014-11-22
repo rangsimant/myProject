@@ -31,6 +31,14 @@ class PermissionsTableSeeder extends Seeder {
                 'name'         => 'post_comment',
                 'display_name' => 'post comment'
             ),
+            array( // 7
+                'name'         => 'manage_patient',
+                'display_name' => 'manage patient'
+            ),
+            array( // 8
+                'name'         => 'manage_note',
+                'display_name' => 'manage note'
+            ),
         );
 
         DB::table('permissions')->insert( $permissions );

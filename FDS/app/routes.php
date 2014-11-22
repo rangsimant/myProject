@@ -112,11 +112,11 @@ Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getInde
 
 
 # Patient Route
-Route::group(array('before' => 'auth'), function()
+Route::group(array('prefix' => 'site/patient','before' => 'auth'), function()
 {
-    Route::get('site/patient/profile','PatientController@showProfile');
-    Route::get('site/patient','PatientController@getIndex');
-    Route::post( 'site/patient/note', array(
+    Route::get('profile','PatientController@showProfile');
+    Route::get('/','PatientController@getIndex');
+    Route::post( 'note', array(
         'as' => 'patient.create',
         'uses' => 'PatientController@create'
     ) );

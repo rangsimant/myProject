@@ -28,14 +28,15 @@ class UserController extends BaseController {
     public function getIndex()
     {
         list($user,$redirect) = $this->user->checkAuthAndRedirect('user');
-        $this->profile = $this->profile->getProfileByUserId($user->id);
-
-        $profile = clone $this->profile;
+        $profile = $this->profile->getProfileByUserId($user->id);
+        if ($profile == NULL) { // if detial of Profile Empty
+            $profile = $this->profile;
+        }
 
         if($redirect){return $redirect;}
 
         // Show the page
-        return View::make('site/user/index', compact('user'),compact('profile'));
+        return View::make('site/user/index', compact('user','profile'));
     }
 
     /**

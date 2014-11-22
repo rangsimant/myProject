@@ -15,11 +15,12 @@ class Profile extends Eloquent {
 
 	public function updateProfile($user_id,$first_name,$last_name,$address,$tel)
 	{
-        return Profile::where('user_id',$user_id)->update(array(
-            'first_name' => $first_name,
-            'last_name' =>  $last_name,
-            'address'   => $address,
-            'tel'   =>  $tel
-        ));
+		$update_profile = Profile::where('user_id',$user_id)->update(array(
+					            'first_name' => $first_name,
+					            'last_name' =>  $last_name,
+					            'address'   => $address,
+					            'tel'   =>  $tel
+					        ));
+        return $update_profile;
 	}
 }

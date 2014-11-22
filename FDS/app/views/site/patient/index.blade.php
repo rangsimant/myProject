@@ -30,7 +30,7 @@
 			@foreach($patient as $data)
 			<tr 
 			@if (Auth::check())
-				@if (Auth::user()->hasRole('admin')) // if current user has 'Admin' Role 
+				@if (Auth::user()->hasRole('admin') || Auth::user()->hasRole('comment')) // if current user has 'Admin' Role 
 					data-toggle="modal" 
 					data-target="#patient-modal" 
 					data-userid="{{ $data->user_id }}"
@@ -45,7 +45,7 @@
 					{{ $data->first_name }} {{ $data->last_name }}
 				</td>
 				<td>
-					<!-- Count of Notes -->
+					{{ $data->countnote }}
 				</td>
 				<td>
 					{{ $data->role_name }}
@@ -65,16 +65,27 @@
 	      	</div>
 		      	<div role="tabpanel">
 			       	<ul class="nav nav-tabs" role="tablist">
-					    <li role="presentation" class="active"><a href="#tab-profile" aria-controls="tab-profile" role="tab" data-toggle="tab">Profile</a></li>
-					    <li role="presentation"><a href="#tab-note" aria-controls="tab-note" role="tab" data-toggle="tab">Note</a></li>
+						@if (Auth::check())
+	                        @if (Auth::user()->hasRole('admin'))
+        		      			<?php $profile_active = 'active'; ?>
+	    		      			<?php $note_active = ''; ?>
+					    		<li role="presentation" class="{{ $profile_active }}"><a href="#tab-profile" aria-controls="tab-profile" role="tab" data-toggle="tab">Profile</a></li>
+	    		      		@else
+	    		      			<?php $note_active = 'active'; ?>
+	    		      			<?php $profile_active = ''; ?>
+	    		      		@endif
+
+					    <li role="presentation" class="{{ $note_active }}"><a href="#tab-note" aria-controls="tab-note" role="tab" data-toggle="tab">Note</a></li>
 				  	</ul>
 				  	<div class="tab-content">
-				  		<div role="tabpanel" class="tab-pane active" id="tab-profile">
+
+				  		<!-- tab Profile -->
+				  		<div role="tabpanel" class="tab-pane {{ $profile_active }}" id="tab-profile">
 				      		<div class="modal-body">
 				        		<form role="form">
 					         		<div class="form-group">
 					            		<label for="username" class="control-label">Username:</label>
-					           			<input type="text" class="form-control" id="username">
+					           			<input type="text" class="form-control" id="username" readonly>
 					         		</div>
 					          		<div class="form-group">
 					            		<label for="patient-firstname" class="control-label">First Name:</label>
@@ -103,7 +114,12 @@
 				        		<button type="button" class="btn btn-primary">Save</button>
 				      		</div>
 			      		</div>
-			      		<div role="tabpanel" class="tab-pane" id="tab-note">
+			      		@endif
+	
+
+
+			      		<!-- tab Note -->
+			      		<div role="tabpanel" class="tab-pane {{ $note_active }}" id="tab-note">
 			      			{{ Form::open( array(
 							    'route' => 'patient.create',
 							    'method' => 'post',
@@ -111,26 +127,27 @@
 							) ) }}
  							<div class="modal-body">
  								<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>
+
  								</div>
 							</div>
 						<div class="modal-footer">
 							<div class="form-group">
-							{{ Form::label( 'lbnote', 'Note:',array(
-								'class'=>'left'
-							) ) }}
-							{{ Form::textarea( 'note', '', array(
-							    'id' => 'note',
-							    'placeholder' => 'Note..',
-							    'required' => true,
-							    'class' => 'form-control'
-							) ) }}
+								{{ Form::label( 'lbnote', 'Note:',array(
+									'class'=>'left'
+								) ) }}
+								{{ Form::textarea( 'note', '', array(
+								    'id' => 'note',
+								    'placeholder' => 'Note..',
+								    'required' => true,
+								    'class' => 'form-control'
+								) ) }}
 
-							{{ Form::submit( 'Post', array(
-							    'id' => 'save_note',
-							    'class' => 'btn btn-warning'
-							) ) }}
-							 
-							{{ Form::close() }}
+								{{ Form::submit( 'Post', array(
+								    'id' => 'save_note',
+								    'class' => 'btn btn-warning'
+								) ) }}
+								 
+								{{ Form::close() }}
 			      			</div>
 				  		</div>
 				    </div>

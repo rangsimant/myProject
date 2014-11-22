@@ -19,6 +19,7 @@ class Patient extends Eloquent
 							'roles.name as role_name'
 							)
 					->get();
+
 		return $patient;
 	}
 
@@ -41,5 +42,11 @@ class Patient extends Eloquent
 					->where('users_profile.user_id','=',$user_id)
 					->get();
 		return $profile;
+	}
+
+	public static function getCountNote($user_id)
+	{
+		$count_note = DB::table('notes')->where('notes.user_id','=',$user_id)->count();
+		return $count_note;
 	}
 }
