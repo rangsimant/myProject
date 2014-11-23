@@ -140,9 +140,9 @@
 								    'class' => 'form-control'
 								) ) }}
 
-								{{ Form::submit( 'Post', array(
+								{{ Form::submit( 'Save', array(
 								    'id' => 'save_note',
-								    'class' => 'btn btn-warning'
+								    'class' => 'btn btn-primary'
 								) ) }}
 								 
 								{{ Form::close() }}

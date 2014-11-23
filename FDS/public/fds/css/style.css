@@ -59,3 +59,11 @@ span.pull-right,#tab-note p
 {
 	padding: 5px 15px;
 }
+.btn
+{
+	margin: 1px;
+}
+#save_note
+{
+	margin-top: 10px;
+}
