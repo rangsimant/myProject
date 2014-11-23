@@ -23,8 +23,8 @@ var casper = require('casper').create({
         javascriptEnabled: true,
         userAgent: userAgent,
     },
-    // logLevel: "debug",              // Only "info" level messages will be logged
-    // verbose: true ,
+    logLevel: "debug",              // Only "info" level messages will be logged
+    verbose: true ,
     waitTimeout:20000,
     onWaitTimeout:function(){
     	console.log("wait selector timeout !");

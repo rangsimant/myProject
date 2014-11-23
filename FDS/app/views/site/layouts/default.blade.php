@@ -129,6 +129,7 @@
         <script src="{{asset('fds/js/validation.js')}}"></script>
         <script src="{{asset('fds/js/patient.js')}}"></script>
         <script src="{{asset('fds/js/bootstrapvalidate.js')}}"></script>
+        <script src="{{asset('fds/js/moment-with-locales.js')}}"></script>
         
         
         @yield('scripts')

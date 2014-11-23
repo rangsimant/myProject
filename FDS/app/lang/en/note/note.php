@@ -14,6 +14,8 @@ return array(
 	'activated'  => 'Activated',
 	'created_at' => 'Created at',
 	'tel' => 'Tel.',
-	'note' => 'Note'
+	'note' => 'Note',
+	'created' => 'Created :',
+	'updated' => 'Updated :'
 
 );

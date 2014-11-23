@@ -46,3 +46,16 @@ a:hover
 {
 	text-decoration: none;
 }
+span.pull-right,#tab-note p
+{
+	font-size: 11px;
+	color:gray;
+}
+#tab-note p
+{
+	margin: 0 0 0px;
+}
+#tab-note .panel-footer
+{
+	padding: 5px 15px;
+}

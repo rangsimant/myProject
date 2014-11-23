@@ -116,8 +116,6 @@
 			      		</div>
 			      		@endif
 	
-
-
 			      		<!-- tab Note -->
 			      		<div role="tabpanel" class="tab-pane {{ $note_active }}" id="tab-note">
 			      			{{ Form::open( array(
