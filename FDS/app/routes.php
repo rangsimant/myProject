@@ -19,6 +19,9 @@ Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
 Route::model('role', 'Role');
+Route::model('note','Note');
+Route::model('patient','Patient');
+Route::model('profile','Profile');
 
 /** ------------------------------------------
  *  Route constraint patterns

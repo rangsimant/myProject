@@ -90,7 +90,15 @@ function getPatientandNote()
 					var updated_at = moment(value.updated_at, "YYYY/MM/DD h:mm:ss a").fromNow();
 					var created = moment(value.created_at).format('DD MMM YY h:mm:ss a');
 					var updated = moment(value.updated_at).format('DD MMM YY h:mm:ss a');
-					var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'>"+value.notes+"<span class='pull-right'>"+updated_at+"</span> </h4> </div> </a> <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> <div class='panel-footer text-right'> <p>by : "+value.author_first_name+" "+value.author_last_name+"</div> </div> </div>";
+					var maxLength = 50;
+					if (value.notes.length > maxLength) 
+					{
+						var title = value.notes.substring(0, maxLength)+"...";
+					}else
+					{
+						var title = value.notes;
+					}
+					var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'>"+title+"<span class='pull-right'>"+updated_at+"</span> </h4> </div> </a> <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> <div class='panel-footer text-right'> <p>by : "+value.author_first_name+" "+value.author_last_name+"</div> </div> </div>";
 					modal.find('.panel-group').append(collapse);
 					console.log('Have '+data['note'].length+' notes.');
 				});
