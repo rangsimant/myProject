@@ -142,6 +142,8 @@ function getPatientAndNote()
 					modal.find('.panel-group').append(collapse);
 					console.log('Have '+data['note'].length+' notes.');
 				});
+
+                $('#note').val('');
 			}
 			else
 			{
