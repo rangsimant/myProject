@@ -12,6 +12,13 @@ var tel;
 var note;
 
 
+function patientModalClose()
+{
+    $('#patient-modal').on('hidden.bs.modal', function () {
+        location.reload(true);
+    });
+}
+
 function showDataOnModal () 
 {
 	$('#patient-modal').on('show.bs.modal', function (event) {

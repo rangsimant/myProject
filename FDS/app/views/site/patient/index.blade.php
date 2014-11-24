@@ -71,6 +71,7 @@
 			saveNote();
 			showConfirm();
 			deleteNote();
+			patientModalClose();
 		});
 	</script>
 @stop
