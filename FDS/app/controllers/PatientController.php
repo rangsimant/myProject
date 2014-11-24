@@ -48,4 +48,10 @@ class PatientController extends BaseController
  
         return Response::json( $input );
 	}
+
+    public function deleteNote()
+    {
+        $note_id = $_POST['note_id'];
+        Note::deleteNote($note_id);
+    }
 }

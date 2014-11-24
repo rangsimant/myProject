@@ -118,6 +118,11 @@ Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getInde
 Route::group(array('prefix' => 'site/patient','before' => 'auth'), function()
 {
     Route::get('profile','PatientController@showProfile');
+        Route::post( 'note/delete', array(
+        'as' => 'patient.delete',
+        'uses' => 'PatientController@deleteNote'
+    ) );
+
     Route::get('/','PatientController@getIndex');
     Route::post( 'note', array(
         'as' => 'patient.create',

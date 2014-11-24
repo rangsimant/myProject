@@ -36,4 +36,12 @@ class Note extends Eloquent
     			->get();
 		return $note;
     }
+
+    public static function deleteNote($note_id)
+    {
+        $note = Note::find($note_id);
+        $note->delete();
+
+        return $note;
+    }
 }

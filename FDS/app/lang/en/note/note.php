@@ -16,6 +16,9 @@ return array(
 	'tel' => 'Tel.',
 	'note' => 'Note',
 	'created' => 'Created :',
-	'updated' => 'Updated :'
+	'updated' => 'Updated :',
+	'delete' => 'Delete',
+	'confirm-delete' => 'Are you sure you want delete ?',
+	'confirm' => 'Confirm'
 
 );
