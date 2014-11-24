@@ -9,10 +9,12 @@ class Note extends Eloquent
     public static function saveNote($user_id,$author_id,$txtnote)
     {
         $note = new Note;
-        $note->author_id = $author_id;
         $note->user_id = $user_id;
+        $note->author_id = $author_id;
         $note->notes = $txtnote;
         $note->save();
+
+        
     }
 
     public static function getNote($user_id)
