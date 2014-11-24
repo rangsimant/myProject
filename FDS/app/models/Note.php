@@ -21,7 +21,7 @@ class Note extends Eloquent
     {
     	$note = DB::table('notes')
     			->join('users_profile as user','notes.user_id','=','user.user_id')
-    			->join('users_profile as author','notes.user_id','=','author.user_id')
+    			->join('users_profile as author','notes.author_id','=','author.user_id')
                 ->join('assigned_roles','notes.user_id','=','assigned_roles.user_id')
                 ->join('roles','assigned_roles.role_id','=','roles.id')
     			->select('user.first_name as user_first_name',
