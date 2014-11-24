@@ -12,7 +12,10 @@ class UsersProfileTableSeeder extends Seeder {
 					'first_name' => 'Adminstrator',
 					'last_name' => 'Admin',
 					'tel' => '0123456789',
-					'address' => 'Unknow'
+					'address' => 'Unknow',
+					'created_at' => '2014/10/20 12:12:12',
+					'updated_at' => '2014/10/20 12:12:12'
+
 
 					),
 				array(
@@ -20,7 +23,9 @@ class UsersProfileTableSeeder extends Seeder {
 					'first_name' => 'Normal User',
 					'last_name' => 'Normal',
 					'tel' => '0987654321',
-					'address' => 'Unknow'
+					'address' => 'Unknow',
+					'created_at' => '2014/11/20 12:12:12',
+					'updated_at' => '2014/11/20 12:12:12'
 
 					)
 			);
