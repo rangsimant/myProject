@@ -608,6 +608,7 @@ return array(
     'Normalizer' => $vendorDir . '/patchwork/utf8/class/Normalizer.php',
     'Note' => $baseDir . '/app/models/Note.php',
     'NoteController' => $baseDir . '/app/controllers/NoteController.php',
+    'NoteTableSeeder' => $baseDir . '/app/database/seeds/NoteTableSeeder.php',
     'Notes' => $baseDir . '/app/database/migrations/2014_11_17_073005_notes.php',
     'PHPParser_Autoloader' => $vendorDir . '/nikic/php-parser/lib/PHPParser/Autoloader.php',
     'PHPParser_Builder' => $vendorDir . '/nikic/php-parser/lib/PHPParser/Builder.php',
