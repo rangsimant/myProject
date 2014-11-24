@@ -62,6 +62,10 @@ function validateInput()
             },
             password_confirmation: {    
                 validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    },
                     stringLength:{
                         min:4,
                         message: 'The Password confirm must be not less than 4 characters'
