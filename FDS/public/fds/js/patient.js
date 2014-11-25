@@ -10,12 +10,18 @@ var address;
 var email;
 var tel;
 var note;
+var update_profile;
+var update_note;
 
 
 function patientModalClose()
 {
     $('#patient-modal').on('hidden.bs.modal', function () {
-        location.reload(true);
+        if ((update_profile == true) || (update_note == true)) 
+        {
+            location.reload(true);
+        }
+        
     });
 }
 
@@ -23,6 +29,8 @@ function showDataOnModal ()
 {
 	$('#patient-modal').on('show.bs.modal', function (event) {
 		$('#note').val('');
+        update_profile=false;
+        update_note=false;
 	  	button = $(event.relatedTarget) // Button that triggered the modal
 		user_id = button.data('userid');
 		author_id = button.data('authorid');
@@ -58,6 +66,8 @@ function deleteNote()
             'json'
         );
  		$('#confirm-modal').modal('hide');
+
+        update_note = true; // if Confirm or Save and when close modal it will auto refresh
     	getPatientAndNote();
         //.....
         //do anything else you might want to do
@@ -68,6 +78,30 @@ function deleteNote()
     } );
 }
 
+function updateProfile()
+{
+    $( '#form-profile' ).on( 'submit', function() {
+        $.post(
+            $( this ).prop( 'action' ),
+            {
+                "_token": $( this ).find( 'input[name=_token]' ).val(),
+                "user_id":user_id,
+                "first_name":$('#first_name').val(),
+                "last_name":$('#last_name').val(),
+                "email":$('#email').val(),
+                "address":$('#address').val(),
+                "tel":$('#tel').val()
+            },
+            function( data ) {
+            },
+            'json'
+        );
+
+        update_profile = true; // if Confirm or Save and when close modal it will auto refresh
+        return false;
+    });
+}
+
 function saveNote()
 {
 $( '#form-note' ).on( 'submit', function() {
@@ -75,20 +109,26 @@ $( '#form-note' ).on( 'submit', function() {
         //.....
         //show some spinner etc to indicate operation in progress
         //.....
-        $.post(
-            $( this ).prop( 'action' ),
-            {
-                "_token": $( this ).find( 'input[name=_token]' ).val(),
-                "note": $( '#note' ).val(),
-                "user_id":user_id,
-                "author_id":author_id
-            },
-            function( data ) {
-            	getPatientAndNote();
-            },
-            'json'
-        );
- 
+        var btnSaveOrUpdate = $('#save_note').attr("value"); // get Text form Text button
+        if (btnSaveOrUpdate == "Save") {
+            $.post(
+                $( this ).prop( 'action' ),
+                {
+                    "_token": $( this ).find( 'input[name=_token]' ).val(),
+                    "note": $( '#note' ).val(),
+                    "user_id":user_id,
+                    "author_id":author_id
+                },
+                function( data ) {
+                    update_note = true; // if Confirm or Save and when close modal it will auto refresh
+                	getPatientAndNote();
+                },
+                'json'
+            );
+        }else if (btnSaveOrUpdate == "Update")
+        {
+            alert("Update");
+        }
         //.....
         //do anything else you might want to do
         //.....
@@ -116,8 +156,8 @@ function getPatientAndNote()
  				var name = data['profile'][0].first_name+" "+data['profile'][0].last_name;
  				modal.find('.modal-title').text('Profile (' + name+ ') ID : '+user_id)
 			  	modal.find('.modal-body input').val(data['profile'][0].username)
-			  	modal.find('#patient-firstname').val(data['profile'][0].first_name);
-			  	modal.find('#patient-lastname').val(data['profile'][0].last_name);
+			  	modal.find('#first_name').val(data['profile'][0].first_name);
+			  	modal.find('#last_name').val(data['profile'][0].last_name);
 			  	modal.find('#address').val(data['profile'][0].address);
 			  	modal.find('#email').val(data['profile'][0].email);
 			 	modal.find('#tel').val(data['profile'][0].tel);

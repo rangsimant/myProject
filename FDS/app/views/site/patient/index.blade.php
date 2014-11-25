@@ -67,12 +67,18 @@
 @section('scripts')
 	<script type="text/javascript">
 		$(document).ready(function() {
+			validateInput(form_profile);
+			var form_profile = $('#form-profile');
+
 			$('#patient').DataTable();
+
 			showDataOnModal();
+			updateProfile();
 			saveNote();
 			showConfirm();
 			deleteNote();
 			patientModalClose();
+			
 		});
 	</script>
 @stop

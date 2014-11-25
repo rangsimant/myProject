@@ -31,17 +31,7 @@ class PatientController extends BaseController
 
 	public function create()
 	{
-		  //check if its our form
-        if ( Session::token() !== Input::get( '_token' ) ) {
-            return Response::json( array(
-                'msg' => 'Unauthorized attempt to create setting'
-            ) );
-        }
- 
-        //.....
-        //validate data
-        //and then store it in DB
-        //.....
+		$this->checkOurForm();
  
         $input = Input::all();
         Note::saveNote($input['user_id'],$input['author_id'],$input['note']);
@@ -53,5 +43,30 @@ class PatientController extends BaseController
     {
         $note_id = $_POST['note_id'];
         Note::deleteNote($note_id);
+    }
+
+    public function updateProfile()
+    {
+        $this->checkOurForm();
+
+        $profile = new Profile();
+        $user_id = Input::get( 'user_id' );
+        $first_name = Input::get( 'first_name' );
+        $last_name = Input::get( 'last_name' );
+        $address = Input::get( 'address' );
+        $tel = Input::get( 'tel' );
+        
+        // Update Profile
+        $profile->updateProfile($user_id,$first_name,$last_name,$address,$tel);
+    }
+
+    private function checkOurForm()
+    {
+        //check if its our form
+        if ( Session::token() !== Input::get( '_token' ) ) {
+            return Response::json( array(
+                'msg' => 'Unauthorized attempt to create setting'
+            ) );
+        }
     }
 }

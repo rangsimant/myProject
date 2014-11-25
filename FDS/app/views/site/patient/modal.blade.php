@@ -24,19 +24,23 @@
 
 				  		<!-- tab Profile -->
 				  		<div role="tabpanel" class="tab-pane {{ $profile_active }}" id="tab-profile">
+			      			{{ Form::open( array(
+							    'route' => 'patient.update',
+							    'method' => 'post',
+							    'id' => 'form-profile'
+							) ) }}
 				      		<div class="modal-body">
-				        		<form role="form">
 					         		<div class="form-group">
 					            		<label for="username" class="control-label">Username:</label>
 					           			<input type="text" class="form-control" id="username" readonly>
 					         		</div>
 					          		<div class="form-group">
 					            		<label for="patient-firstname" class="control-label">First Name:</label>
-					            		<input type="text" class="form-control" id="patient-firstname"></input>
+					            		<input type="text" class="form-control" id="first_name"></input>
 					          		</div>
 					          		<div class="form-group">
 					            		<label for="patient-lastname" class="control-label">Last Name:</label>
-					            		<input type="text" class="form-control" id="patient-lastname"></input>
+					            		<input type="text" class="form-control" id="last_name"></input>
 					          		</div>
 				  	          		<div class="form-group">
 					           		 	<label for="email" class="control-label">E-mail:</label>
@@ -47,15 +51,16 @@
 					            		<input type="text" class="form-control" id="address"></input>
 					          		</div>
 				  	          		<div class="form-group">
-					            		<label for="tel" class="control-label">Tel.:</label>
+					            		<label for="tel" class="control-label">Tel:</label>
 					            		<input type="text" class="form-control" id="tel"></input>
 					          		</div>
-				        		</form>
 				      		</div>
 				      		<div class="modal-footer">
 				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        		<button type="button" class="btn btn-primary">Save</button>
+				        		<button type="submit" class="btn btn-primary" id="save_profile">Save</button>
 				      		</div>
+				      		{{ Form::close() }}
+				      		
 			      		</div>
 			      		@endif
 	

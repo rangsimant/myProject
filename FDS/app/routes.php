@@ -117,15 +117,20 @@ Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getInde
 # Patient Route
 Route::group(array('prefix' => 'site/patient','before' => 'auth'), function()
 {
+    Route::post( 'update', array(
+        'as' => 'patient.update',
+        'uses' => 'PatientController@updateProfile'
+    ));
+
     Route::get('profile','PatientController@showProfile');
-        Route::post( 'note/delete', array(
+    Route::post( 'note/delete', array(
         'as' => 'patient.delete',
         'uses' => 'PatientController@deleteNote'
-    ) );
+    ));
 
     Route::get('/','PatientController@getIndex');
     Route::post( 'note', array(
         'as' => 'patient.create',
         'uses' => 'PatientController@create'
-    ) );
+    ));
 });

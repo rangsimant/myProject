@@ -1,6 +1,7 @@
-function validateInput()
+function validateInput(form)
 {
-    $('#form').bootstrapValidator({
+    form = typeof form !== 'undefined' ? form : $('#form');
+    form.bootstrapValidator({
         container: 'tooltip',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
