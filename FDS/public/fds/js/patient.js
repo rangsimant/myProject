@@ -1,6 +1,7 @@
 var button;
 var user_id;
 var note_id;
+var edit_note_id;
 var author_id;
 var profilename;
 var username;
@@ -117,6 +118,7 @@ $( '#form-note' ).on( 'submit', function() {
                 {
                     "_token": $( this ).find( 'input[name=_token]' ).val(),
                     "note": $( '#note' ).val(),
+                    "mode":'create',
                     "user_id":user_id,
                     "author_id":author_id
                 },
@@ -128,7 +130,23 @@ $( '#form-note' ).on( 'submit', function() {
             );
         }else if (btnSaveOrUpdate == "Update")
         {
-            alert("Update");
+            $.post(
+                $( this ).prop( 'action' ),
+                {
+                    "_token": $( this ).find( 'input[name=_token]' ).val(),
+                    "note": $( '#note' ).val(),
+                    "mode":'edit',
+                    "note_id":note_id
+                },
+                function( data ) {
+                    update_note = true; // if Confirm or Save and when close modal it will auto refresh
+                    var txtnote = $('#note').val();
+                    $('#title_note'+note_id).text(txtnote);
+                    $('#note'+note_id).text(txtnote);
+                    cancel();
+                },
+                'json'
+            );
         }
         //.....
         //do anything else you might want to do
@@ -186,7 +204,30 @@ function getPatientAndNote()
 					{
 						var title = value.notes;
 					}
-					var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'><strong>"+title+"</strong><span class='pull-right'>"+updated_at+"</span> </h4> </div> </a> <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div id='editnote' class='panel-body'> "+value.notes+"</div> <div class='panel-footer text-right'> <a class='btn btn-warning btn-xs' href='#' >edit</a> <a class='btn btn-danger btn-xs' href='#' data-toggle='modal' data-target='#confirm-modal' data-noteid="+value.id+" >delete</a> <p>Created : "+created+" by : "+author_name+"</p> </div> </div> </div>";
+					var collapse = "<div class='panel panel-default'> \
+                                        <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> \
+                                            <div class='panel-heading' role='tab' id='headingOne'> \
+                                                <h4 class='panel-title'>\
+                                                    <strong id='title_note"+value.id+"'>"+title+"</strong>\
+                                                    <span class='pull-right'>"+updated_at+"</span> \
+                                                </h4> \
+                                            </div> \
+                                        </a> \
+                                        <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> \
+                                            <div id='note"+value.id+"' class='panel-body'> "+value.notes+"</div> \
+                                            <div class='panel-footer text-right'> \
+                                                <a id='edit"+value.id+"' class='btn btn-warning btn-xs' href='#' >edit</a> \
+                                                <a class='btn btn-danger btn-xs' href='#' data-toggle='modal' data-target='#confirm-modal' data-noteid="+value.id+" >delete</a> \
+                                                <p>Created : "+created+" by : "+author_name+"</p> \
+                                            </div> \
+                                        </div> \
+                                    </div> \
+                                    <script type='text/javascript'> \
+                                        $(document).ready(function() { \
+                                            editNote('"+value.id+"');\
+                                        }); \
+                                    </script> \
+                                    ";
 					modal.find('.panel-group').append(collapse);
 					console.log('Have '+data['note'].length+' notes.');
 				});
@@ -200,4 +241,34 @@ function getPatientAndNote()
  		}
 
  	});
+}
+
+function cancelEditNote()
+{
+    $('#cancel_update').click(function()
+    {
+        cancel()
+    });
+}
+
+function cancel()
+{
+    $('#note').val('');
+    $('.btn.btn-warning.btn-xs').removeAttr("disabled"); // Change button edit to Enabled 
+    $('#save_note').val('Save');
+    $('#cancel_update').css('display','none');
+}
+
+function editNote(notes_id)
+{
+    $('#edit'+notes_id).click(function(){
+        note_id = notes_id;
+        $('.btn.btn-warning.btn-xs').removeAttr("disabled"); // Change button edit to Enabled 
+        $('#edit'+notes_id).attr('disabled','disabled'); // Change button edit to Disabled 
+        $('#cancel_update').css('display','');
+        var txtnote = $('#note'+notes_id).text();
+        $('#note').val(txtnote);
+        $('#save_note').val('Update');
+        cancelEditNote();
+    });
 }

@@ -69,6 +69,8 @@
 			var form_profile = $('#form-profile');
 
 			$('#patient').DataTable();
+			$.fn.editable.defaults.mode = 'inline';
+			
 			showDataOnModal();
 			updateProfile();
 			saveNote();

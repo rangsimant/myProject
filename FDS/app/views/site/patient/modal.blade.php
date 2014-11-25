@@ -92,6 +92,11 @@
 									    'id' => 'save_note',
 									    'class' => 'btn btn-primary'
 									) ) }}
+									{{ Form::button( 'Cancel', array(
+									    'id' => 'cancel_update',
+									    'class' => 'btn btn-default',
+									    'style' => 'display:none'
+									) ) }}
 									 
 									{{ Form::close() }}
 				      			</div>

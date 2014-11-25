@@ -29,13 +29,19 @@ class PatientController extends BaseController
         return Response::json( array('profile'=>$profile,'note'=>$note) );
     }
 
-	public function create()
+	public function createOrEdit()
 	{
 		$this->checkOurForm();
  
         $input = Input::all();
-        Note::saveNote($input['user_id'],$input['author_id'],$input['note']);
- 
+        $mode = $input['mode'];
+        if ($mode == 'create') {
+            Note::saveNote($input['user_id'],$input['author_id'],$input['note']);
+        }
+        else if($mode == 'edit')
+        {
+            Note::editNote($input['note_id'],$input['note']);
+        }
         return Response::json( $input );
 	}
 

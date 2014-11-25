@@ -38,7 +38,7 @@ textarea.form-control
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
 }
-.modal-body .panel-group
+.modal-body .panel-group,.panel-group .panel
 {
 	margin-bottom: 5px;
 }
@@ -63,7 +63,7 @@ span.pull-right,#tab-note p
 {
 	margin: 1px;
 }
-#save_note
+#save_note,#cancel_update
 {
 	margin-top: 10px;
 }

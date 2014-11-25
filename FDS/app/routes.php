@@ -131,6 +131,6 @@ Route::group(array('prefix' => 'site/patient','before' => 'auth'), function()
     Route::get('/','PatientController@getIndex');
     Route::post( 'note', array(
         'as' => 'patient.create',
-        'uses' => 'PatientController@create'
+        'uses' => 'PatientController@createOrEdit'
     ));
 });

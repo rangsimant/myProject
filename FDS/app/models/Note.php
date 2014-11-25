@@ -17,6 +17,13 @@ class Note extends Eloquent
         
     }
 
+    public static function editNote($note_id,$txtnote)
+    {
+        $note = Note::find($note_id);
+        $note->notes = $txtnote;
+        $note->save();
+    }
+
     public static function getNote($user_id)
     {
     	$note = DB::table('notes')
