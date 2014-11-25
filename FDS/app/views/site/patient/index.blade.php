@@ -54,13 +54,11 @@
 			@endforeach
 		</tbody>
 	</table>
-
 	<!-- Patient Modal -->
 	@yield('patient')
 
 	<!-- Confirm Modal -->
 	@yield('confirm')
-
 @stop
 
 {{-- Scripts --}}
@@ -71,14 +69,12 @@
 			var form_profile = $('#form-profile');
 
 			$('#patient').DataTable();
-
 			showDataOnModal();
 			updateProfile();
 			saveNote();
 			showConfirm();
 			deleteNote();
 			patientModalClose();
-			
 		});
 	</script>
 @stop

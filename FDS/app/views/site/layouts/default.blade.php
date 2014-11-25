@@ -31,6 +31,9 @@
         <!-- FDS CSS -->
         <link rel="stylesheet" href="{{asset('fds/css/style.css')}}">
 
+        <!-- Bootstrap edit CSS -->
+        <link rel="stylesheet" href="{{asset('bootstrap3-editable/css/bootstrap-editable.css')}}">
+
 		<style>
         body {
             padding: 60px 0;
@@ -125,12 +128,15 @@
 	    <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
 	    <script src="{{asset('assets/js/prettify.js')}}"></script>
 
+
         <!-- FDS Javascripts -->
         <script src="{{asset('fds/js/validation.js')}}"></script>
         <script src="{{asset('fds/js/patient.js')}}"></script>
         <script src="{{asset('fds/js/bootstrapvalidate.js')}}"></script>
-        <script src="{{asset('fds/js/moment-with-locales.js')}}"></script>
-        
+        <script src="{{asset('fds/js/moment-with-locales.js')}}"></script>  
+
+        <!-- Bootstrap edit Javascripts -->      
+        <script src="{{asset('bootstrap3-editable/js/bootstrap-editable.min.js')}}"></script>        
         
         @yield('scripts')
 

@@ -39,7 +39,11 @@ body {
         <div class="form-group {{{ $errors->has('email') ? 'error' : '' }}}">
             <label class="col-md-2 control-label" for="email">Email</label>
             <div class="email col-md-10">
-                <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}"/>
+                <input class="form-control" type="text" name="email" id="email" value="{{{ Input::old('email', $user->email) }}}"
+                        data-bv-emailaddress
+                        data-bv-onerror="onFieldError"
+                        data-bv-onsuccess="onFieldSuccess"
+                        data-bv-onstatus="onFieldStatus"/>
                 {{ $errors->first('email', '<span class="help-inline">:message</span>') }}
                 <span id="validEmail" class="" aria-hidden="true"></span>
             </div>

@@ -93,6 +93,7 @@ function updateProfile()
                 "tel":$('#tel').val()
             },
             function( data ) {
+
             },
             'json'
         );
@@ -185,7 +186,7 @@ function getPatientAndNote()
 					{
 						var title = value.notes;
 					}
-					var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'><strong>"+title+"</strong><span class='pull-right'>"+updated_at+"</span> </h4> </div> </a> <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div class='panel-body'> "+value.notes+"</div> <div class='panel-footer text-right'> <a class='btn btn-warning btn-xs' href='#'>edit</a> <a class='btn btn-danger btn-xs' href='#' data-toggle='modal' data-target='#confirm-modal' data-noteid="+value.id+" >delete</a> <p>Created : "+created+" by : "+author_name+"</p> </div> </div> </div>";
+					var collapse = "<div class='panel panel-default'> <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> <div class='panel-heading' role='tab' id='headingOne'> <h4 class='panel-title'><strong>"+title+"</strong><span class='pull-right'>"+updated_at+"</span> </h4> </div> </a> <div id='"+value.id+"' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'> <div id='editnote' class='panel-body'> "+value.notes+"</div> <div class='panel-footer text-right'> <a class='btn btn-warning btn-xs' href='#' >edit</a> <a class='btn btn-danger btn-xs' href='#' data-toggle='modal' data-target='#confirm-modal' data-noteid="+value.id+" >delete</a> <p>Created : "+created+" by : "+author_name+"</p> </div> </div> </div>";
 					modal.find('.panel-group').append(collapse);
 					console.log('Have '+data['note'].length+' notes.');
 				});

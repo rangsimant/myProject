@@ -32,32 +32,32 @@
 				      		<div class="modal-body">
 					         		<div class="form-group">
 					            		<label for="username" class="control-label">Username:</label>
-					           			<input type="text" class="form-control" id="username" readonly>
+					           			<input type="text" class="form-control" id="username" name="username" readonly>
 					         		</div>
 					          		<div class="form-group">
 					            		<label for="patient-firstname" class="control-label">First Name:</label>
-					            		<input type="text" class="form-control" id="first_name"></input>
+					            		<input type="text" class="form-control" id="first_name" name="username" ></input>
 					          		</div>
 					          		<div class="form-group">
 					            		<label for="patient-lastname" class="control-label">Last Name:</label>
-					            		<input type="text" class="form-control" id="last_name"></input>
+					            		<input type="text" class="form-control" id="last_name" name="last_name"></input>
 					          		</div>
 				  	          		<div class="form-group">
 					           		 	<label for="email" class="control-label">E-mail:</label>
-					            		<input type="text" class="form-control" id="email"></input>
+					            		<input type="text" class="form-control" id="email" name="email"></input>
 					          		</div>
 				  	          		<div class="form-group">
 					            		<label for="address" class="control-label">Address:</label>
-					            		<input type="text" class="form-control" id="address"></input>
+					            		<input type="text" class="form-control" id="address" name="address"></input>
 					          		</div>
 				  	          		<div class="form-group">
 					            		<label for="tel" class="control-label">Tel:</label>
-					            		<input type="text" class="form-control" id="tel"></input>
+					            		<input type="text" class="form-control" id="tel" name="tel"></input>
 					          		</div>
 				      		</div>
 				      		<div class="modal-footer">
 				        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				        		<button type="submit" class="btn btn-primary" id="save_profile">Save</button>
+				        		<button type="submit" class="btn btn-primary" id="save_profile" name="save_profile">Save</button>
 				      		</div>
 				      		{{ Form::close() }}
 				      		
