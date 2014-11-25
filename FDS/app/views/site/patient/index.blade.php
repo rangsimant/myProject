@@ -67,6 +67,7 @@
 @section('scripts')
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$('#patient').DataTable();
 			showDataOnModal();
 			saveNote();
 			showConfirm();
