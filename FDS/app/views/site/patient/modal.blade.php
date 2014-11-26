@@ -84,12 +84,6 @@
 									    'required' => true,
 									    'class' => 'form-control'
 									) ) }}
-					 			<!-- 	<div class="form-group {{{ $errors->has('content') ? 'has-error' : '' }}}">
-										<div class="col-md-12">
-											<textarea required="true" class="form-control full-width wysihtml5" name="content" rows="10" id="note">{{{ Input::old('content', isset($post) ? $post->content : null) }}}</textarea>
-											{{{ $errors->first('content', '<span class="help-block">:message</span>') }}}
-										</div>
-									</div> -->
 
 									{{ Form::submit( 'Save', array(
 									    'id' => 'save_note',

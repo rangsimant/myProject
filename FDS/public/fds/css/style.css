@@ -8,10 +8,7 @@
 	border: solid 1px #CCCCCC;
 	padding: 10px;
 }
-.btn-default,.btn-primary,.btn-success,.btn-info,.btn-warning,.btn-danger,.btn-link
-{
-	background-image:none;
-}
+
 textarea.form-control 
 {
 	height: 100px;
@@ -29,6 +26,11 @@ textarea.form-control
 .panel-heading
 {
 	padding: 7px 15px;
+}
+.panel-body
+{
+	overflow-y: auto;
+	max-height: 130px;
 }
 .panel-default>a>.panel-heading
 {

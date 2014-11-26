@@ -125,6 +125,7 @@ $( '#form-note' ).on( 'submit', function() {
                 function( data ) {
                     update_note = true; // if Confirm or Save and when close modal it will auto refresh
                 	getPatientAndNote();
+                    cancel();
                 },
                 'json'
             );
@@ -210,7 +211,8 @@ function getPatientAndNote()
 
 					if (value.notes.length > maxLength) 
 					{
-						var title = value.notes.substring(0, maxLength).replace(/(<([^>]+)>)/ig,"")+"...";
+                        var threedot = "&hellip;"; // same ... (dot dot dot)
+						var title = value.notes.replace(/(<([^>]+)>)/ig,"").substring(0, maxLength)+threedot;
 					}else
 					{
 						var title = value.notes.replace(/(<([^>]+)>)/ig,"");
@@ -280,10 +282,9 @@ function editNote(notes_id)
         $('.btn.btn-warning.btn-xs').removeAttr("disabled"); // Change button edit to Enabled 
         $('#edit'+notes_id).attr('disabled','disabled'); // Change button edit to Disabled 
         $('#cancel_update').css('display','');
-        var txtnote = $('#note'+notes_id).text().trim();
-        $('#note').data("wysihtml5").editor.setValue(txtnote); // get text note show on textarea wysihtml5
+        var txtnote = $('#note'+notes_id).html();
+        $('#note').data('wysihtml5').editor.setValue(txtnote); // get text note show on textarea wysihtml5
         $('#save_note').val('Update');
-        $('#note').focus();
         cancelEditNote();
     });
 }
