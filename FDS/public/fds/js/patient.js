@@ -140,9 +140,10 @@ $( '#form-note' ).on( 'submit', function() {
                 },
                 function( data ) {
                     update_note = true; // if Confirm or Save and when close modal it will auto refresh
-                    var txtnote = $('#note').val();
-                    $('#title_note'+note_id).text(txtnote);
-                    $('#note'+note_id).text(txtnote);
+                    // var txtnote = $('#note').val();
+                    // $('#title_note'+note_id).text(txtnote);
+                    // $('#note'+note_id).text(txtnote);
+                    getPatientAndNote();
                     cancel();
                 },
                 'json'
@@ -195,16 +196,26 @@ function getPatientAndNote()
 					var updated_at = moment(value.updated_at, 'YYYY/MM/DD HH:mm:ss').fromNow();
 					var created = moment(value.created_at).format('DD MMM YY HH:mm:ss');
 					var updated = moment(value.updated_at).format('DD MMM YY HH:mm:ss');
-					var author_name = value.author_first_name+" "+value.author_last_name;
-					var maxLength = 50;
+                    var author_name = value.author_first_name+" "+value.author_last_name;
+                    var maxLength = 50;
+
+                    if (created == updated) 
+                    {
+                        var note_by  = 'Created : '+created+' by : '+author_name;
+                    }
+                    else
+                    {
+                        var note_by  = 'Created : '+created+' Updated : '+updated+' by : '+author_name;
+                    }
+
 					if (value.notes.length > maxLength) 
 					{
-						var title = value.notes.substring(0, maxLength)+"...";
+						var title = value.notes.substring(0, maxLength).replace(/(<([^>]+)>)/ig,"")+"...";
 					}else
 					{
-						var title = value.notes;
+						var title = value.notes.replace(/(<([^>]+)>)/ig,"");
 					}
-					var collapse = "<div class='panel panel-default'> \
+					var collapse = "<div class='panel panel-default' id='collapse"+value.id+"'> \
                                         <a data-toggle='collapse' data-parent='#accordion' href='#"+value.id+"' aria-expanded='true' aria-controls='collapseOne'> \
                                             <div class='panel-heading' role='tab' id='headingOne'> \
                                                 <h4 class='panel-title'>\
@@ -218,7 +229,7 @@ function getPatientAndNote()
                                             <div class='panel-footer text-right'> \
                                                 <a id='edit"+value.id+"' class='btn btn-warning btn-xs' href='#' >edit</a> \
                                                 <a class='btn btn-danger btn-xs' href='#' data-toggle='modal' data-target='#confirm-modal' data-noteid="+value.id+" >delete</a> \
-                                                <p>Created : "+created+" by : "+author_name+"</p> \
+                                                <p>"+note_by+"</p> \
                                             </div> \
                                         </div> \
                                     </div> \
@@ -253,22 +264,26 @@ function cancelEditNote()
 
 function cancel()
 {
-    $('#note').val('');
+    $('#note').data("wysihtml5").editor.setValue(''); // clear textarea wysihtml5
     $('.btn.btn-warning.btn-xs').removeAttr("disabled"); // Change button edit to Enabled 
     $('#save_note').val('Save');
     $('#cancel_update').css('display','none');
+    $('#collapse'+note_id).removeClass('edit-mode');
 }
 
 function editNote(notes_id)
 {
     $('#edit'+notes_id).click(function(){
+        cancel();
         note_id = notes_id;
+        $('#collapse'+note_id).addClass('edit-mode');
         $('.btn.btn-warning.btn-xs').removeAttr("disabled"); // Change button edit to Enabled 
         $('#edit'+notes_id).attr('disabled','disabled'); // Change button edit to Disabled 
         $('#cancel_update').css('display','');
-        var txtnote = $('#note'+notes_id).text();
-        $('#note').val(txtnote);
+        var txtnote = $('#note'+notes_id).text().trim();
+        $('#note').data("wysihtml5").editor.setValue(txtnote); // get text note show on textarea wysihtml5
         $('#save_note').val('Update');
+        $('#note').focus();
         cancelEditNote();
     });
 }

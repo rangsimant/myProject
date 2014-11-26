@@ -27,6 +27,8 @@
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
+        <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/prettify.css')}}">
+	    <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
         
         <!-- FDS CSS -->
         <link rel="stylesheet" href="{{asset('fds/css/style.css')}}">

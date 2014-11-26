@@ -67,3 +67,12 @@ span.pull-right,#tab-note p
 {
 	margin-top: 10px;
 }
+.edit-mode
+{
+	border: dotted 2.2px #eb9316;
+}
+.form-group  .col-md-12
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}

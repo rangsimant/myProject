@@ -68,6 +68,7 @@
 			validateInput(form_profile);
 			var form_profile = $('#form-profile');
 
+			$('#note').wysihtml5();
 			$('#patient').DataTable();
 			$.fn.editable.defaults.mode = 'inline';
 			
