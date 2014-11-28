@@ -85,7 +85,7 @@ function validateInput(form)
                     },
                 }
             },
-            tel: {
+            mobilephone: {
                 feedbackIcons: true,
                 validators: {
                     phone: {

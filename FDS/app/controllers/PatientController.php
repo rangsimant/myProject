@@ -68,10 +68,10 @@ class PatientController extends BaseController
         $first_name = Input::get( 'first_name' );
         $last_name = Input::get( 'last_name' );
         $address = Input::get( 'address' );
-        $tel = Input::get( 'tel' );
+        $mobilephone = Input::get( 'mobilephone' );
         
         // Update Profile
-        $profile->updateProfile($user_id,$first_name,$last_name,$address,$tel);
+        $profile->updateProfile($user_id,$first_name,$last_name,$address,$mobilephone);
     }
 
     private function checkOurForm()
