@@ -101,16 +101,16 @@ body {
         </div>
         <!-- ./ address -->
 
-        <!-- tel -->
-        <div class="form-group {{{ $errors->has('tel') ? 'error' : '' }}}">
-            <label class="col-md-2 control-label" for="tel">Telephone</label>
+        <!-- mobilephone -->
+        <div class="form-group {{{ $errors->has('mobilephone') ? 'error' : '' }}}">
+            <label class="col-md-2 control-label" for="mobilephone">mobilephoneephone</label>
             <div class="col-md-10">
-                <input class="form-control" type="text" name="tel" id="tel" value="{{{ Input::old('tel',$profile->tel)}}}" maxlength="10"
+                <input class="form-control" type="text" name="mobilephone" id="mobilephone" value="{{{ Input::old('mobilephone',$profile->mobilephone)}}}" maxlength="10"
                 />
-                {{ $errors->first('tel', '<span class="help-inline">:message</span>') }}
+                {{ $errors->first('mobilephone', '<span class="help-inline">:message</span>') }}
             </div>
         </div>
-        <!-- ./ tel -->
+        <!-- ./ mobilephone -->
 
     </div>
     <!-- ./ general tab -->

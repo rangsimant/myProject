@@ -9,7 +9,7 @@ var first_name;
 var last_name;
 var address;
 var email;
-var tel;
+var mobilephone;
 var note;
 var update_profile;
 var update_note;
@@ -91,7 +91,7 @@ function updateProfile()
                 "last_name":$('#last_name').val(),
                 "email":$('#email').val(),
                 "address":$('#address').val(),
-                "tel":$('#tel').val()
+                "mobilephone":$('#mobilephone').val()
             },
             function( data ) {
 
@@ -181,7 +181,7 @@ function getPatientAndNote()
 			  	modal.find('#last_name').val(data['profile'][0].last_name);
 			  	modal.find('#address').val(data['profile'][0].address);
 			  	modal.find('#email').val(data['profile'][0].email);
-			 	modal.find('#tel').val(data['profile'][0].tel);
+			 	modal.find('#mobilephone').val(data['profile'][0].mobilephone);
  			}
  			else
  			{

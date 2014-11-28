@@ -23,7 +23,8 @@
         "phpunit/phpunit": "~4.0",
         "summerstreet/woodling": "~0.1.6",
         "barryvdh/laravel-ide-helper": "~1.11",
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+        "xethron/migrations-generator": "dev-master"
     },
     "autoload": {
         "classmap": [

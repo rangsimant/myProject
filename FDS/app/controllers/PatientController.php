@@ -1,6 +1,9 @@
 <?php
+use Zizaco\Entrust\HasRole;
+
 class PatientController extends BaseController 
 {
+    use HasRole;
 	    /**
      * Initializer.
      *
@@ -13,6 +16,11 @@ class PatientController extends BaseController
     
 	public function getIndex()
 	{
+        if (!Auth::user()->hasRole('admin')) 
+        {
+            return Redirect::to('/');
+        }
+
 		$title = Lang::get('patient/patient.title');
 		$patient = Patient::getPatient();
         foreach ($patient as $idx => $value) {

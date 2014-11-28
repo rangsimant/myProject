@@ -51,8 +51,8 @@
 					            		<input type="text" class="form-control" id="address" name="address"></input>
 					          		</div>
 				  	          		<div class="form-group">
-					            		<label for="tel" class="control-label">Tel:</label>
-					            		<input type="text" class="form-control" id="tel" name="tel"></input>
+					            		<label for="mobilephone" class="control-label">mobilephone:</label>
+					            		<input type="text" class="form-control" id="mobilephone" name="mobilephone"></input>
 					          		</div>
 				      		</div>
 				      		<div class="modal-footer">

@@ -13,13 +13,13 @@ class Profile extends Eloquent {
 		return $this->where('user_id','=',$user_id)->first();
 	}
 
-	public function updateProfile($user_id,$first_name,$last_name,$address,$tel)
+	public function updateProfile($user_id,$first_name,$last_name,$address,$mobilephone)
 	{
 		$update_profile = Profile::where('user_id',$user_id)->update(array(
 					            'first_name' => $first_name,
 					            'last_name' =>  $last_name,
 					            'address'   => $address,
-					            'tel'   =>  $tel
+					            'mobilephone'   =>  $mobilephone
 					        ));
         return $update_profile;
 	}

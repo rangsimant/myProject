@@ -1,0 +1,80 @@
+#patient>tbody>tr
+{
+	cursor: pointer;
+}
+.form
+{
+	border-radius: 2px;
+	border: solid 1px #CCCCCC;
+	padding: 10px;
+}
+
+textarea.form-control 
+{
+	height: 100px;
+  	resize: none;
+}
+#tab-note .modal-body
+{
+	height: 300px;
+	overflow-y: auto; /*auto show scrollbar*/
+}
+.left
+{
+	float:left;
+}
+.panel-heading
+{
+	padding: 7px 15px;
+}
+.panel-body
+{
+	overflow-y: auto;
+	max-height: 130px;
+}
+.panel-default>a>.panel-heading
+{
+	color:black;
+	background-image: -webkit-linear-gradient(top,#f5f5f5 0,#e8e8e8 100%); */
+	/* background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%); */
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#ffe8e8e8', GradientType=0);
+}
+.modal-body .panel-group,.panel-group .panel
+{
+	margin-bottom: 5px;
+}
+a:hover
+{
+	text-decoration: none;
+}
+span.pull-right,#tab-note p
+{
+	font-size: 11px;
+	color:gray;
+}
+#tab-note p
+{
+	margin: 0 0 0px;
+}
+#tab-note .panel-footer
+{
+	padding: 5px 15px;
+}
+.btn
+{
+	margin: 1px;
+}
+#save_note,#cancel_update
+{
+	margin-top: 10px;
+}
+.edit-mode
+{
+	border: dotted 2.2px #eb9316;
+}
+.form-group  .col-md-12
+{
+	padding-left: 0px;
+	padding-right: 0px;
+}
