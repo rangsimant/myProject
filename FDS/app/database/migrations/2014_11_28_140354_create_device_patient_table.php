@@ -15,8 +15,8 @@ class CreateDevicePatientTable extends Migration {
 		Schema::create('device_patient', function(Blueprint $table)
 		{
 			$table->integer('idDevice-Patient')->unsigned()->primary();
-			$table->integer('Patient')->unsigned()->index('Device_Patient_Patient_FK_idx');
-			$table->integer('Device')->unsigned()->index('Device_idx');
+			$table->integer('Patient')->unsigned()->index('device_patient_Device_Patient_Patient_FK_idx');
+			$table->integer('Device')->unsigned()->index('device_patient_Device_idx');
 			$table->string('placement', 45)->nullable();
 			$table->dateTime('actualDateAssigned')->nullable();
 			$table->string('actualDuration', 45)->nullable();

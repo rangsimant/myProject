@@ -15,8 +15,8 @@ class CreatePhysicianPatientTable extends Migration {
 		Schema::create('physician_patient', function(Blueprint $table)
 		{
 			$table->integer('idPhysician-Patient')->unsigned()->primary();
-			$table->integer('Patient')->unsigned()->index('Patient_idx');
-			$table->integer('Physician')->unsigned()->nullable()->index('Physician_idx');
+			$table->integer('Patient')->unsigned()->index('physician_patient_Patient_idx');
+			$table->integer('Physician')->unsigned()->nullable()->index('physician_patient_Physician_idx');
 			$table->date('startDate')->nullable();
 			$table->date('endDate')->nullable();
 		});

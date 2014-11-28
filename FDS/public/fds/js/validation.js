@@ -93,6 +93,14 @@ function validateInput(form)
                         message: 'The Phone number is not valid'
                     }
                 }
+            },
+            note: {
+                feedbackIcons: true,
+                validators: {
+                    notEmpty: {
+                         message: 'The Password confirm is required'
+                    }
+                }
             }
         }
     });

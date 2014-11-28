@@ -80,6 +80,7 @@
 								<div class="form-group">
 									{{ Form::textarea( 'note', '', array(
 									    'id' => 'note',
+									    'name' => 'note',
 									    'placeholder' => 'Note..',
 									    'required' => true,
 									    'class' => 'form-control'

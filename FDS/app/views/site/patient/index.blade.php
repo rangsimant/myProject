@@ -67,16 +67,16 @@
 		$(document).ready(function() {
 			var form_profile = $('#form-profile');
 			validateInput(form_profile);
-			
+
 			$('#note').wysihtml5();
 			$('#patient').DataTable();
 			$.fn.editable.defaults.mode = 'inline';
 			
-			showDataOnModal();
+			patientModalOpen();
 			updateProfile();
 			saveNote();
-			showConfirm();
 			deleteNote();
+			showConfirm();
 			patientModalClose();
 		});
 	</script>

@@ -1,50 +1,27 @@
 <?php
 
 use Mockery as m;
-use Woodling\Woodling;
 
 class UserTest extends TestCase {
 
-    public function testUsername()
+    public function testGetUserByUsername()
     {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertEquals( $user->username, 'admin' );
+        $user = new User();
+        $user = $user->getUserByUsername( 'admin' );
+        $this->assertEquals( 'admin' , $user->username);
     }
 
-    public function testIsConfirmedByEmail()
+    public function testGetUserByWrongUsername()
     {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertEquals( $user->isConfirmed(array('email'=>'admin@example.org')), 1 );
+    	$user = new User();
+        $user = $user->getUserByUsername( 'wrong' );
+        $this->assertNull( $user );
     }
 
-    public function testIsConfirmedByEmailFail()
+    public function testSaveRoles()
     {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertNotEquals( $user->isConfirmed(array('email'=>'non-user@example.org')), true );
+    	$user = new User();
+    	$user = $user->saveRoles('testRole1','testRole2');
+    	var_dump($user);
     }
-
-    public function testIsConfirmedByUsername()
-    {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertEquals( $user->isConfirmed(array('username'=>'admin')), true );
-    }
-
-    public function testIsConfirmedByUsernameFail()
-    {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertNotEquals( $user->isConfirmed(array('username'=>'non-user')), true );
-    }
-
-    public function testGetByUsername()
-    {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertNotEquals( $user->getUserByUsername('admin'), false );
-    }
-
-    public function testGetByUsernameFail()
-    {
-        $user = Woodling::retrieve('UserAdmin');
-        $this->assertEquals( $user->getUserByUsername('non-user'), false );
-    }
-
 }

@@ -26,7 +26,7 @@ function patientModalClose()
     });
 }
 
-function showDataOnModal () 
+function patientModalOpen () 
 {
 	$('#patient-modal').on('show.bs.modal', function (event) {
 		$('#note').val('');

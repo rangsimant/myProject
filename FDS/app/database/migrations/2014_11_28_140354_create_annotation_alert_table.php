@@ -15,7 +15,7 @@ class CreateAnnotationAlertTable extends Migration {
 		Schema::create('annotation_alert', function(Blueprint $table)
 		{
 			$table->string('idAnnotation-Alert', 16)->primary();
-			$table->string('code', 45)->nullable()->index('Code_idx');
+			$table->string('code', 45)->nullable()->index('annotation_alert_Code_idx');
 			$table->dateTime('time')->nullable();
 			$table->text('duration')->nullable();
 		});

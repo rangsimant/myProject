@@ -9,6 +9,8 @@ class UsersProfileTableSeeder extends Seeder {
 		$users_profile = array(
 				array(
 					'user_id' => '1',
+					'citizen_id' => '1234567891012',
+					'title' => '0',
 					'first_name' => 'Adminstrator',
 					'last_name' => 'Admin',
 					'mobilephone' => '0123456789',
@@ -20,6 +22,8 @@ class UsersProfileTableSeeder extends Seeder {
 					),
 				array(
 					'user_id' => '2',
+					'citizen_id' => '9999999999999',
+					'title' => '1',
 					'first_name' => 'Normal User',
 					'last_name' => 'Normal',
 					'mobilephone' => '0987654321',

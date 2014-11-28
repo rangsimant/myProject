@@ -16,7 +16,7 @@ class CreateRecordTable extends Migration {
 		{
 			$table->integer('idRecord')->unsigned()->primary();
 			$table->string('name', 45)->nullable();
-			$table->integer('Device')->unsigned()->nullable()->index('Device_idx');
+			$table->integer('Device')->unsigned()->nullable()->index('record_Device_idx');
 			$table->string('description', 256)->nullable();
 		});
 	}

@@ -15,7 +15,7 @@ class CreateAnnotationActivityTable extends Migration {
 		Schema::create('annotation_activity', function(Blueprint $table)
 		{
 			$table->string('idAnnotation-Activity', 16)->primary();
-			$table->string('code', 45)->nullable()->index('Code_idx');
+			$table->string('code', 45)->nullable()->index('annotation_activity_Code_idx');
 			$table->dateTime('time')->nullable();
 			$table->text('duration')->nullable();
 		});

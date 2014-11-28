@@ -15,7 +15,7 @@ class CreateAnnotationSleepTable extends Migration {
 		Schema::create('annotation_sleep', function(Blueprint $table)
 		{
 			$table->string('idAnnotation-Activity', 16)->primary();
-			$table->string('code', 45)->nullable()->index('code_idx');
+			$table->string('code', 45)->nullable()->index('annotation_sleepcode_idx');
 			$table->dateTime('time')->nullable();
 			$table->text('duration')->nullable();
 			$table->string('filename', 45)->nullable();

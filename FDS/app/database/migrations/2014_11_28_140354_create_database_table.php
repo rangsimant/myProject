@@ -16,9 +16,9 @@ class CreateDatabaseTable extends Migration {
 		{
 			$table->increments('idDatabase');
 			$table->string('name', 45)->nullable();
-			$table->integer('Patient')->unsigned()->nullable()->index('Patient_idx');
-			$table->integer('Record')->unsigned()->nullable()->index('Record_idx');
-			$table->integer('AnnotationList')->index('AnnotationList_idx');
+			$table->integer('Patient')->unsigned()->nullable()->index('database_Patient_idx');
+			$table->integer('Record')->unsigned()->nullable()->index('database_Record_idx');
+			$table->integer('AnnotationList')->index('database_AnnotationList_idx');
 			$table->string('description', 256)->nullable();
 		});
 	}
