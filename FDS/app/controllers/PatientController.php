@@ -16,7 +16,7 @@ class PatientController extends BaseController
     
 	public function getIndex()
 	{
-        if (!Auth::user()->hasRole('admin')) 
+        if (!Auth::user()->ability('admin,comment','manage_patient') ) 
         {
             return Redirect::to('/');
         }

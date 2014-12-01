@@ -58,3 +58,15 @@
 		<!-- ./ form actions -->
 	</form>
 @stop
+
+@section('scripts')
+<script type="text/javascript">
+$(document).ready(function() {
+{
+        	$('.close_popup').click(function()
+        	{
+        		parent.location.reload(true);
+        	});
+})
+</script>
+@stop

@@ -126,6 +126,11 @@
     <script type="text/javascript">
         $(document).ready(function() {
         	validateInput();
+        	$('.close_popup').click(function()
+        	{
+        		parent.location.reload(true);
+        	});
+
         });
     </script>
 @stop
